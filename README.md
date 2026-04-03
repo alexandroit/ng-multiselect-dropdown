@@ -1,12 +1,12 @@
 # @revivejs/ng-multiselect-dropdown
 
-> A polished **Angular 20 multi-select dropdown** for template-driven and reactive forms, with search, single or multiple selection, custom data binding, and theme support.
+> A polished **Angular 21 multi-select dropdown** for template-driven and reactive forms, with search, single or multiple selection, custom data binding, and theme support.
 
 [![npm version](https://img.shields.io/npm/v/%40revivejs%2Fng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)
 [![npm downloads](https://img.shields.io/npm/dt/%40revivejs%2Fng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)
 [![npm monthly](https://img.shields.io/npm/dm/%40revivejs%2Fng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)
 [![license](https://img.shields.io/npm/l/%40revivejs%2Fng-multiselect-dropdown.svg?style=flat-square)](https://github.com/alexandroit/ng-multiselect-dropdown/blob/master/LICENSE)
-[![Angular 20](https://img.shields.io/badge/Angular-20-red?style=flat-square&logo=angular)](https://angular.dev)
+[![Angular 21](https://img.shields.io/badge/Angular-21-red?style=flat-square&logo=angular)](https://angular.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org)
 [![GitHub stars](https://img.shields.io/github/stars/alexandroit/ng-multiselect-dropdown.svg?style=flat-square)](https://github.com/alexandroit/ng-multiselect-dropdown/stargazers)
 
@@ -20,13 +20,13 @@
 
 ## Why this library?
 
-`@revivejs/ng-multiselect-dropdown` is the actively maintained scoped continuation of this component, prepared for modern Angular 20 applications and first-class npm publishing under the `@revivejs` scope.
+`@revivejs/ng-multiselect-dropdown` is the actively maintained scoped continuation of this component, prepared for modern Angular 21 applications and first-class npm publishing under the `@revivejs` scope.
 
 ## Features
 
 | Feature | Supported |
 | :--- | :---: |
-| Angular 20 release line | ✅ |
+| Angular 21 release line | ✅ |
 | Single and multiple selection | ✅ |
 | Search and filter | ✅ |
 | Template-driven forms (`ngModel`) | ✅ |
@@ -55,6 +55,7 @@
 
 | `@revivejs/ng-multiselect-dropdown` | Angular | TypeScript | Node.js |
 | :--- | :---: | :---: | :---: |
+| `6.x` | `21.x` | `5.9` | `>= 20.19` |
 | `5.x` | `20.x` | `5.9` | `>= 20.19` |
 | `4.x` | `19.x` | `5.8` | `>= 18.19` |
 | `3.x` | `18.x` | `5.5` | `>= 18.19` |
