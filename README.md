@@ -1,74 +1,134 @@
-# Angular Multiselect Dropdown
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
+# @revivejs/ng-multiselect-dropdown
 
-[![npm version](https://img.shields.io/npm/v/ng-multiselect-dropdown.svg)](https://www.npmjs.com/package/ng-multiselect-dropdown)
-[![downloads](https://img.shields.io/npm/dt/ng-multiselect-dropdown.svg)](https://www.npmjs.com/package/ng-multiselect-dropdown)
-[![downloads](https://img.shields.io/npm/dm/ng-multiselect-dropdown.svg)](https://www.npmjs.com/package/ng-multiselect-dropdown)
+> A polished **Angular 16 multi-select dropdown** for template-driven and reactive forms, with search, single or multiple selection, custom data binding, and theme support.
 
-Angular multiselect dropdown component for web applications. Easy to integrate and use. It can be bind to any custom data source.
+[![npm version](https://img.shields.io/npm/v/%40revivejs%2Fng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)
+[![npm downloads](https://img.shields.io/npm/dt/%40revivejs%2Fng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)
+[![npm monthly](https://img.shields.io/npm/dm/%40revivejs%2Fng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)
+[![license](https://img.shields.io/npm/l/%40revivejs%2Fng-multiselect-dropdown.svg?style=flat-square)](https://github.com/alexandroit/ng-multiselect-dropdown/blob/master/LICENSE)
+[![Angular 16](https://img.shields.io/badge/Angular-16-red?style=flat-square&logo=angular)](https://angular.io)
+[![TypeScript](https://img.shields.io/badge/TypeScript-4.9-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org)
+[![GitHub stars](https://img.shields.io/github/stars/alexandroit/ng-multiselect-dropdown.svg?style=flat-square)](https://github.com/alexandroit/ng-multiselect-dropdown/stargazers)
 
-# [Demo](https://nileshpatel17.github.io/ng-multiselect-dropdown/)
+**[Documentation & Demo](https://alexandroit.github.io/ng-multiselect-dropdown/)** | **[Repository](https://github.com/alexandroit/ng-multiselect-dropdown)** | **[npm](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)** | **[Changelog](https://github.com/alexandroit/ng-multiselect-dropdown/blob/master/CHANGELOG.md)** | **[Custom Theme Guide](https://github.com/alexandroit/ng-multiselect-dropdown/blob/master/custom-theme.md)**
 
-![demo](Screenshots/ng-multiselect-dropdown_v0.1.6.gif)
+---
 
-## Getting Started
+> **Credits:** This package is maintained and published from the official repository at [alexandroit/ng-multiselect-dropdown](https://github.com/alexandroit/ng-multiselect-dropdown). Historical credit remains with the original upstream authors who inspired and started the library line.
+
+---
+
+## Why this library?
+
+`@revivejs/ng-multiselect-dropdown` is the actively maintained scoped continuation of this component, prepared for modern Angular 16 applications and first-class npm publishing under the `@revivejs` scope.
 
 ## Features
 
-- dropdown with single/multiple selction option
-- bind to any custom data source
-- search item with custom placeholder text
-- limit selection
-- select/de-select all items
-- custom theme
+| Feature | Supported |
+| :--- | :---: |
+| Angular 16 release line | ✅ |
+| Single and multiple selection | ✅ |
+| Search and filter | ✅ |
+| Template-driven forms (`ngModel`) | ✅ |
+| Reactive forms support | ✅ |
+| Custom text and placeholders | ✅ |
+| Select all and clear all | ✅ |
+| Item selection limit | ✅ |
+| Disabled items | ✅ |
+| Remote search trigger (`allowRemoteDataSearch`) | ✅ |
+| Custom theme support | ✅ |
 
-### Installation
+## Table of Contents
 
+1. [Angular Version Compatibility](#angular-version-compatibility)
+2. [Installation](#installation)
+3. [Setup](#setup)
+4. [Basic Usage](#basic-usage)
+5. [Settings](#settings)
+6. [Events](#events)
+7. [Theming](#theming)
+8. [Run Locally](#run-locally)
+9. [Publishing](#publishing)
+10. [License](#license)
+
+## Angular Version Compatibility
+
+| Package | Angular | TypeScript | RxJS |
+| :--- | :---: | :---: | :---: |
+| `@revivejs/ng-multiselect-dropdown@1.x` | `16.x` | `4.9.x` | `7.x` |
+
+## Installation
+
+```bash
+npm install @revivejs/ng-multiselect-dropdown
 ```
-npm install ng-multiselect-dropdown
-```
 
-And then include it in your module (see [app.module.ts](https://github.com/NileshPatel17/ng-multiselect-dropdown/blob/master/src/app/app.module.ts)):
+## Setup
+
+### 1. Import the module
 
 ```ts
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-// ...
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { NgMultiSelectDropDownModule } from '@revivejs/ng-multiselect-dropdown';
 
 @NgModule({
   imports: [
+    BrowserModule,
+    FormsModule,
     NgMultiSelectDropDownModule.forRoot()
-    // ...
   ]
-  // ...
 })
 export class AppModule {}
 ```
 
-### Usage
+### 2. Optional theme setup
+
+```json
+"styles": [
+  "node_modules/@revivejs/ng-multiselect-dropdown/themes/ng-multiselect-dropdown.theme.scss"
+]
+```
+
+### 3. Use the package from the official repository
+
+Repository URL:
+
+```text
+https://github.com/alexandroit/ng-multiselect-dropdown
+```
+
+## Basic Usage
 
 ```ts
 import { Component, OnInit } from '@angular/core';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { IDropdownSettings } from '@revivejs/ng-multiselect-dropdown';
 
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html'
+})
 export class AppComponent implements OnInit {
   dropdownList = [];
   selectedItems = [];
-  dropdownSettings = {};
-  ngOnInit() {
+  dropdownSettings: IDropdownSettings = {};
+
+  ngOnInit(): void {
     this.dropdownList = [
       { item_id: 1, item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
+      { item_id: 2, item_text: 'Bangalore' },
       { item_id: 3, item_text: 'Pune' },
       { item_id: 4, item_text: 'Navsari' },
       { item_id: 5, item_text: 'New Delhi' }
     ];
+
     this.selectedItems = [
       { item_id: 3, item_text: 'Pune' },
       { item_id: 4, item_text: 'Navsari' }
     ];
-    this.dropdownSettings:IDropdownSettings = {
+
+    this.dropdownSettings = {
       singleSelection: false,
       idField: 'item_id',
       textField: 'item_text',
@@ -78,10 +138,12 @@ export class AppComponent implements OnInit {
       allowSearchFilter: true
     };
   }
-  onItemSelect(item: any) {
+
+  onItemSelect(item: unknown): void {
     console.log(item);
   }
-  onSelectAll(items: any) {
+
+  onSelectAll(items: unknown): void {
     console.log(items);
   }
 }
@@ -89,139 +151,79 @@ export class AppComponent implements OnInit {
 
 ```html
 <ng-multiselect-dropdown
-  [placeholder]="'custom placeholder'"
+  [placeholder]="'Select options'"
   [settings]="dropdownSettings"
   [data]="dropdownList"
   [(ngModel)]="selectedItems"
   (onSelect)="onItemSelect($event)"
-  (onSelectAll)="onSelectAll($event)"
->
+  (onSelectAll)="onSelectAll($event)">
 </ng-multiselect-dropdown>
 ```
 
-### Settings
+## Settings
 
-| Setting                        | Type       | Description                                                                                                                                                                                                                                                                                                                                              | Default Value       |
-| :----------------------------- | :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------ |
-| singleSelection                | Boolean    | Mode of this component. If set `true` user can select more than one option.                                                                                                                                                                                                                                                                              | false               |
-| placeholder                    | String     | Text to be show in the dropdown, when no items are selected.                                                                                                                                                                                                                                                                                             | 'Select'            |
-| disabled                       | Boolean    | Disable the dropdown                                                                                                                                                                                                                                                                                                                                     | false               |
-| data                           | Array<any> | Array of items from which to select. Should be an array of objects with id and `text` properties. You can also use custom properties. In that case you need to map idField and `textField` properties. As convenience, you may also pass an array of strings, in which case the same string is used for both the ID and the text(no mapping is required) | n/a                 |
-| idField                        | String     | map id field in case of custom array of object                                                                                                                                                                                                                                                                                                           | 'id'                |
-| textField                      | String     | map text field in case of custom array of object                                                                                                                                                                                                                                                                                                         | 'text'              |
-| enableCheckAll                 | Boolean    | Enable the option to select all items in list                                                                                                                                                                                                                                                                                                            | false               |
-| selectAllText                  | String     | Text to display as the label of select all option                                                                                                                                                                                                                                                                                                        | Select All          |
-| unSelectAllText                | String     | Text to display as the label of unSelect option                                                                                                                                                                                                                                                                                                          | UnSelect All        |
-| allowSearchFilter              | Boolean    | Enable filter option for the list.                                                                                                                                                                                                                                                                                                                       | false               |
-| searchPlaceholderText          | String     | custom search placeholder                                                                                                                                                                                                                                                                                                                                | Search              |
-| clearSearchFilter              | Boolean    | clear search filter on dropdown close                                                                                                                                                                                                                                                                                                                    | true                |
-| maxHeight                      | Number     | Set maximum height of the dropdown list in px.                                                                                                                                                                                                                                                                                                           | 197                 |
-| itemsShowLimit                 | Number     | Limit the number of items to show in the input field. If not set will show all selected.                                                                                                                                                                                                                                                                 | All                 |
-| limitSelection                 | Number     | Limit the selection of number of items from the dropdown list. Once the limit is reached, all unselected items gets disabled.                                                                                                                                                                                                                            | none                |
-| searchPlaceholderText          | String     | Custom text for the search placeholder text. Default value would be 'Search'                                                                                                                                                                                                                                                                             | 'Search'            |
-| noDataAvailablePlaceholderText | String     | Custom text when no data is available.                                                                                                                                                                                                                                                                                                                   | 'No data available' |
-| closeDropDownOnSelection       | Boolean    | Closes the dropdown when item is selected. applicable only in cas of single selection                                                                                                                                                                                                                                                                    | false               |
-| defaultOpen                    | Boolean    | open state of dropdown                                                                                                                                                                                                                                                                                                                                   | false               |
-| allowRemoteDataSearch                    | Boolean    | allow search remote api if no data is present.                                                                                                                                                                                                                                                                                                                                   | false               |
+| Setting | Type | Description | Default |
+| :--- | :--- | :--- | :--- |
+| `singleSelection` | `boolean` | Enables single-selection mode. | `false` |
+| `placeholder` | `string` | Placeholder text shown when nothing is selected. | `'Select'` |
+| `disabled` | `boolean` | Disables the dropdown. | `false` |
+| `data` | `Array<any>` | Data source for the dropdown. | `[]` |
+| `idField` | `string` | Field used as the item identifier. | `'id'` |
+| `textField` | `string` | Field used as the item label. | `'text'` |
+| `disabledField` | `string` | Field used to mark disabled items. | `'isDisabled'` |
+| `enableCheckAll` | `boolean` | Shows the select-all option. | `true` |
+| `selectAllText` | `string` | Label for the select-all option. | `'Select All'` |
+| `unSelectAllText` | `string` | Label for the clear-all option. | `'UnSelect All'` |
+| `allowSearchFilter` | `boolean` | Enables the search box. | `false` |
+| `searchPlaceholderText` | `string` | Search input placeholder text. | `'Search'` |
+| `clearSearchFilter` | `boolean` | Clears search text when the dropdown closes. | `true` |
+| `maxHeight` | `number` | Max dropdown list height in pixels. | `197` |
+| `itemsShowLimit` | `number` | Limits how many selected items appear in the control. | `999999999999` |
+| `limitSelection` | `number` | Maximum allowed selected items. | `-1` |
+| `noDataAvailablePlaceholderText` | `string` | Message shown when there is no data. | `'No data available'` |
+| `noFilteredDataAvailablePlaceholderText` | `string` | Message shown when search returns no results. | `'No filtered data available'` |
+| `closeDropDownOnSelection` | `boolean` | Closes the dropdown after selection in single mode. | `false` |
+| `showSelectedItemsAtTop` | `boolean` | Moves selected items to the top of the list. | `false` |
+| `defaultOpen` | `boolean` | Opens the dropdown by default. | `false` |
+| `allowRemoteDataSearch` | `boolean` | Keeps remote search available even when data is empty. | `false` |
 
+## Events
 
-### Callback Methods
+- `onSelect`: Fires when one item is selected.
+- `onDeSelect`: Fires when one item is deselected.
+- `onSelectAll`: Fires when all visible items are selected.
+- `onDeSelectAll`: Fires when all items are deselected.
+- `onFilterChange`: Fires when the search text changes.
+- `onDropDownClose`: Fires when the dropdown closes.
 
-- `onSelect` - Return the selected item when an item is checked.
-  Example : (onSelect)="onItemSelect($event)"
-- `onSelectAll` - Return the all items.
-  Example : (onSelectAll)="onSelectAll($event)".
-- `onDeSelect` - Return the unselected item when an item is unchecked.
-  Example : (onDeSelect)="onItemDeSelect($event)"
-- `onFilterChange` - Return the key press.
-  Example : (onFilterChange)="onFilterChange($event)"
-- `onDropDownClose`-
-  Example : (onDropDownClose)="onDropDownClose()"
+## Theming
 
+The package ships with a theme file at:
 
-### Custom Theme
-
-- The component package has a themes folder in node_modules at `ng-multiselet-dropdown\themes\ng-multiselect-dropdown.theme.scss`
-- Include the `ng-multiselet-dropdown.theme.css` in `angular-cli.json` (for versions below angular 6) and `angular.json` (for version 6 or more).
-- [Refer this file](https://github.com/NileshPatel17/ng-multiselect-dropdown/blob/master/custom-theme.md) on how to add the css file to your angular project.
-<img src="Screenshots/theme-step-3.png" width="800">
-<!-- ![](Screenshots/theme-step-3.png) -->
-
-## Custom Template(in beta):
-
-### Variables can be used in template
-
-1. id: return id as number
-2. option: return option text. return string
-3. isSelected: determine if item is selected or not. returns boolean
-
-Template for each item
-```
-<ng-template #optionsTemplate let-item let-option="option" let-id="id" let-isSelected="isSelected">
-  {{option}}
-</ng-template>
+```text
+node_modules/@revivejs/ng-multiselect-dropdown/themes/ng-multiselect-dropdown.theme.scss
 ```
 
-Template for selected item
+For step-by-step theme customization, see [custom-theme.md](https://github.com/alexandroit/ng-multiselect-dropdown/blob/master/custom-theme.md).
+
+## Run Locally
+
+```bash
+npm install
+npm start
 ```
-<ng-template #optionSelectedTemplate optionSelectedTemplate let-option="option"  let-id="id">
-  {{option}}
-</ng-template>
+
+The local demo runs at `http://localhost:4201/`.
+
+## Publishing
+
+```bash
+npm run build:package
+npm run pack:check
 ```
 
-[Demo](https://codesandbox.io/s/custom-template-uyo0o?file=/src/app/app.component.html)
-### Run locally
-
-- Clone the repository or downlod the .zip,.tar files.
-- Run `npm install`
-- Run `ng serve` for a dev server
-- Navigate to `http://localhost:4200/`
-
-### Library Build / NPM Package
-
-Run `yarn build:lib` to build the library and generate an NPM package. The build artifacts will be stored in the dist-lib/ folder.
-
-## Running unit tests
-
-Run `yarn test` to execute the unit tests.
-
-## Development
-
-This project was generated with Angular CLI version 1.7.1.
-
-## Contributions
-
-Contributions are welcome, please open an issue and preferrably file a pull request.
-
-### Opening Issue
-
-Please share sample code using codesandbox.com or stackblitz.com to help me re-produce the issue.
+This prepares the publishable package in `dist-lib/` with the scoped package name `@revivejs/ng-multiselect-dropdown` and performs a dry-run tarball check without publishing.
 
 ## License
 
 MIT License.
-
-## Contributors ✨
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="http://blog.techotom.com"><img src="https://avatars0.githubusercontent.com/u/1773838?v=4" width="100px;" alt=""/><br /><sub><b>Tom Saleeba</b></sub></a><br /><a href="https://github.com/Nilesh Patel/ng-multiselect-dropdown/commits?author=tomsaleeba" title="Code">💻</a></td>
-    <td align="center"><a href="https://overtrack.gg"><img src="https://avatars0.githubusercontent.com/u/2515062?v=4" width="100px;" alt=""/><br /><sub><b>Simon Pinfold</b></sub></a><br /><a href="https://github.com/Nilesh Patel/ng-multiselect-dropdown/commits?author=synap5e" title="Code">💻</a></td>
-    <td align="center"><a href="http://helpfordeveloper.blogspot.in"><img src="https://avatars0.githubusercontent.com/u/32981723?v=4" width="100px;" alt=""/><br /><sub><b>Sushil Suthar</b></sub></a><br /><a href="https://github.com/Nilesh Patel/ng-multiselect-dropdown/commits?author=sushil-suthar" title="Code">💻</a></td>
-    <td align="center"><a href="http://sacgro.com"><img src="https://avatars1.githubusercontent.com/u/1292182?v=4" width="100px;" alt=""/><br /><sub><b>Sachin Grover</b></sub></a><br /><a href="https://github.com/Nilesh Patel/ng-multiselect-dropdown/commits?author=sacgrover" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/WWL-MikeRoberts"><img src="https://avatars3.githubusercontent.com/u/9750056?v=4" width="100px;" alt=""/><br /><sub><b>Mike Roberts</b></sub></a><br /><a href="https://github.com/Nilesh Patel/ng-multiselect-dropdown/commits?author=WWL-MikeRoberts" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/DsosaV"><img src="https://avatars2.githubusercontent.com/u/3926475?v=4" width="100px;" alt=""/><br /><sub><b>David Sosa</b></sub></a><br /><a href="https://github.com/Nilesh Patel/ng-multiselect-dropdown/commits?author=DsosaV" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/gserg"><img src="https://avatars.githubusercontent.com/u/687825?v=4" width="100px;" alt=""/><br /><sub><b>Sergiy Gedeon</b></sub></a><br /><a href="https://github.com/Nilesh Patel/ng-multiselect-dropdown/commits?author=gserg" title="Code">💻</a></td>
-  </tr>
-</table>
-
-<!-- markdownlint-enable -->
-<!-- prettier-ignore-end -->
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!

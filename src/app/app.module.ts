@@ -3,9 +3,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { NgMultiSelectDropDownModule } from '../ng-multiselect-dropdown/src';
-// import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+// import { NgMultiSelectDropDownModule } from '@revivejs/ng-multiselect-dropdown';
 
 import { SelectSectionComponent } from './components/select-section';
 import { SampleSectionComponent } from './components/sample-section.component';
@@ -22,7 +21,6 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,
     BrowserModule,
     TabsModule.forRoot(),
-    ButtonsModule.forRoot(),
     NgMultiSelectDropDownModule.forRoot(),
     ShCodeViewer
   ],

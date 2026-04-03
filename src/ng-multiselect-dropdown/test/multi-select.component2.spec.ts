@@ -28,7 +28,7 @@ class Ng2MultiSelectDropdownMultipleSelect {
         closeDropDownOnSelection: true,
     };
 }
-// https://github.com/NileshPatel17/ng-multiselect-dropdown/issues/67
+// https://github.com/alexandroit/ng-multiselect-dropdown/issues/67
 describe('ng-multiselect-component: Issue No: 67( Option with value = 0 does not work)', function () {
     let fixture: ComponentFixture<Ng2MultiSelectDropdownMultipleSelect>;
     beforeEach(
@@ -54,4 +54,3 @@ describe('ng-multiselect-component: Issue No: 67( Option with value = 0 does not
         expect(fixture.componentInstance.selectedItem.length).toBe(1)
     })
 });
-

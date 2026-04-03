@@ -1,29 +1,58 @@
 {
-  "name": "ng-multiselect-dropdown",
-  "version": "0.1.0",
-  "description": "Angular Multi-Select Dropdown",
+  "name": "@revivejs/ng-multiselect-dropdown",
+  "version": "1.0.0",
+  "description": "Angular 16 multi-select dropdown component for template-driven and reactive forms, published as @revivejs/ng-multiselect-dropdown.",
   "keywords": [
-    "angular2",
-    "angular4",
+    "angular",
+    "angular16",
+    "angular forms",
+    "angular component",
     "angular multiselect dropdown",
-    "angular2 multiselect dropdown",
-    "angular4 multiselect dropdown",
-    "ng2 multiselect dropdown",
-    "ng4 multiselect dropdown"
+    "angular select",
+    "angular dropdown",
+    "multiselect",
+    "multi-select",
+    "dropdown",
+    "forms",
+    "ngmodel",
+    "reactive forms",
+    "template-driven forms",
+    "search filter",
+    "select all",
+    "typescript",
+    "revivejs"
   ],
-  "author": "Nilesh Patel",
+  "author": "Alexandro Paixao Marques",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/nileshpatel17/ng-multiselect-dropdown.git"
+    "url": "git+https://github.com/alexandroit/ng-multiselect-dropdown.git"
   },
   "bugs": {
-    "url": "https://github.com/nileshpatel17/ng-multiselect-dropdown/issues"
+    "url": "https://github.com/alexandroit/ng-multiselect-dropdown/issues"
   },
-  "homepage": "nileshpatel17/ng-multiselect-dropdown#readme",
+  "homepage": "https://github.com/alexandroit/ng-multiselect-dropdown#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "fesm2022/",
+    "esm2022/",
+    "lib/",
+    "themes/",
+    "README.md",
+    "CHANGELOG.md",
+    "index.d.ts",
+    "package.json",
+    "public-api.d.ts"
+  ],
+  "sideEffects": false,
   "peerDependencies": {
-    "@angular/common": "^2.3.1 || >=4.0.0",
-    "@angular/core": "^2.3.1 || >=4.0.0",
-    "@angular/forms": "^2.3.1 || >=4.0.0"
+    "@angular/common": ">=16.0.0 <17.0.0",
+    "@angular/core": ">=16.0.0 <17.0.0",
+    "@angular/forms": ">=16.0.0 <17.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.6.2"
   }
 }

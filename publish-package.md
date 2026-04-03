@@ -1,15 +1,14 @@
-## step to publish
+## Publish Steps
 
-1.  yarn build:lib
-2.  navigate to dist-lib folder
-3.  mark private to false
-4.  login to npm registry (npm login)
-5.  yarn publish
-6.  yarn deployOnly
+1. Run `npm run build:package`.
+2. Run `npm run pack:check` to validate the generated npm tarball without publishing.
+3. Navigate to the `dist-lib` folder.
+4. Ensure the generated package name is `@revivejs/ng-multiselect-dropdown` and `private` is `false`.
+5. Authenticate with npm using `npm login`.
+6. Publish the package with `npm publish --access public`.
+7. If you want to publish the demo site, run `npm run deployOnly` from the repository root.
 
-## Angular Multiselect Dropdown
+## Package
 
-[![npm version](https://img.shields.io/npm/v/ng-multiselect-dropdown.svg)](https://www.npmjs.com/package/ng-multiselect-dropdown)
-[![downloads](https://img.shields.io/npm/dt/ng-multiselect-dropdown.svg)](https://www.npmjs.com/package/ng-multiselect-dropdown)
-[![npm](https://img.shields.io/npm/dm/localeval.svg)](https://www.npmjs.com/package/ng-multiselect-dropdown)
-[![npm](https://img.shields.io/npm/dw/localeval.svg)](https://www.npmjs.com/package/ng-multiselect-dropdown)
+[![npm version](https://img.shields.io/npm/v/%40revivejs%2Fng-multiselect-dropdown.svg)](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)
+[![downloads](https://img.shields.io/npm/dt/%40revivejs%2Fng-multiselect-dropdown.svg)](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)
