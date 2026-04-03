@@ -1,10 +1,10 @@
 {
   "name": "@revivejs/ng-multiselect-dropdown",
-  "version": "4.0.0",
-  "description": "Angular 19 multi-select dropdown component for template-driven and reactive forms, published as @revivejs/ng-multiselect-dropdown.",
+  "version": "5.0.0",
+  "description": "Angular 20 multi-select dropdown component for template-driven and reactive forms, published as @revivejs/ng-multiselect-dropdown.",
   "keywords": [
     "angular",
-    "angular19",
+    "angular20",
     "angular-library",
     "angular-component",
     "dropdown",
@@ -52,9 +52,9 @@
   ],
   "sideEffects": false,
   "peerDependencies": {
-    "@angular/common": ">=19.0.0 <20.0.0",
-    "@angular/core": ">=19.0.0 <20.0.0",
-    "@angular/forms": ">=19.0.0 <20.0.0"
+    "@angular/common": ">=20.0.0 <21.0.0",
+    "@angular/core": ">=20.0.0 <21.0.0",
+    "@angular/forms": ">=20.0.0 <21.0.0"
   },
   "dependencies": {
     "tslib": "^2.6.2"

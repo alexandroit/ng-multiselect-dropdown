@@ -10,6 +10,7 @@
 
 Current release line:
 
+- `5.x` supports Angular 20.
 - `4.x` supports Angular 19.
 - `3.x` supports Angular 18.
 - `2.x` supports Angular 17.

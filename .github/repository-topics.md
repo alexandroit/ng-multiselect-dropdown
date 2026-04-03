@@ -2,7 +2,7 @@
 
 Use these GitHub repository topics for discoverability:
 
-- `angular19`
+- `angular20`
 - `angular-library`
 - `angular-component`
 - `dropdown`
@@ -20,7 +20,7 @@ Use these GitHub repository topics for discoverability:
 
 Recommended rationale:
 
-- Angular version: `angular19`
+- Angular version: `angular20`
 - Component type: `dropdown`, `multiselect`, `ui-component`
 - Ecosystem: `angular-library`, `npm-package`, `typescript`
 - Use case: `forms`, `select`, `autocomplete`
@@ -28,7 +28,7 @@ Recommended rationale:
 
 Suggested GitHub topic order:
 
-1. `angular19`
+1. `angular20`
 2. `angular-library`
 3. `multiselect`
 4. `dropdown`
