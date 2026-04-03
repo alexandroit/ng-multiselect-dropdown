@@ -1,13 +1,13 @@
 # @revivejs/ng-multiselect-dropdown
 
-> A polished **Angular 16 multi-select dropdown** for template-driven and reactive forms, with search, single or multiple selection, custom data binding, and theme support.
+> A polished **Angular 17 multi-select dropdown** for template-driven and reactive forms, with search, single or multiple selection, custom data binding, and theme support.
 
 [![npm version](https://img.shields.io/npm/v/%40revivejs%2Fng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)
 [![npm downloads](https://img.shields.io/npm/dt/%40revivejs%2Fng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)
 [![npm monthly](https://img.shields.io/npm/dm/%40revivejs%2Fng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)
 [![license](https://img.shields.io/npm/l/%40revivejs%2Fng-multiselect-dropdown.svg?style=flat-square)](https://github.com/alexandroit/ng-multiselect-dropdown/blob/master/LICENSE)
-[![Angular 16](https://img.shields.io/badge/Angular-16-red?style=flat-square&logo=angular)](https://angular.io)
-[![TypeScript](https://img.shields.io/badge/TypeScript-4.9-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org)
+[![Angular 17](https://img.shields.io/badge/Angular-17-red?style=flat-square&logo=angular)](https://angular.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.4-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org)
 [![GitHub stars](https://img.shields.io/github/stars/alexandroit/ng-multiselect-dropdown.svg?style=flat-square)](https://github.com/alexandroit/ng-multiselect-dropdown/stargazers)
 
 **[Documentation & Demo](https://alexandroit.github.io/ng-multiselect-dropdown/)** | **[Repository](https://github.com/alexandroit/ng-multiselect-dropdown)** | **[npm](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)** | **[Changelog](https://github.com/alexandroit/ng-multiselect-dropdown/blob/master/CHANGELOG.md)** | **[Custom Theme Guide](https://github.com/alexandroit/ng-multiselect-dropdown/blob/master/custom-theme.md)**
@@ -20,13 +20,13 @@
 
 ## Why this library?
 
-`@revivejs/ng-multiselect-dropdown` is the actively maintained scoped continuation of this component, prepared for modern Angular 16 applications and first-class npm publishing under the `@revivejs` scope.
+`@revivejs/ng-multiselect-dropdown` is the actively maintained scoped continuation of this component, prepared for modern Angular 17 applications and first-class npm publishing under the `@revivejs` scope.
 
 ## Features
 
 | Feature | Supported |
 | :--- | :---: |
-| Angular 16 release line | ✅ |
+| Angular 17 release line | ✅ |
 | Single and multiple selection | ✅ |
 | Search and filter | ✅ |
 | Template-driven forms (`ngModel`) | ✅ |
@@ -55,7 +55,7 @@
 
 | Package | Angular | TypeScript | RxJS |
 | :--- | :---: | :---: | :---: |
-| `@revivejs/ng-multiselect-dropdown@1.x` | `16.x` | `4.9.x` | `7.x` |
+| `@revivejs/ng-multiselect-dropdown@1.x` | `17.x` | `5.4.x` | `7.x` |
 
 ## Installation
 
@@ -213,7 +213,7 @@ npm install
 npm start
 ```
 
-The local demo runs at `http://localhost:4201/`.
+The local demo runs at `http://localhost:4201/`, and the production demo is generated into the `docs/` directory for GitHub Pages publishing.
 
 ## Publishing
 
