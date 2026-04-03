@@ -53,9 +53,10 @@
 
 ## Angular Version Compatibility
 
-| Package | Angular | TypeScript | RxJS |
+| `@revivejs/ng-multiselect-dropdown` | Angular | TypeScript | Node.js |
 | :--- | :---: | :---: | :---: |
-| `@revivejs/ng-multiselect-dropdown@1.x` | `17.x` | `5.4.x` | `7.x` |
+| `2.x` | `17.x` | `5.4` | `>= 18.13` |
+| `1.x` | `16.x` | `5.0` | `>= 16.14` |
 
 ## Installation
 
