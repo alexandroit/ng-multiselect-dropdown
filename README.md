@@ -14,7 +14,7 @@
 
 ---
 
-> **Credits:** This package is maintained and published from the official repository at [alexandroit/ng-multiselect-dropdown](https://github.com/alexandroit/ng-multiselect-dropdown). Historical credit remains with the original upstream authors who inspired and started the library line.
+> **Credits:** Original library by [NileshPatel17](https://github.com/NileshPatel17/ng-multiselect-dropdown). Current maintenance, Angular upgrades, and package publishing by [Alexandro Paixao Marques](https://github.com/alexandroit/ng-multiselect-dropdown).
 
 ---
 
