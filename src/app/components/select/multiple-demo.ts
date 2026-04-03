@@ -4,6 +4,7 @@ import { IDropdownSettings } from '../../../ng-multiselect-dropdown/src';
 
 @Component({
   selector: 'multiple-demo',
+  standalone: false,
   templateUrl: './multiple-demo.html'
 })
 export class MultipleDemoComponent implements OnInit {
@@ -37,6 +38,7 @@ export class MultipleDemoComponent implements OnInit {
 
     @Component({
         selector: 'multiple-demo',
+        standalone: false,
         templateUrl: './multiple-demo.html'
     })
     export class MultipleDemoComponent implements OnInit {

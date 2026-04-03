@@ -6,6 +6,7 @@ import { MultiSelectComponent, IDropdownSettings } from './../src';
 import { createTestingModule, tickAndDetectChanges } from './helper'
 
 @Component({
+    standalone: false,
     template: ``
 })
 class Ng2MultiSelectDropdownMultipleSelect_defaultPlaceHolderText {
@@ -25,6 +26,7 @@ class Ng2MultiSelectDropdownMultipleSelect_defaultPlaceHolderText {
 
 const NO_DATA_AVAILABLE = 'NO DATA AVAILABLE'
 @Component({
+    standalone: false,
     template: ``
 })
 class Ng2MultiSelectDropdownMultipleSelect_CustomPlaceHolderText {

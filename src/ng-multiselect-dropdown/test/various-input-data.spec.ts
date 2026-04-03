@@ -8,6 +8,7 @@ const ALL_CITIES = ['New Delhi', 'Mumbai', 'Bangalore', 'Pune', 'Chennai', 'Navs
 const SELECTED_CITIES = ['Mumbai', 'Navsari'];
 
 @Component({
+  standalone: false,
   template: ``
 })
 class SingleDimensionString {
@@ -58,6 +59,7 @@ describe('Multiple Selection:String Data', () => {
 // #region Numeric data
 const NUMBERS = [1, 3, 5, 6];
 @Component({
+  standalone: false,
   template: ``
 })
 class SingleDimensionNumber {

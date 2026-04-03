@@ -6,6 +6,7 @@ import { MultiSelectComponent } from './../src/multiselect.component';
 import { createTestingModule, tickAndDetectChanges } from './helper';
 
 @Component({
+  standalone: false,
   template: ``
 })
 class Ng2MultiSelectDropdownSingleSelect {
@@ -32,6 +33,7 @@ class Ng2MultiSelectDropdownSingleSelect {
   };
 }
 @Component({
+  standalone: false,
   template: ``
 })
 class Ng2MultiSelectDropdownMultipleSelect {

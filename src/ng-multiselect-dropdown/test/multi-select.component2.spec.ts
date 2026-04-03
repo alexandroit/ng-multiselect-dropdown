@@ -6,6 +6,7 @@ import { MultiSelectComponent, IDropdownSettings } from './../src';
 import { createTestingModule, tickAndDetectChanges } from './helper'
 
 @Component({
+    standalone: false,
     template: ``
 })
 class Ng2MultiSelectDropdownMultipleSelect {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'single-demo',
+  standalone: false,
   templateUrl: './single-demo.html'
 })
 export class SingleDemoComponent implements OnInit {
@@ -25,6 +26,7 @@ export class SingleDemoComponent implements OnInit {
 
     @Component({
         selector: 'single-demo',
+        standalone: false,
         templateUrl: './single-demo.html'
     })
     export class SingleDemoComponent implements OnInit {
