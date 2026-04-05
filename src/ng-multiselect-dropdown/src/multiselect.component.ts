@@ -19,14 +19,6 @@ const noop = () => {};
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MultiSelectComponent implements ControlValueAccessor {
-  public _settings: IDropdownSettings;
-  public _data: Array<ListItem> = [];
-  public selectedItems: Array<ListItem> = [];
-  public isDropdownOpen = true;
-  _placeholder = "Select";
-  private _sourceDataType = null; // to keep note of the source data type. could be array of string/number/object
-  private _sourceDataFields: Array<String> = []; // store source data fields names
-  filter: ListItem = new ListItem(this.data);
   defaultSettings: IDropdownSettings = {
     singleSelection: false,
     idField: "id",
@@ -48,6 +40,15 @@ export class MultiSelectComponent implements ControlValueAccessor {
     defaultOpen: false,
     allowRemoteDataSearch: false
   };
+  public _settings: IDropdownSettings = { ...this.defaultSettings };
+  public _data: Array<ListItem> = [];
+  public _sourceData: Array<any> = [];
+  public selectedItems: Array<ListItem> = [];
+  public isDropdownOpen = false;
+  _placeholder = "Select";
+  private _sourceDataType = null; // to keep note of the source data type. could be array of string/number/object
+  private _sourceDataFields: Array<String> = []; // store source data fields names
+  filter: ListItem = new ListItem("");
 
   @Input()
   public set placeholder(value: string) {
@@ -62,31 +63,21 @@ export class MultiSelectComponent implements ControlValueAccessor {
 
   @Input()
   public set settings(value: IDropdownSettings) {
-    if (value) {
-      this._settings = Object.assign(this.defaultSettings, value);
-    } else {
-      this._settings = Object.assign(this.defaultSettings);
-    }
+    this._settings = value
+      ? { ...this.defaultSettings, ...value }
+      : { ...this.defaultSettings };
+    this.isDropdownOpen = !!this._settings.defaultOpen;
+    this.mapData(this._sourceData);
   }
 
   @Input()
   public set data(value: Array<any>) {
-    if (!value) {
-      this._data = [];
-    } else {
-      const firstItem = value[0];
-      this._sourceDataType = typeof firstItem;
-      this._sourceDataFields = this.getFields(firstItem);
-      this._data = value.map((item: any) =>
-        typeof item === "string" || typeof item === "number"
-          ? new ListItem(item)
-          : new ListItem({
-              id: item[this._settings.idField],
-              text: item[this._settings.textField],
-              isDisabled: item[this._settings.disabledField]
-            })
-      );
-    }
+    this._sourceData = value || [];
+    this.mapData(this._sourceData);
+  }
+
+  public get data(): Array<any> {
+    return this._sourceData;
   }
 
   @Output("onFilterChange")
@@ -119,6 +110,13 @@ export class MultiSelectComponent implements ControlValueAccessor {
   ) {}
 
   onItemClick($event: any, item: ListItem) {
+    if ($event?.preventDefault) {
+      $event.preventDefault();
+    }
+    if ($event?.stopPropagation) {
+      $event.stopPropagation();
+    }
+
     if (this.disabled || item.isDisabled) {
       return false;
     }
@@ -297,17 +295,24 @@ export class MultiSelectComponent implements ControlValueAccessor {
 
   toggleDropdown(evt) {
     evt.preventDefault();
-    if (this.disabled && this._settings.singleSelection) {
+    evt.stopPropagation();
+    if (this.disabled) {
       return;
     }
-    this._settings.defaultOpen = !this._settings.defaultOpen;
-    if (!this._settings.defaultOpen) {
+    this.isDropdownOpen = !this.isDropdownOpen;
+    if (!this.isDropdownOpen) {
+      if (this._settings.clearSearchFilter) {
+        this.filter.text = "";
+      }
       this.onDropDownClose.emit();
     }
   }
 
   closeDropdown() {
-    this._settings.defaultOpen = false;
+    if (!this.isDropdownOpen) {
+      return;
+    }
+    this.isDropdownOpen = false;
     // clear search text
     if (this._settings.clearSearchFilter) {
       this.filter.text = "";
@@ -340,6 +345,28 @@ export class MultiSelectComponent implements ControlValueAccessor {
       fields.push(prop);
     }
     return fields;
+  }
+
+  private mapData(value: Array<any>) {
+    const settings = this._settings || this.defaultSettings;
+
+    if (!value || value.length === 0) {
+      this._data = [];
+      return;
+    }
+
+    const firstItem = value[0];
+    this._sourceDataType = typeof firstItem;
+    this._sourceDataFields = this.getFields(firstItem);
+    this._data = value.map((item: any) =>
+      typeof item === "string" || typeof item === "number"
+        ? new ListItem(item)
+        : new ListItem({
+            id: item[settings.idField],
+            text: item[settings.textField],
+            isDisabled: item[settings.disabledField]
+          })
+    );
   }
 
 }
