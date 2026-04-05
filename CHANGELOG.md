@@ -1,5 +1,11 @@
 # Changelog
 
+## 6.0.3 (Angular 21)
+
+- Fixed dropdown state handling so multiple component instances no longer leak `defaultOpen` state across the docs application.
+- Fixed source data remapping so object and primitive arrays stay aligned when settings are initialized after inputs bind.
+- Refined the dropdown trigger and panel layout so selected badges, caret positioning, and option lists render reliably in modern Angular docs builds.
+
 ## 6.0.2 (Angular 21)
 
 - Standardized the root and published npm README to the shared ReviveJS Angular project format.

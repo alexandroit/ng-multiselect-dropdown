@@ -806,8 +806,8 @@ __webpack_require__.r(__webpack_exports__);
 const DOCS_META = {
   badge: 'ANGULAR 20.3 · MULTISELECT',
   angularVersion: '20.3.x',
-  packageVersion: '5.0.2',
-  packageRange: '^5.0.2',
+  packageVersion: '5.0.3',
+  packageRange: '^5.0.3',
   docsPath: 'angular-20'
 };
 
