@@ -1,42 +1,48 @@
 # @revivejs/ng-multiselect-dropdown
 
-> A polished **Angular 19 multi-select dropdown** for template-driven and reactive forms, with search, single or multiple selection, custom data binding, and theme support.
+> A maintained **Angular 19 multi-select dropdown component** with support for template-driven forms, reactive forms, primitive or object data sources, built-in search, selection limits, disabled items, and versioned docs for every maintained Angular line.
 
-[![npm version](https://img.shields.io/npm/v/%40revivejs%2Fng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)
-[![npm downloads](https://img.shields.io/npm/dt/%40revivejs%2Fng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)
-[![npm monthly](https://img.shields.io/npm/dm/%40revivejs%2Fng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)
-[![license](https://img.shields.io/npm/l/%40revivejs%2Fng-multiselect-dropdown.svg?style=flat-square)](https://github.com/alexandroit/ng-multiselect-dropdown/blob/master/LICENSE)
+[![npm version](https://img.shields.io/npm/v/@revivejs/ng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)
+[![npm downloads](https://img.shields.io/npm/dt/@revivejs/ng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)
+[![npm monthly](https://img.shields.io/npm/dm/@revivejs/ng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)
+[![license](https://img.shields.io/npm/l/@revivejs/ng-multiselect-dropdown.svg?style=flat-square)](https://github.com/alexandroit/ng-multiselect-dropdown/blob/main/LICENSE)
 [![Angular 19](https://img.shields.io/badge/Angular-19-red?style=flat-square&logo=angular)](https://angular.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org)
 [![GitHub stars](https://img.shields.io/github/stars/alexandroit/ng-multiselect-dropdown.svg?style=flat-square)](https://github.com/alexandroit/ng-multiselect-dropdown/stargazers)
 
-**[Documentation & Demo](https://alexandroit.github.io/ng-multiselect-dropdown/)** | **[Repository](https://github.com/alexandroit/ng-multiselect-dropdown)** | **[npm](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)** | **[Changelog](https://github.com/alexandroit/ng-multiselect-dropdown/blob/master/CHANGELOG.md)** | **[Custom Theme Guide](https://github.com/alexandroit/ng-multiselect-dropdown/blob/master/custom-theme.md)**
+**[Documentation & Live Demos](https://alexandroit.github.io/ng-multiselect-dropdown/)** | **[npm](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)** | **[Issues](https://github.com/alexandroit/ng-multiselect-dropdown/issues)** | **[Repository](https://github.com/alexandroit/ng-multiselect-dropdown)**
+
+**Latest version:** `4.0.2`
 
 ---
 
-> **Credits:** Original library by [NileshPatel17](https://github.com/NileshPatel17/ng-multiselect-dropdown). Current maintenance, Angular upgrades, and package publishing by [Alexandro Paixao Marques](https://github.com/alexandroit/ng-multiselect-dropdown).
+> **Credits:** Original library by [NileshPatel17](https://github.com/NileshPatel17/ng-multiselect-dropdown). Current maintenance, Angular upgrade work, versioned docs, package publishing, and repository stewardship by [Alexandro Paixao Marques](https://github.com/alexandroit).
 
 ---
 
 ## Why this library?
 
-`@revivejs/ng-multiselect-dropdown` is the actively maintained scoped continuation of this component, prepared for modern Angular 19 applications and first-class npm publishing under the `@revivejs` scope.
+The original `ng-multiselect-dropdown` package covered the classic Angular dropdown API well, but its release cadence and documentation history were no longer aligned with current Angular lines. This maintained package keeps the familiar public API intact while providing a versioned docs build, patched npm publication metadata, and maintained Angular 16 through Angular 21 release lines.
 
 ## Features
 
 | Feature | Supported |
 | :--- | :---: |
-| Angular 19 release line | ✅ |
-| Single and multiple selection | ✅ |
-| Search and filter | ✅ |
-| Template-driven forms (`ngModel`) | ✅ |
-| Reactive forms support | ✅ |
-| Custom text and placeholders | ✅ |
-| Select all and clear all | ✅ |
-| Item selection limit | ✅ |
-| Disabled items | ✅ |
-| Remote search trigger (`allowRemoteDataSearch`) | ✅ |
-| Custom theme support | ✅ |
+| Angular 19 maintained release line | ✅ |
+| Backward release history for Angular 16, 17, 18, 19, and 20 | ✅ |
+| Template-driven forms with `[(ngModel)]` | ✅ |
+| Reactive forms with `formControlName` | ✅ |
+| Primitive arrays (`string[]`, `number[]`) | ✅ |
+| Object arrays with `idField` / `textField` | ✅ |
+| Single-selection mode | ✅ |
+| Multi-selection mode | ✅ |
+| Select-all / clear-all actions | ✅ |
+| Built-in search filter | ✅ |
+| Remote-search workflow with `allowRemoteDataSearch` | ✅ |
+| Disabled items via `disabledField` | ✅ |
+| Selection limits and badge limits | ✅ |
+| Theme source file for customization | ✅ |
+| GitHub Pages versioned docs | ✅ |
 
 ## Table of Contents
 
@@ -44,21 +50,26 @@
 2. [Installation](#installation)
 3. [Setup](#setup)
 4. [Basic Usage](#basic-usage)
-5. [Settings](#settings)
-6. [Events](#events)
-7. [Theming](#theming)
-8. [Run Locally](#run-locally)
-9. [Publishing](#publishing)
-10. [License](#license)
+5. [Single Selection](#single-selection)
+6. [Reactive Forms](#reactive-forms)
+7. [Search and Remote Data](#search-and-remote-data)
+8. [Settings Reference](#settings-reference)
+9. [Outputs](#outputs)
+10. [Theme Customization](#theme-customization)
+11. [Run Locally](#run-locally)
+12. [FAQ](#faq)
+13. [License](#license)
 
 ## Angular Version Compatibility
 
-| `@revivejs/ng-multiselect-dropdown` | Angular | TypeScript | Node.js |
-| :--- | :---: | :---: | :---: |
-| `4.x` | `19.x` | `5.8` | `>= 18.19` |
-| `3.x` | `18.x` | `5.5` | `>= 18.19` |
-| `2.x` | `17.x` | `5.4` | `>= 18.13` |
-| `1.x` | `16.x` | `5.0` | `>= 16.14` |
+| Package version | Angular version | TypeScript version | Demo link |
+| :---: | :---: | :---: | :--- |
+| **6.0.2** | **21.2.x** | **5.9.x** | [Angular 21 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-21/) |
+| **5.0.2** | **20.3.x** | **5.9.x** | [Angular 20 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-20/) |
+| **4.0.2** | **19.2.x** | **5.8.x** | [Angular 19 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-19/) |
+| **3.0.2** | **18.2.x** | **5.5.x** | [Angular 18 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-18/) |
+| **2.0.2** | **17.3.x** | **5.4.x** | [Angular 17 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-17/) |
+| **1.0.2** | **16.2.x** | **5.1.x** | [Angular 16 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-16/) |
 
 ## Installation
 
@@ -73,160 +84,193 @@ npm install @revivejs/ng-multiselect-dropdown
 ```ts
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from '@revivejs/ng-multiselect-dropdown';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot()
   ]
 })
 export class AppModule {}
 ```
 
-### 2. Optional theme setup
+### 2. Bind it in the template
 
-```json
-"styles": [
-  "node_modules/@revivejs/ng-multiselect-dropdown/themes/ng-multiselect-dropdown.theme.scss"
-]
-```
-
-### 3. Use the package from the official repository
-
-Repository URL:
-
-```text
-https://github.com/alexandroit/ng-multiselect-dropdown
+```html
+<ng-multiselect-dropdown
+  name="cities"
+  [data]="cities"
+  [settings]="settings"
+  [(ngModel)]="selectedCities">
+</ng-multiselect-dropdown>
 ```
 
 ## Basic Usage
 
 ```ts
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IDropdownSettings } from '@revivejs/ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
-export class AppComponent implements OnInit {
-  dropdownList = [];
-  selectedItems = [];
-  dropdownSettings: IDropdownSettings = {};
+export class AppComponent {
+  cities = [
+    { id: 1, text: 'Toronto' },
+    { id: 2, text: 'Lisbon' },
+    { id: 3, text: 'Singapore' }
+  ];
 
-  ngOnInit(): void {
-    this.dropdownList = [
-      { item_id: 1, item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangalore' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' }
-    ];
+  selectedCities = [{ id: 2, text: 'Lisbon' }];
 
-    this.selectedItems = [
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' }
-    ];
-
-    this.dropdownSettings = {
-      singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
-      allowSearchFilter: true
-    };
-  }
-
-  onItemSelect(item: unknown): void {
-    console.log(item);
-  }
-
-  onSelectAll(items: unknown): void {
-    console.log(items);
-  }
+  settings: IDropdownSettings = {
+    idField: 'id',
+    textField: 'text',
+    allowSearchFilter: true,
+    enableCheckAll: true,
+    itemsShowLimit: 3
+  };
 }
 ```
 
 ```html
 <ng-multiselect-dropdown
-  [placeholder]="'Select options'"
-  [settings]="dropdownSettings"
-  [data]="dropdownList"
-  [(ngModel)]="selectedItems"
-  (onSelect)="onItemSelect($event)"
-  (onSelectAll)="onSelectAll($event)">
+  name="cities"
+  [data]="cities"
+  [settings]="settings"
+  [(ngModel)]="selectedCities">
 </ng-multiselect-dropdown>
 ```
 
-## Settings
+## Single Selection
+
+Use `singleSelection: true` when the dropdown should behave like a searchable single-picker.
+
+```ts
+singleSettings: IDropdownSettings = {
+  singleSelection: true,
+  allowSearchFilter: true,
+  closeDropDownOnSelection: true
+};
+```
+
+## Reactive Forms
+
+The component implements `ControlValueAccessor`, so it works directly with `FormGroup` and `formControlName`.
+
+```ts
+this.form = this.fb.group({
+  cities: [[{ id: 2, text: 'Lisbon' }]]
+});
+```
+
+```html
+<form [formGroup]="form">
+  <ng-multiselect-dropdown
+    formControlName="cities"
+    [data]="cities"
+    [settings]="settings">
+  </ng-multiselect-dropdown>
+</form>
+```
+
+## Search and Remote Data
+
+The built-in filter is enabled with `allowSearchFilter`. For remote workflows where the local array may start empty, keep the search box visible with `allowRemoteDataSearch`.
+
+```ts
+remoteSettings: IDropdownSettings = {
+  idField: 'id',
+  textField: 'text',
+  allowSearchFilter: true,
+  allowRemoteDataSearch: true,
+  noDataAvailablePlaceholderText: 'Start typing to search'
+};
+```
+
+```html
+<ng-multiselect-dropdown
+  [data]="remoteItems"
+  [settings]="remoteSettings"
+  [(ngModel)]="selectedRemoteItems"
+  (onFilterChange)="loadRemoteItems($event)">
+</ng-multiselect-dropdown>
+```
+
+## Settings Reference
 
 | Setting | Type | Description | Default |
 | :--- | :--- | :--- | :--- |
 | `singleSelection` | `boolean` | Enables single-selection mode. | `false` |
-| `placeholder` | `string` | Placeholder text shown when nothing is selected. | `'Select'` |
-| `disabled` | `boolean` | Disables the dropdown. | `false` |
-| `data` | `Array<any>` | Data source for the dropdown. | `[]` |
-| `idField` | `string` | Field used as the item identifier. | `'id'` |
-| `textField` | `string` | Field used as the item label. | `'text'` |
-| `disabledField` | `string` | Field used to mark disabled items. | `'isDisabled'` |
-| `enableCheckAll` | `boolean` | Shows the select-all option. | `true` |
-| `selectAllText` | `string` | Label for the select-all option. | `'Select All'` |
-| `unSelectAllText` | `string` | Label for the clear-all option. | `'UnSelect All'` |
-| `allowSearchFilter` | `boolean` | Enables the search box. | `false` |
-| `searchPlaceholderText` | `string` | Search input placeholder text. | `'Search'` |
-| `clearSearchFilter` | `boolean` | Clears search text when the dropdown closes. | `true` |
-| `maxHeight` | `number` | Max dropdown list height in pixels. | `197` |
-| `itemsShowLimit` | `number` | Limits how many selected items appear in the control. | `999999999999` |
-| `limitSelection` | `number` | Maximum allowed selected items. | `-1` |
-| `noDataAvailablePlaceholderText` | `string` | Message shown when there is no data. | `'No data available'` |
-| `noFilteredDataAvailablePlaceholderText` | `string` | Message shown when search returns no results. | `'No filtered data available'` |
-| `closeDropDownOnSelection` | `boolean` | Closes the dropdown after selection in single mode. | `false` |
-| `showSelectedItemsAtTop` | `boolean` | Moves selected items to the top of the list. | `false` |
-| `defaultOpen` | `boolean` | Opens the dropdown by default. | `false` |
-| `allowRemoteDataSearch` | `boolean` | Keeps remote search available even when data is empty. | `false` |
+| `idField` | `string` | Object property used as the item identifier. | `'id'` |
+| `textField` | `string` | Object property used as the visible label. | `'text'` |
+| `disabledField` | `string` | Object property used to disable an item. | `'isDisabled'` |
+| `enableCheckAll` | `boolean` | Shows the select-all action. | `true` |
+| `selectAllText` | `string` | Label for the select-all action. | `'Select All'` |
+| `unSelectAllText` | `string` | Label for the clear-all action. | `'UnSelect All'` |
+| `allowSearchFilter` | `boolean` | Enables the built-in search field. | `false` |
+| `clearSearchFilter` | `boolean` | Clears the search field after selection changes. | `true` |
+| `maxHeight` | `number` | Max menu height in pixels. | `197` |
+| `itemsShowLimit` | `number` | Limits how many badges are rendered in the trigger. | `999999999999` |
+| `limitSelection` | `number` | Caps how many items may be selected. | `-1` |
+| `searchPlaceholderText` | `string` | Placeholder text for the search field. | `'Search'` |
+| `noDataAvailablePlaceholderText` | `string` | Text shown when no items are available. | `'No data available'` |
+| `noFilteredDataAvailablePlaceholderText` | `string` | Text shown when the filter yields no results. | `'No filtered data available'` |
+| `closeDropDownOnSelection` | `boolean` | Closes the menu after a selection in single mode. | `false` |
+| `showSelectedItemsAtTop` | `boolean` | Moves selected items toward the top of the list. | `false` |
+| `defaultOpen` | `boolean` | Opens the menu by default. | `false` |
+| `allowRemoteDataSearch` | `boolean` | Keeps the search box visible when the local list is empty. | `false` |
 
-## Events
+## Outputs
 
-- `onSelect`: Fires when one item is selected.
-- `onDeSelect`: Fires when one item is deselected.
-- `onSelectAll`: Fires when all visible items are selected.
-- `onDeSelectAll`: Fires when all items are deselected.
-- `onFilterChange`: Fires when the search text changes.
-- `onDropDownClose`: Fires when the dropdown closes.
+The component keeps the original callback names:
 
-## Theming
+- `onSelect`
+- `onDeSelect`
+- `onSelectAll`
+- `onDeSelectAll`
+- `onFilterChange`
+- `onDropDownClose`
 
-The package ships with a theme file at:
+## Theme Customization
+
+The package ships with a theme source file at:
 
 ```text
 node_modules/@revivejs/ng-multiselect-dropdown/themes/ng-multiselect-dropdown.theme.scss
 ```
 
-For step-by-step theme customization, see [custom-theme.md](https://github.com/alexandroit/ng-multiselect-dropdown/blob/master/custom-theme.md).
+For customization steps and screenshots, see [custom-theme.md](./custom-theme.md).
 
 ## Run Locally
 
 ```bash
 npm install
-npm start
-```
-
-The local demo runs at `http://localhost:4201/`, and the production demo is generated into the `docs/` directory for GitHub Pages publishing.
-
-## Publishing
-
-```bash
 npm run build:package
 npm run pack:check
 ```
 
-This prepares the publishable package in `dist-lib/` with the scoped package name `@revivejs/ng-multiselect-dropdown` and performs a dry-run tarball check without publishing.
+Versioned demo apps live under `docs-src/angular-16/` through `docs-src/angular-21/`, and the compiled GitHub Pages output lives under `docs/angular-16/` through `docs/angular-21/`.
+
+## FAQ
+
+### Does it still support the original API?
+
+Yes. The maintained package keeps the original selector, module name, settings shape, and event names.
+
+### Does it work with both `[(ngModel)]` and reactive forms?
+
+Yes. The component supports template-driven and reactive forms.
+
+### Can I use primitive arrays instead of object arrays?
+
+Yes. Arrays of strings and numbers are supported, as well as object arrays mapped with `idField` and `textField`.
 
 ## License
 
-MIT License.
+MIT
