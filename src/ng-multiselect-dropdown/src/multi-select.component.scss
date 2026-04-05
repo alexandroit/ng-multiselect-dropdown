@@ -3,13 +3,18 @@ $disable-background-color: #eceeef;
 .multiselect-dropdown {
   position: relative;
   width: 100%;
+  display: block;
   font-size: inherit;
   font-family: inherit;
   .dropdown-btn {
-    display: inline-block;
+    align-items: center;
     border: 1px solid #adadad;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
     width: 100%;
-    padding: 6px 12px;
+    min-height: 42px;
+    padding: 6px 42px 6px 12px;
     margin-bottom: 0;
     font-weight: normal;
     line-height: 1.52857143;
@@ -18,9 +23,20 @@ $disable-background-color: #eceeef;
     cursor: pointer;
     background-image: none;
     border-radius: 4px;
+    position: relative;
+    .dropdown-placeholder {
+      color: #666;
+      display: inline-block;
+      max-width: 100%;
+      overflow: hidden;
+      padding-right: 4px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
     .selected-item-container {
-      display: flex;
-      float: left;
+      display: inline-flex;
+      flex: 0 1 auto;
+      max-width: 100%;
       .selected-item{
         border: 1px solid $base-color;
         margin-right: 4px;
@@ -28,11 +44,15 @@ $disable-background-color: #eceeef;
         padding: 0px 5px;
         color: #fff;
         border-radius: 2px;
-        float: left;        
-        max-width: 100px;      
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
+        max-width: 100%;
         span {
+          display: inline-block;
           overflow: hidden;
           text-overflow: ellipsis;
+          white-space: nowrap;
         }
         a {
           text-decoration: none;
@@ -42,16 +62,28 @@ $disable-background-color: #eceeef;
     .selected-item:hover {
       box-shadow: 1px 1px #959595;
     }
+    .dropdown-multiselect__caret-wrapper {
+      position: absolute;
+      right: 1px;
+      top: 1px;
+      bottom: 1px;
+      width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding-right: 4px;
+    }
+    .dropdown-multiselect__count {
+      color: #666;
+      font-size: 0.85em;
+    }
     .dropdown-multiselect__caret {
       line-height: 16px;
       display: block;
-      position: absolute;
       box-sizing: border-box;
-      width: 40px;
-      height: 38px;
-      right: 1px;
-      top: 0px;
-      padding: 4px 8px;
+      width: 16px;
+      height: 16px;
       margin: 0;
       text-decoration: none;
       text-align: center;
@@ -60,12 +92,10 @@ $disable-background-color: #eceeef;
     }
     .dropdown-multiselect__caret:before {
       position: relative;
-      right: 0;
-      top: 65%;
+      display: block;
       color: #999;
-      margin-top: 4px;
       border-style: solid;
-      border-width: 8px 8px 0 8px;
+      border-width: 6px 6px 0 6px;
       border-color: #999999 transparent;
       content: "";
     }
@@ -82,13 +112,13 @@ $disable-background-color: #eceeef;
 
 .dropdown-list {
   position: absolute;
-  padding-top: 6px;
+  top: calc(100% + 6px);
+  left: 0;
   width: 100%;
   z-index: 9999;
   border: 1px solid #ccc;
   border-radius: 3px;
   background: #fff;
-  margin-top: 10px;
   box-shadow: 0px 1px 5px #959595;
   ul {
     padding: 0px;
@@ -108,7 +138,7 @@ $disable-background-color: #eceeef;
     input {
       border: 0px;
       width: 100%;
-      padding: 0px 0px 0px 26px;
+      padding: 0px;
     }
     input:focus {
       outline: none;
