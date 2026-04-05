@@ -1,6 +1,6 @@
 {
   "name": "@revivejs/ng-multiselect-dropdown",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Angular 18 multi-select dropdown component for template-driven and reactive forms, published as @revivejs/ng-multiselect-dropdown.",
   "keywords": [
     "angular",
@@ -42,9 +42,10 @@
     "themes/",
     "README.md",
     "CHANGELOG.md",
-    "index.d.ts",
+    "*.d.ts",
     "package.json",
-    "public-api.d.ts"
+    "public_api.d.ts",
+    "types/"
   ],
   "sideEffects": false,
   "peerDependencies": {

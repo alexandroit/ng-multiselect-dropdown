@@ -1,6 +1,6 @@
 {
   "name": "@revivejs/ng-multiselect-dropdown",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "private": true,
   "description": "Angular 18 multi-select dropdown component for template-driven and reactive forms, published as @revivejs/ng-multiselect-dropdown.",
   "author": "Alexandro Paixao Marques",
