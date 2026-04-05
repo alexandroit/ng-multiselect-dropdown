@@ -1,6 +1,6 @@
 {
   "name": "@revivejs/ng-multiselect-dropdown",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "description": "A maintained Angular 16 multi-select dropdown component with template-driven forms, reactive forms, built-in search, and versioned docs for Angular 16 through 21.",
   "author": "Alexandro Paixao Marques",

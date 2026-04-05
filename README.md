@@ -12,7 +12,7 @@
 
 **[Documentation & Live Demos](https://alexandroit.github.io/ng-multiselect-dropdown/)** | **[npm](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)** | **[Issues](https://github.com/alexandroit/ng-multiselect-dropdown/issues)** | **[Repository](https://github.com/alexandroit/ng-multiselect-dropdown)**
 
-**Latest version:** `1.0.2`
+**Latest version:** `1.0.3`
 
 ---
 
@@ -64,12 +64,12 @@ The original `ng-multiselect-dropdown` package covered the classic Angular dropd
 
 | Package version | Angular version | TypeScript version | Demo link |
 | :---: | :---: | :---: | :--- |
-| **6.0.2** | **21.2.x** | **5.9.x** | [Angular 21 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-21/) |
-| **5.0.2** | **20.3.x** | **5.9.x** | [Angular 20 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-20/) |
-| **4.0.2** | **19.2.x** | **5.8.x** | [Angular 19 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-19/) |
-| **3.0.2** | **18.2.x** | **5.5.x** | [Angular 18 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-18/) |
-| **2.0.2** | **17.3.x** | **5.4.x** | [Angular 17 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-17/) |
-| **1.0.2** | **16.2.x** | **5.1.x** | [Angular 16 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-16/) |
+| **6.0.3** | **21.2.x** | **5.9.x** | [Angular 21 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-21/) |
+| **5.0.3** | **20.3.x** | **5.9.x** | [Angular 20 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-20/) |
+| **4.0.3** | **19.2.x** | **5.8.x** | [Angular 19 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-19/) |
+| **3.0.3** | **18.2.x** | **5.5.x** | [Angular 18 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-18/) |
+| **2.0.3** | **17.3.x** | **5.4.x** | [Angular 17 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-17/) |
+| **1.0.3** | **16.2.x** | **5.1.x** | [Angular 16 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-16/) |
 
 ## Installation
 
