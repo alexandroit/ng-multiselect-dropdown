@@ -1,5 +1,11 @@
 # Changelog
 
+## 6.0.2 (Angular 21)
+
+- Standardized the root and published npm README to the shared ReviveJS Angular project format.
+- Aligned package metadata and compatibility tables with the maintained Angular 16 through 21 release history.
+- Prepared matching README backports for Angular 16 through Angular 20 patch lines so npm stays consistent across maintained versions.
+
 ## 6.0.1 (Angular 21)
 
 - Standardized the repository around versioned docs builds for Angular 16 through Angular 21.
