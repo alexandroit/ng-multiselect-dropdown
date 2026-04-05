@@ -10,6 +10,8 @@ dist-lib.tgz
 
 # dependencies
 /node_modules
+docs-src/**/node_modules/
+docs-src/**/package-lock.json
 
 # IDEs and editors
 /.idea

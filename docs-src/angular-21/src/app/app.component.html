@@ -1,0 +1,362 @@
+<div class="shell">
+  <section class="hero">
+    <div class="hero-card hero-main">
+      <span class="badge">{{ docsMeta.badge }}</span>
+      <h1>&#64;revivejs/ng-multiselect-dropdown</h1>
+      <p>
+        A maintained Angular multiselect dropdown for template-driven and reactive forms, with
+        search, single or multiple selection, object or primitive data sources, and a dedicated
+        docs build for every maintained Angular line.
+      </p>
+
+      <div class="feature-grid">
+        <div class="feature">
+          <strong>Classic Angular API</strong>
+          Keep using <code>[(ngModel)]</code>, <code>formControlName</code>, and the original
+          dropdown callbacks without adapters.
+        </div>
+        <div class="feature">
+          <strong>Primitive or object data</strong>
+          Feed the component with strings or structured objects by declaring
+          <code>idField</code> and <code>textField</code>.
+        </div>
+        <div class="feature">
+          <strong>Forms first</strong>
+          Template-driven and reactive workflows are both covered in the example gallery.
+        </div>
+        <div class="feature">
+          <strong>Versioned docs</strong>
+          Each Angular release line gets its own docs build so demo behavior stays aligned with
+          the package published on npm.
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn" href="#demos">See demos</a>
+        <a
+          class="btn secondary"
+          href="https://github.com/alexandroit/ng-multiselect-dropdown#readme"
+          target="_blank"
+          rel="noreferrer">
+          README
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-card hero-setup">
+      <h2>Setup in 3 steps</h2>
+
+      <div class="step">
+        <span class="step-num">1</span>
+        <div>
+          <strong>Install</strong>
+          <pre>{{ installCode }}</pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">2</span>
+        <div>
+          <strong>Register the module</strong>
+          <pre>{{ setupCode }}</pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">3</span>
+        <div>
+          <strong>Render the dropdown</strong>
+          <pre>{{ templateCode }}</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="layout" id="demos">
+    <div class="panels">
+      <article class="panel">
+        <div class="panel-header">
+          <h2>Core examples</h2>
+          <p>
+            Start with multiple selection, single selection, and reactive forms. The examples
+            below cover the most common production setups for the component.
+          </p>
+        </div>
+
+        <div class="demo-grid">
+          <section class="demo-card">
+            <h3>Multiple selection with object data</h3>
+            <p>
+              Use <code>idField</code> and <code>textField</code> to map custom objects while
+              keeping search and select-all enabled.
+            </p>
+            <pre class="code">{{ basicTsCode }}</pre>
+            <pre class="code">&lt;ng-multiselect-dropdown
+  name="basicCities"
+  [data]="basicCities"
+  [settings]="basicSettings"
+  [(ngModel)]="basicSelected"&gt;
+&lt;/ng-multiselect-dropdown&gt;</pre>
+            <div class="dropdown-frame">
+              <form>
+                <ng-multiselect-dropdown
+                  name="basicCities"
+                  [data]="basicCities"
+                  [settings]="basicSettings"
+                  [(ngModel)]="basicSelected"
+                  (onSelect)="onEvent('Basic example', 'select', $event)"
+                  (onDeSelect)="onEvent('Basic example', 'deselect', $event)"
+                  (onSelectAll)="onEvent('Basic example', 'selectAll', $event)"
+                  (onDeSelectAll)="onEvent('Basic example', 'clearAll', $event)">
+                </ng-multiselect-dropdown>
+              </form>
+            </div>
+            <pre class="state">{{ basicSelected | json }}</pre>
+          </section>
+
+          <section class="demo-card">
+            <h3>Single selection with primitive arrays</h3>
+            <p>
+              The dropdown also accepts plain strings. Close on selection keeps the interaction
+              compact for “pick one” workflows.
+            </p>
+            <pre class="code">{{ singleTsCode }}</pre>
+            <pre class="code">&lt;ng-multiselect-dropdown
+  name="singleCities"
+  [data]="singleCities"
+  [settings]="singleSettings"
+  [(ngModel)]="singleSelected"&gt;
+&lt;/ng-multiselect-dropdown&gt;</pre>
+            <div class="dropdown-frame">
+              <form>
+                <ng-multiselect-dropdown
+                  name="singleCities"
+                  [data]="singleCities"
+                  [settings]="singleSettings"
+                  [(ngModel)]="singleSelected"
+                  (onSelect)="onEvent('Single selection', 'select', $event)"
+                  (onDropDownClose)="onEvent('Single selection', 'close', singleSelected)">
+                </ng-multiselect-dropdown>
+              </form>
+            </div>
+            <pre class="state">{{ singleSelected | json }}</pre>
+          </section>
+
+          <section class="demo-card">
+            <h3>Reactive forms</h3>
+            <p>
+              Bind the component to a <code>FormGroup</code> with
+              <code>formControlName</code> and treat it like any other Angular form control.
+            </p>
+            <pre class="code">{{ reactiveTsCode }}</pre>
+            <pre class="code">&lt;form [formGroup]="reactiveForm"&gt;
+  &lt;ng-multiselect-dropdown
+    formControlName="cities"
+    [data]="reactiveCities"
+    [settings]="reactiveSettings"&gt;
+  &lt;/ng-multiselect-dropdown&gt;
+&lt;/form&gt;</pre>
+            <div class="dropdown-frame">
+              <form [formGroup]="reactiveForm">
+                <ng-multiselect-dropdown
+                  formControlName="cities"
+                  [data]="reactiveCities"
+                  [settings]="reactiveSettings"
+                  (onSelect)="onReactiveChange()"
+                  (onDeSelect)="onReactiveChange()"
+                  (onDeSelectAll)="onReactiveChange()">
+                </ng-multiselect-dropdown>
+              </form>
+              <div class="controls">
+                <button type="button" class="secondary" (click)="resetReactive()">Reset selection</button>
+              </div>
+            </div>
+            <pre class="state">{{ reactiveForm.value | json }}</pre>
+          </section>
+        </div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-header">
+          <h2>Behavior tuning</h2>
+          <p>
+            Limit selection, keep disabled items in the list, and wire remote-style filtering
+            without replacing the component.
+          </p>
+        </div>
+
+        <div class="demo-grid">
+          <section class="demo-card">
+            <h3>Selection limits and badge limits</h3>
+            <p>
+              Cap how many items can be selected and how many badges are shown inside the trigger.
+            </p>
+            <pre class="code">{{ limitTsCode }}</pre>
+            <pre class="code">&lt;ng-multiselect-dropdown
+  name="limitedCities"
+  [data]="limitCities"
+  [settings]="limitSettings"
+  [(ngModel)]="limitSelected"&gt;
+&lt;/ng-multiselect-dropdown&gt;</pre>
+            <div class="dropdown-frame">
+              <form>
+                <ng-multiselect-dropdown
+                  name="limitedCities"
+                  [data]="limitCities"
+                  [settings]="limitSettings"
+                  [(ngModel)]="limitSelected"
+                  (onSelect)="onEvent('Selection limits', 'select', $event)"
+                  (onDeSelect)="onEvent('Selection limits', 'deselect', $event)">
+                </ng-multiselect-dropdown>
+              </form>
+            </div>
+            <pre class="state">{{ limitSelected | json }}</pre>
+          </section>
+
+          <section class="demo-card">
+            <h3>Remote search hook</h3>
+            <p>
+              Set <code>allowRemoteDataSearch</code> to keep the search input available even when
+              the component has no local items loaded yet.
+            </p>
+            <pre class="code">{{ remoteTsCode }}</pre>
+            <pre class="code">&lt;ng-multiselect-dropdown
+  name="remoteSearch"
+  [data]="remoteData"
+  [settings]="remoteSettings"
+  [(ngModel)]="remoteSelected"
+  (onFilterChange)="onRemoteFilter($event)"&gt;
+&lt;/ng-multiselect-dropdown&gt;</pre>
+            <div class="dropdown-frame">
+              <form>
+                <ng-multiselect-dropdown
+                  name="remoteSearch"
+                  [data]="remoteData"
+                  [settings]="remoteSettings"
+                  [(ngModel)]="remoteSelected"
+                  (onFilterChange)="onRemoteFilter($event)"
+                  (onSelect)="onEvent('Remote search', 'select', $event)"
+                  (onDeSelect)="onEvent('Remote search', 'deselect', $event)">
+                </ng-multiselect-dropdown>
+              </form>
+            </div>
+            <pre class="state">{{ remoteData | json }}</pre>
+          </section>
+
+          <section class="demo-card">
+            <h3>Disabled items and selected-first ordering</h3>
+            <p>
+              Mark items with <code>disabledField</code> and keep selected items pinned near the
+              top for dense selection workflows.
+            </p>
+            <pre class="code">{{ disabledTsCode }}</pre>
+            <pre class="code">&lt;ng-multiselect-dropdown
+  name="disabledCities"
+  [data]="disabledCities"
+  [settings]="disabledSettings"
+  [(ngModel)]="disabledSelected"&gt;
+&lt;/ng-multiselect-dropdown&gt;</pre>
+            <div class="dropdown-frame">
+              <form>
+                <ng-multiselect-dropdown
+                  name="disabledCities"
+                  [data]="disabledCities"
+                  [settings]="disabledSettings"
+                  [(ngModel)]="disabledSelected"
+                  (onSelect)="onEvent('Disabled items', 'select', $event)"
+                  (onDeSelect)="onEvent('Disabled items', 'deselect', $event)">
+                </ng-multiselect-dropdown>
+              </form>
+            </div>
+            <pre class="state">{{ disabledSelected | json }}</pre>
+          </section>
+        </div>
+      </article>
+
+      <article class="panel ref-panel">
+        <div class="panel-header">
+          <h2>Quick API reference</h2>
+          <p>
+            These are the inputs and outputs most teams reach for first when integrating the
+            dropdown into real forms.
+          </p>
+        </div>
+
+        <div class="ref-grid">
+          <div class="ref-card">
+            <h4>Core inputs</h4>
+            <table class="api-table">
+              <tbody>
+                <tr><td><code>[data]</code></td><td>Array of strings or objects used as the available options.</td></tr>
+                <tr><td><code>[settings]</code></td><td>Behavior flags such as search, limits, and custom field mapping.</td></tr>
+                <tr><td><code>[(ngModel)]</code></td><td>Two-way binds the selected values in template-driven forms.</td></tr>
+                <tr><td><code>formControlName</code></td><td>Connects the dropdown to a reactive form control.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="ref-card">
+            <h4>Common settings</h4>
+            <table class="api-table">
+              <tbody>
+                <tr><td><code>singleSelection</code></td><td>Turns the dropdown into a one-choice picker.</td></tr>
+                <tr><td><code>allowSearchFilter</code></td><td>Enables the built-in search field.</td></tr>
+                <tr><td><code>limitSelection</code></td><td>Caps how many items can be selected.</td></tr>
+                <tr><td><code>itemsShowLimit</code></td><td>Limits how many selected badges are shown in the trigger.</td></tr>
+                <tr><td><code>allowRemoteDataSearch</code></td><td>Keeps the search box visible even with no loaded items.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="ref-card">
+            <h4>Outputs</h4>
+            <table class="api-table">
+              <tbody>
+                <tr><td><code>(onSelect)</code></td><td>Emits the selected item.</td></tr>
+                <tr><td><code>(onDeSelect)</code></td><td>Emits when a selected item is removed.</td></tr>
+                <tr><td><code>(onSelectAll)</code></td><td>Emits the full visible list when select-all runs.</td></tr>
+                <tr><td><code>(onDeSelectAll)</code></td><td>Emits when all selections are cleared.</td></tr>
+                <tr><td><code>(onFilterChange)</code></td><td>Emits the current search text for remote queries.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <aside class="log-panel">
+      <div class="log-panel-header">
+        <div>
+          <h2>Event Log</h2>
+          <p>Interact with the demos to watch Angular form and dropdown events appear here.</p>
+        </div>
+        <button type="button" class="ghost small" (click)="clearLog()">Clear</button>
+      </div>
+
+      <div class="log-list">
+        <div class="log-entry" *ngFor="let entry of eventLog">{{ entry }}</div>
+      </div>
+
+      <div class="release-card">
+        <h3>Release line</h3>
+        <p>
+          This docs build is pinned to the same Angular release line and package version published
+          on npm.
+        </p>
+        <div class="release-list">
+          <div class="release-item">Package line: {{ docsMeta.packageVersion }}</div>
+          <div class="release-item">Angular compatibility: {{ docsMeta.angularVersion }}</div>
+          <div class="release-item">Docs path: /{{ docsMeta.docsPath }}/</div>
+          <div class="release-item">Pattern: versioned docs-src + compiled docs history</div>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <footer class="footer">
+    <p>
+      Original library by Nilesh Patel. Maintained packaging, Angular release upgrades, docs
+      curation, and publication stewardship by ReviveJS.
+    </p>
+  </footer>
+</div>
