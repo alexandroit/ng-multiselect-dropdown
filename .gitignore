@@ -12,6 +12,7 @@ dist-lib.tgz
 /node_modules
 docs-src/**/node_modules/
 docs-src/**/package-lock.json
+docs-src/**/.angular/
 
 # IDEs and editors
 /.idea
