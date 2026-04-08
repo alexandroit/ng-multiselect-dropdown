@@ -60304,7 +60304,7 @@ class EmulatedEncapsulationDomRenderer2 extends NoneEncapsulationDomRenderer {
 
 /***/ 4531
 /*!******************************************************************************************************!*\
-  !*** ./node_modules/@revivejs/ng-multiselect-dropdown/fesm2022/revivejs-ng-multiselect-dropdown.mjs ***!
+  !*** ./node_modules/@stackline/ng-multiselect-dropdown/fesm2022/revivejs-ng-multiselect-dropdown.mjs ***!
   \******************************************************************************************************/
 (__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
