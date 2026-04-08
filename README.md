@@ -1,16 +1,16 @@
-# @revivejs/ng-multiselect-dropdown
+# @stackline/ng-multiselect-dropdown
 
 > A maintained **Angular 21 multi-select dropdown component** with support for template-driven forms, reactive forms, primitive or object data sources, built-in search, selection limits, disabled items, and versioned docs for every maintained Angular line.
 
-[![npm version](https://img.shields.io/npm/v/@revivejs/ng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)
-[![npm downloads](https://img.shields.io/npm/dt/@revivejs/ng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)
-[![npm monthly](https://img.shields.io/npm/dm/@revivejs/ng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)
-[![license](https://img.shields.io/npm/l/@revivejs/ng-multiselect-dropdown.svg?style=flat-square)](https://github.com/alexandroit/ng-multiselect-dropdown/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/@stackline/ng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/ng-multiselect-dropdown)
+[![npm downloads](https://img.shields.io/npm/dt/@stackline/ng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/ng-multiselect-dropdown)
+[![npm monthly](https://img.shields.io/npm/dm/@stackline/ng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/ng-multiselect-dropdown)
+[![license](https://img.shields.io/npm/l/@stackline/ng-multiselect-dropdown.svg?style=flat-square)](https://github.com/alexandroit/ng-multiselect-dropdown/blob/main/LICENSE)
 [![Angular 21](https://img.shields.io/badge/Angular-21-red?style=flat-square&logo=angular)](https://angular.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org)
 [![GitHub stars](https://img.shields.io/github/stars/alexandroit/ng-multiselect-dropdown.svg?style=flat-square)](https://github.com/alexandroit/ng-multiselect-dropdown/stargazers)
 
-**[Documentation & Live Demos](https://alexandroit.github.io/ng-multiselect-dropdown/)** | **[npm](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)** | **[Issues](https://github.com/alexandroit/ng-multiselect-dropdown/issues)** | **[Repository](https://github.com/alexandroit/ng-multiselect-dropdown)**
+**[Documentation & Live Demos](https://alexandroit.github.io/ng-multiselect-dropdown/)** | **[npm](https://www.npmjs.com/package/@stackline/ng-multiselect-dropdown)** | **[Issues](https://github.com/alexandroit/ng-multiselect-dropdown/issues)** | **[Repository](https://github.com/alexandroit/ng-multiselect-dropdown)**
 
 **Latest version:** `6.0.3`
 
@@ -62,20 +62,25 @@ The original `ng-multiselect-dropdown` package covered the classic Angular dropd
 
 ## Angular Version Compatibility
 
-| Package version | Angular version | TypeScript version | Demo link |
-| :---: | :---: | :---: | :--- |
-| **6.0.3** | **21.2.x** | **5.9.x** | [Angular 21 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-21/) |
-| **5.0.3** | **20.3.x** | **5.9.x** | [Angular 20 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-20/) |
-| **4.0.3** | **19.2.x** | **5.8.x** | [Angular 19 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-19/) |
-| **3.0.3** | **18.2.x** | **5.5.x** | [Angular 18 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-18/) |
-| **2.0.3** | **17.3.x** | **5.4.x** | [Angular 17 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-17/) |
-| **1.0.3** | **16.2.x** | **5.1.x** | [Angular 16 demo](https://alexandroit.github.io/ng-multiselect-dropdown/angular-16/) |
+Each package family only installs on its matching Angular family. Framework major and package major are not always the same package number, so use the package family column below.
+
+| Package family | Framework family | Peer range | Tested release window | Demo link |
+| :---: | :---: | :---: | :---: | :--- |
+| **6.x** | **Angular 21 only** | **`>=21.0.0 <22.0.0`** | **21.0.0 -> 21.2.8** | [Angular 21 family docs](https://github.com/alexandroit/ng-multiselect-dropdown#readme/angular-21/) |
+| **5.x** | **Angular 20 only** | **`>=20.0.0 <21.0.0`** | **20.0.0 -> 20.3.18** | [Angular 20 family docs](https://github.com/alexandroit/ng-multiselect-dropdown#readme/angular-20/) |
+| **4.x** | **Angular 19 only** | **`>=19.0.0 <20.0.0`** | **19.0.0 -> 19.2.20** | [Angular 19 family docs](https://github.com/alexandroit/ng-multiselect-dropdown#readme/angular-19/) |
+| **3.x** | **Angular 18 only** | **`>=18.0.0 <19.0.0`** | **18.0.0 -> 18.2.14** | [Angular 18 family docs](https://github.com/alexandroit/ng-multiselect-dropdown#readme/angular-18/) |
+| **2.x** | **Angular 17 only** | **`>=17.0.0 <18.0.0`** | **17.0.0 -> 17.3.12** | [Angular 17 family docs](https://github.com/alexandroit/ng-multiselect-dropdown#readme/angular-17/) |
+| **1.x** | **Angular 16 only** | **`>=16.0.0 <17.0.0`** | **16.0.0 -> 16.2.12** | [Angular 16 family docs](https://github.com/alexandroit/ng-multiselect-dropdown#readme/angular-16/) |
+
 
 ## Installation
 
 ```bash
-npm install @revivejs/ng-multiselect-dropdown
+npm install @stackline/ng-multiselect-dropdown
 ```
+
+Choose the package family from the compatibility table above. Each published family is locked to one framework major only.
 
 ## Setup
 
@@ -85,7 +90,7 @@ npm install @revivejs/ng-multiselect-dropdown
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgMultiSelectDropDownModule } from '@revivejs/ng-multiselect-dropdown';
+import { NgMultiSelectDropDownModule } from '@stackline/ng-multiselect-dropdown';
 
 @NgModule({
   imports: [
@@ -113,7 +118,7 @@ export class AppModule {}
 
 ```ts
 import { Component } from '@angular/core';
-import { IDropdownSettings } from '@revivejs/ng-multiselect-dropdown';
+import { IDropdownSettings } from '@stackline/ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-root',
@@ -242,7 +247,7 @@ The component keeps the original callback names:
 The package ships with a theme source file at:
 
 ```text
-node_modules/@revivejs/ng-multiselect-dropdown/themes/ng-multiselect-dropdown.theme.scss
+node_modules/@stackline/ng-multiselect-dropdown/themes/ng-multiselect-dropdown.theme.scss
 ```
 
 For customization steps and screenshots, see [custom-theme.md](./custom-theme.md).

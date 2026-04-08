@@ -3,7 +3,7 @@
 1. Run `npm run build:package`.
 2. Run `npm run pack:check` to validate the generated npm tarball without publishing.
 3. Navigate to the `dist-lib` folder.
-4. Ensure the generated package name is `@revivejs/ng-multiselect-dropdown` and `private` is `false`.
+4. Ensure the generated package name is `@stackline/ng-multiselect-dropdown` and `private` is `false`.
 5. Authenticate with npm using `npm login`.
 6. Publish the package with `npm publish --access public`.
 7. If you want to publish the demo site, run `npm run deployOnly` from the repository root.
@@ -19,5 +19,10 @@ Current release line:
 
 ## Package
 
-[![npm version](https://img.shields.io/npm/v/%40revivejs%2Fng-multiselect-dropdown.svg)](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)
-[![downloads](https://img.shields.io/npm/dt/%40revivejs%2Fng-multiselect-dropdown.svg)](https://www.npmjs.com/package/@revivejs/ng-multiselect-dropdown)
+[![npm version](https://img.shields.io/npm/v/%40revivejs%2Fng-multiselect-dropdown.svg)](https://www.npmjs.com/package/@stackline/ng-multiselect-dropdown)
+[![downloads](https://img.shields.io/npm/dt/%40revivejs%2Fng-multiselect-dropdown.svg)](https://www.npmjs.com/package/@stackline/ng-multiselect-dropdown)
+
+## Family Rule
+
+Every published package family must lock `peerDependencies` to exactly one framework major.
+Validate the family against every exact framework release under `docs-src/<family>/<release>/` using `npm install` before publishing.

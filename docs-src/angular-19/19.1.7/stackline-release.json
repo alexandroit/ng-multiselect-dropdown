@@ -1,0 +1,15 @@
+{
+  "packageName": "@stackline/ng-multiselect-dropdown",
+  "projectRoot": "ng-multiselect-dropdown/ng-multiselect-dropdown",
+  "framework": "angular",
+  "family": "angular-19",
+  "major": 19,
+  "exactVersion": "19.1.7",
+  "installMode": "npm-install",
+  "localInstallSource": "../../../dist-lib",
+  "expectedExports": [],
+  "installCommand": "npm install --ignore-scripts",
+  "validateCommand": "npm run validate",
+  "buildCommand": "npm run build:package",
+  "generatedAt": "2026-04-08T22:22:38.480Z"
+}

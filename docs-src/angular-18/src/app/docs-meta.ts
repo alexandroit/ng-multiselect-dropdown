@@ -1,7 +1,7 @@
 export const DOCS_META = {
-  badge: 'ANGULAR 18.2 · MULTISELECT',
-  angularVersion: '18.2.x',
+  badge: 'ANGULAR 18 FAMILY',
+  angularVersion: '18.0.0 -> 18.2.14',
   packageVersion: '3.0.3',
-  packageRange: '^3.0.3',
+  packageRange: '3',
   docsPath: 'angular-18'
 };

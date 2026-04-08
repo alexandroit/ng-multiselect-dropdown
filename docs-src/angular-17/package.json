@@ -1,5 +1,5 @@
 {
-  "name": "@revivejs/ng-multiselect-dropdown-docs-angular17",
+  "name": "@stackline/ng-multiselect-dropdown-docs-angular17",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -15,7 +15,7 @@
     "@angular/forms": "17.3.12",
     "@angular/platform-browser": "17.3.12",
     "@angular/platform-browser-dynamic": "17.3.12",
-    "@revivejs/ng-multiselect-dropdown": "^2.0.3",
+    "@stackline/ng-multiselect-dropdown": "^2.0.3",
     "rxjs": "^7.8.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"

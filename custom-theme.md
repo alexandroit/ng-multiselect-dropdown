@@ -2,7 +2,7 @@
 
 ## Step 1
 
-1. Copy `ng-multiselect-dropdown.theme.scss` from `node_modules/@revivejs/ng-multiselect-dropdown/themes/ng-multiselect-dropdown.theme.scss`.
+1. Copy `ng-multiselect-dropdown.theme.scss` from `node_modules/@stackline/ng-multiselect-dropdown/themes/ng-multiselect-dropdown.theme.scss`.
 
 <img src="Screenshots/theme-step-1.png" width="700">
 

@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgMultiSelectDropDownModule } from '../ng-multiselect-dropdown/src';
-// import { NgMultiSelectDropDownModule } from '@revivejs/ng-multiselect-dropdown';
+// import { NgMultiSelectDropDownModule } from '@stackline/ng-multiselect-dropdown';
 
 import { SelectSectionComponent } from './components/select-section';
 import { SampleSectionComponent } from './components/sample-section.component';

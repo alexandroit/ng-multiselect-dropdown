@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { IDropdownSettings } from '@revivejs/ng-multiselect-dropdown';
+import { IDropdownSettings } from '@stackline/ng-multiselect-dropdown';
 import { DOCS_META } from './docs-meta';
 
 @Component({
@@ -13,11 +13,11 @@ export class AppComponent {
   readonly docsMeta = DOCS_META;
 
   readonly installCode =
-    `npm install @revivejs/ng-multiselect-dropdown@${this.docsMeta.packageRange}`;
+    `npm install @stackline/ng-multiselect-dropdown@${this.docsMeta.packageRange}`;
 
   readonly setupCode = [
     `import { FormsModule, ReactiveFormsModule } from '@angular/forms';`,
-    `import { NgMultiSelectDropDownModule } from '@revivejs/ng-multiselect-dropdown';`,
+    `import { NgMultiSelectDropDownModule } from '@stackline/ng-multiselect-dropdown';`,
     ``,
     `@NgModule({`,
     `  imports: [`,
