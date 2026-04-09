@@ -15,7 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 7580);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ 4456);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ 316);
-/* harmony import */ var _stackline_ng_multiselect_dropdown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @stackline/ng-multiselect-dropdown */ 4531);
+/* harmony import */ var _stackline_ng_multiselect_dropdown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @stackline/ng-multiselect-dropdown */ 3385);
 
 
 
@@ -764,7 +764,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ 4456);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ 436);
-/* harmony import */ var _stackline_ng_multiselect_dropdown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @stackline/ng-multiselect-dropdown */ 4531);
+/* harmony import */ var _stackline_ng_multiselect_dropdown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @stackline/ng-multiselect-dropdown */ 3385);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app.component */ 92);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 7580);
 
@@ -811,10 +811,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   DOCS_META: () => (/* binding */ DOCS_META)
 /* harmony export */ });
 const DOCS_META = {
-  badge: 'ANGULAR 18.2 · MULTISELECT',
-  angularVersion: '18.2.x',
+  badge: 'ANGULAR 18 FAMILY',
+  angularVersion: '18.0.0 -> 18.2.14',
   packageVersion: '3.0.3',
-  packageRange: '^3.0.3',
+  packageRange: '3',
   docsPath: 'angular-18'
 };
 
