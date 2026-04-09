@@ -19,8 +19,8 @@ Current release line:
 
 ## Package
 
-[![npm version](https://img.shields.io/npm/v/%40revivejs%2Fng-multiselect-dropdown.svg)](https://www.npmjs.com/package/@stackline/ng-multiselect-dropdown)
-[![downloads](https://img.shields.io/npm/dt/%40revivejs%2Fng-multiselect-dropdown.svg)](https://www.npmjs.com/package/@stackline/ng-multiselect-dropdown)
+[![npm version](https://img.shields.io/npm/v/%40stackline%2Fng-multiselect-dropdown.svg)](https://www.npmjs.com/package/@stackline/ng-multiselect-dropdown)
+[![downloads](https://img.shields.io/npm/dt/%40stackline%2Fng-multiselect-dropdown.svg)](https://www.npmjs.com/package/@stackline/ng-multiselect-dropdown)
 
 ## Family Rule
 

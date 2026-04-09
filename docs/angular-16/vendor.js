@@ -10108,7 +10108,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ɵHttpInterceptorHandler": () => (/* binding */ HttpInterceptorHandler),
 /* harmony export */   "ɵwithHttpTransferCache": () => (/* binding */ withHttpTransferCache)
 /* harmony export */ });
-/* harmony import */ var _storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_16_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
+/* harmony import */ var _tmp_stackline_docs_ng_multiselect_dropdown_angular_16_BSkyB5_docs_src_angular_16_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 7580);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 9452);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs */ 3942);
@@ -11564,7 +11564,7 @@ class FetchBackend {
   }
   doRequest(request, signal, observer) {
     var _this = this;
-    return (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_16_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_tmp_stackline_docs_ng_multiselect_dropdown_angular_16_BSkyB5_docs_src_angular_16_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const init = _this.createRequestInit(request);
       let response;
       try {
@@ -11618,7 +11618,7 @@ class FetchBackend {
         // Perform response processing outside of Angular zone to
         // ensure no excessive change detection runs are executed
         // Here calling the async ReadableStreamDefaultReader.read() is responsible for triggering CD
-        yield _this.ngZone.runOutsideAngular( /*#__PURE__*/(0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_16_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+        yield _this.ngZone.runOutsideAngular( /*#__PURE__*/(0,_tmp_stackline_docs_ng_multiselect_dropdown_angular_16_BSkyB5_docs_src_angular_16_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
           while (true) {
             const {
               done,
@@ -55554,10 +55554,10 @@ const TransferState = _angular_core__WEBPACK_IMPORTED_MODULE_1__.TransferState;
 
 /***/ }),
 
-/***/ 4531:
-/*!******************************************************************************************************!*\
-  !*** ./node_modules/@stackline/ng-multiselect-dropdown/fesm2022/revivejs-ng-multiselect-dropdown.mjs ***!
-  \******************************************************************************************************/
+/***/ 3385:
+/*!********************************************************************************************************!*\
+  !*** ./node_modules/@stackline/ng-multiselect-dropdown/fesm2022/stackline-ng-multiselect-dropdown.mjs ***!
+  \********************************************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -55765,7 +55765,8 @@ class ListFilterPipe {
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Pipe,
     args: [{
       name: 'multiSelectFilter',
-      pure: false
+      pure: false,
+      standalone: false
     }]
   }], null, null);
 })();
@@ -55776,7 +55777,7 @@ class ClickOutsideDirective {
   }
   clickOutside = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
   onClick(event, targetElement) {
-    if (!targetElement) {
+    if (!(targetElement instanceof HTMLElement)) {
       return;
     }
     const clickedInside = this._elementRef.nativeElement.contains(targetElement);
@@ -55806,13 +55807,12 @@ class ClickOutsideDirective {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](ClickOutsideDirective, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
     args: [{
-      selector: '[clickOutside]'
+      selector: '[clickOutside]',
+      standalone: false
     }]
-  }], function () {
-    return [{
-      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef
-    }];
-  }, {
+  }], () => [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef
+  }], {
     clickOutside: [{
       type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Output
     }],
@@ -56224,18 +56224,17 @@ class MultiSelectComponent {
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Component,
     args: [{
       selector: "ng-multiselect-dropdown",
+      standalone: false,
       providers: [DROPDOWN_CONTROL_VALUE_ACCESSOR],
       changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ChangeDetectionStrategy.OnPush,
       template: "<div tabindex=\"0\" (blur)=\"onTouched()\" class=\"multiselect-dropdown\" [class.dropdown-open]=\"isDropdownOpen\" (clickOutside)=\"closeDropdown()\">\n  <div [class.disabled]=\"disabled\">\n    <span tabindex=\"-1\" class=\"dropdown-btn\" (click)=\"toggleDropdown($event)\">\n      <span *ngIf=\"selectedItems.length == 0\" class=\"dropdown-placeholder\">{{_placeholder}}</span>\n      <span *ngFor=\"let item of selectedItems; trackBy: trackByFn; let k = index\" class=\"selected-item-container\">\n        <span class=\"selected-item\" [hidden]=\"k > (this._settings.itemsShowLimit - 1)\">\n          <span>{{item.text}}&nbsp;</span>\n          <a class=\"selected-item-remove\" (click)=\"onItemClick($event,item)\">x</a>\n        </span>\n      </span>\n      <span class=\"dropdown-multiselect__caret-wrapper\" [ngClass]=\"{ 'dropdown-multiselect--active': isDropdownOpen }\">\n        <span class=\"dropdown-multiselect__count\" *ngIf=\"itemShowRemaining()>0\">+{{itemShowRemaining()}}</span>\n        <span class=\"dropdown-multiselect__caret\"></span>\n      </span>\n    </span>\n  </div>\n  <div class=\"dropdown-list\" [hidden]=\"!isDropdownOpen\">\n    <ul class=\"item1\">\n      <li (click)=\"toggleSelectAll()\" *ngIf=\"(_data.length > 0 || _settings.allowRemoteDataSearch) && !_settings.singleSelection && _settings.enableCheckAll && _settings.limitSelection===-1\" class=\"multiselect-item-checkbox\" style=\"border-bottom: 1px solid #ccc;padding:10px\">\n        <input type=\"checkbox\" aria-label=\"multiselect-select-all\" [checked]=\"isAllItemsSelected()\" [disabled]=\"disabled || isLimitSelectionReached()\" />\n        <div>{{!isAllItemsSelected() ? _settings.selectAllText : _settings.unSelectAllText}}</div>\n      </li>\n      <li class=\"filter-textbox\" *ngIf=\"(_data.length>0 || _settings.allowRemoteDataSearch) && _settings.allowSearchFilter\">\n        <input type=\"text\" aria-label=\"multiselect-search\" [readOnly]=\"disabled\" [placeholder]=\"_settings.searchPlaceholderText\" [(ngModel)]=\"filter.text\" (ngModelChange)=\"onFilterTextChange($event)\">\n      </li>\n    </ul>\n    <ul class=\"item2\" [style.maxHeight]=\"_settings.maxHeight+'px'\">\n      <li *ngFor=\"let item of _data | multiSelectFilter:filter; let i = index;\" (click)=\"onItemClick($event,item)\" class=\"multiselect-item-checkbox\">\n        <input type=\"checkbox\" [attr.aria-label]=\"item.text\" [checked]=\"isSelected(item)\" [disabled]=\"disabled || (isLimitSelectionReached() && !isSelected(item)) || item.isDisabled\" />\n        <div>{{item.text}}</div>\n      </li>\n      <li class='no-filtered-data' *ngIf=\"_data.length != 0 && (_data | multiSelectFilter:filter).length == 0 && !_settings.allowRemoteDataSearch\">\n        <h5>{{_settings.noFilteredDataAvailablePlaceholderText}}</h5>\n      </li>\n      <li class='no-data' *ngIf=\"_data.length == 0 && !_settings.allowRemoteDataSearch\">\n        <h5>{{_settings.noDataAvailablePlaceholderText}}</h5>\n      </li>\n    </ul>\n  </div>\n</div>\n",
       styles: [".multiselect-dropdown{position:relative;width:100%;display:block;font-size:inherit;font-family:inherit}.multiselect-dropdown .dropdown-btn{align-items:center;border:1px solid #adadad;display:flex;flex-wrap:wrap;gap:6px;width:100%;min-height:42px;padding:6px 42px 6px 12px;margin-bottom:0;font-weight:400;line-height:1.52857143;text-align:left;vertical-align:middle;cursor:pointer;background-image:none;border-radius:4px;position:relative}.multiselect-dropdown .dropdown-btn .dropdown-placeholder{color:#666;display:inline-block;max-width:100%;overflow:hidden;padding-right:4px;text-overflow:ellipsis;white-space:nowrap}.multiselect-dropdown .dropdown-btn .selected-item-container{display:inline-flex;flex:0 1 auto;max-width:100%}.multiselect-dropdown .dropdown-btn .selected-item-container .selected-item{border:1px solid #337ab7;margin-right:4px;background:#337ab7;padding:0 5px;color:#fff;border-radius:2px;display:inline-flex;align-items:center;gap:2px;max-width:100%}.multiselect-dropdown .dropdown-btn .selected-item-container .selected-item span{display:inline-block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.multiselect-dropdown .dropdown-btn .selected-item-container .selected-item a{text-decoration:none}.multiselect-dropdown .dropdown-btn .selected-item:hover{box-shadow:1px 1px #959595}.multiselect-dropdown .dropdown-btn .dropdown-multiselect__caret-wrapper{position:absolute;right:1px;top:1px;bottom:1px;width:40px;display:flex;align-items:center;justify-content:center;gap:4px;padding-right:4px}.multiselect-dropdown .dropdown-btn .dropdown-multiselect__count{color:#666;font-size:.85em}.multiselect-dropdown .dropdown-btn .dropdown-multiselect__caret{line-height:16px;display:block;box-sizing:border-box;width:16px;height:16px;margin:0;text-decoration:none;text-align:center;cursor:pointer;transition:transform .2s ease}.multiselect-dropdown .dropdown-btn .dropdown-multiselect__caret:before{position:relative;display:block;color:#999;border-style:solid;border-width:6px 6px 0 6px;border-color:#999999 transparent;content:\"\"}.multiselect-dropdown .dropdown-btn .dropdown-multiselect--active .dropdown-multiselect__caret{transform:rotate(180deg)}.multiselect-dropdown .disabled>span{background-color:#eceeef}.dropdown-list{position:absolute;top:calc(100% + 6px);left:0;width:100%;z-index:9999;border:1px solid #ccc;border-radius:3px;background:#fff;box-shadow:0 1px 5px #959595}.dropdown-list ul{padding:0;list-style:none;overflow:auto;margin:0}.dropdown-list li{padding:6px 10px;cursor:pointer;text-align:left}.dropdown-list .filter-textbox{border-bottom:1px solid #ccc;position:relative;padding:10px}.dropdown-list .filter-textbox input{border:0px;width:100%;padding:0}.dropdown-list .filter-textbox input:focus{outline:none}.multiselect-item-checkbox:hover{background-color:#e4e3e3}.multiselect-item-checkbox input[type=checkbox]{border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.multiselect-item-checkbox input[type=checkbox]:focus+div:before,.multiselect-item-checkbox input[type=checkbox]:hover+div:before{border-color:#337ab7;background-color:#f2f2f2}.multiselect-item-checkbox input[type=checkbox]:active+div:before{transition-duration:0s}.multiselect-item-checkbox input[type=checkbox]+div{position:relative;padding-left:2em;vertical-align:middle;-webkit-user-select:none;user-select:none;cursor:pointer;margin:0;color:#000}.multiselect-item-checkbox input[type=checkbox]+div:before{box-sizing:content-box;content:\"\";color:#337ab7;position:absolute;top:50%;left:0;width:14px;height:14px;margin-top:-9px;border:2px solid #337ab7;text-align:center;transition:all .4s ease}.multiselect-item-checkbox input[type=checkbox]+div:after{box-sizing:content-box;content:\"\";background-color:#337ab7;position:absolute;top:50%;left:4px;width:10px;height:10px;margin-top:-5px;transform:scale(0);transform-origin:50%;transition:transform .2s ease-out}.multiselect-item-checkbox input[type=checkbox]:disabled+div:before{border-color:#ccc}.multiselect-item-checkbox input[type=checkbox]:disabled:focus+div:before .multiselect-item-checkbox input[type=checkbox]:disabled:hover+div:before{background-color:inherit}.multiselect-item-checkbox input[type=checkbox]:disabled:checked+div:before{background-color:#ccc}.multiselect-item-checkbox input[type=checkbox]+div:after{background-color:transparent;top:50%;left:4px;width:8px;height:3px;margin-top:-4px;border-style:solid;border-color:#fff;border-width:0 0 3px 3px;border-image:none;transform:rotate(-45deg) scale(0)}.multiselect-item-checkbox input[type=checkbox]:checked+div:after{content:\"\";transform:rotate(-45deg) scale(1);transition:transform .2s ease-out}.multiselect-item-checkbox input[type=checkbox]:checked+div:before{animation:borderscale .2s ease-in;background:#337ab7}.multiselect-item-checkbox input[type=checkbox]:checked+div:after{transform:rotate(-45deg) scale(1)}@keyframes borderscale{50%{box-shadow:0 0 0 2px #337ab7}}\n"]
     }]
-  }], function () {
-    return [{
-      type: ListFilterPipe
-    }, {
-      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ChangeDetectorRef
-    }];
+  }], () => [{
+    type: ListFilterPipe
   }, {
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ChangeDetectorRef
+  }], {
     placeholder: [{
       type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
     }],
@@ -56806,4 +56805,3 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
 /***/ })
 
 }]);
-//# sourceMappingURL=vendor.js.map

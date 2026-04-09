@@ -10126,7 +10126,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ɵPRIMARY_HTTP_BACKEND": () => (/* binding */ PRIMARY_HTTP_BACKEND),
 /* harmony export */   "ɵwithHttpTransferCache": () => (/* binding */ withHttpTransferCache)
 /* harmony export */ });
-/* harmony import */ var _storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_17_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
+/* harmony import */ var _tmp_stackline_docs_ng_multiselect_dropdown_angular_17_bCVKkS_docs_src_angular_17_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 7580);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 9452);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs */ 3942);
@@ -11653,7 +11653,7 @@ class FetchBackend {
   }
   doRequest(request, signal, observer) {
     var _this = this;
-    return (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_17_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_tmp_stackline_docs_ng_multiselect_dropdown_angular_17_bCVKkS_docs_src_angular_17_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const init = _this.createRequestInit(request);
       let response;
       try {
@@ -11707,7 +11707,7 @@ class FetchBackend {
         // Perform response processing outside of Angular zone to
         // ensure no excessive change detection runs are executed
         // Here calling the async ReadableStreamDefaultReader.read() is responsible for triggering CD
-        yield _this.ngZone.runOutsideAngular(/*#__PURE__*/(0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_17_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+        yield _this.ngZone.runOutsideAngular(/*#__PURE__*/(0,_tmp_stackline_docs_ng_multiselect_dropdown_angular_17_bCVKkS_docs_src_angular_17_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
           while (true) {
             const {
               done,
@@ -13771,7 +13771,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ɵɵviewQuery": () => (/* binding */ ɵɵviewQuery),
 /* harmony export */   "ɵɵviewQuerySignal": () => (/* binding */ ɵɵviewQuerySignal)
 /* harmony export */ });
-/* harmony import */ var _storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_17_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
+/* harmony import */ var _tmp_stackline_docs_ng_multiselect_dropdown_angular_17_bCVKkS_docs_src_angular_17_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
 /* harmony import */ var _angular_core_primitives_signals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core/primitives/signals */ 5689);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 819);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 2510);
@@ -48307,7 +48307,7 @@ class ChangeDetectionSchedulerImpl {
    */
   raceTimeoutAndRequestAnimationFrame() {
     var _this = this;
-    return (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_17_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_tmp_stackline_docs_ng_multiselect_dropdown_angular_17_bCVKkS_docs_src_angular_17_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const timeout = new Promise(resolve => setTimeout(resolve));
       const rAF = typeof _global['requestAnimationFrame'] === 'function' ? new Promise(resolve => requestAnimationFrame(() => resolve())) : null;
       yield Promise.race([timeout, rAF]);
@@ -60870,10 +60870,10 @@ const TransferState = _angular_core__WEBPACK_IMPORTED_MODULE_1__.TransferState;
 
 /***/ }),
 
-/***/ 4531:
-/*!******************************************************************************************************!*\
-  !*** ./node_modules/@stackline/ng-multiselect-dropdown/fesm2022/revivejs-ng-multiselect-dropdown.mjs ***!
-  \******************************************************************************************************/
+/***/ 3385:
+/*!********************************************************************************************************!*\
+  !*** ./node_modules/@stackline/ng-multiselect-dropdown/fesm2022/stackline-ng-multiselect-dropdown.mjs ***!
+  \********************************************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -61080,7 +61080,8 @@ class ListFilterPipe {
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Pipe,
     args: [{
       name: 'multiSelectFilter',
-      pure: false
+      pure: false,
+      standalone: false
     }]
   }], null, null);
 })();
@@ -61091,7 +61092,7 @@ class ClickOutsideDirective {
   }
   clickOutside = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
   onClick(event, targetElement) {
-    if (!targetElement) {
+    if (!(targetElement instanceof HTMLElement)) {
       return;
     }
     const clickedInside = this._elementRef.nativeElement.contains(targetElement);
@@ -61121,7 +61122,8 @@ class ClickOutsideDirective {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](ClickOutsideDirective, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
     args: [{
-      selector: '[clickOutside]'
+      selector: '[clickOutside]',
+      standalone: false
     }]
   }], () => [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef
@@ -61535,6 +61537,7 @@ class MultiSelectComponent {
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Component,
     args: [{
       selector: "ng-multiselect-dropdown",
+      standalone: false,
       providers: [DROPDOWN_CONTROL_VALUE_ACCESSOR],
       changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ChangeDetectionStrategy.OnPush,
       template: "<div tabindex=\"0\" (blur)=\"onTouched()\" class=\"multiselect-dropdown\" [class.dropdown-open]=\"isDropdownOpen\" (clickOutside)=\"closeDropdown()\">\n  <div [class.disabled]=\"disabled\">\n    <span tabindex=\"-1\" class=\"dropdown-btn\" (click)=\"toggleDropdown($event)\">\n      <span *ngIf=\"selectedItems.length == 0\" class=\"dropdown-placeholder\">{{_placeholder}}</span>\n      <span *ngFor=\"let item of selectedItems; trackBy: trackByFn; let k = index\" class=\"selected-item-container\">\n        <span class=\"selected-item\" [hidden]=\"k > (this._settings.itemsShowLimit - 1)\">\n          <span>{{item.text}}&nbsp;</span>\n          <a class=\"selected-item-remove\" (click)=\"onItemClick($event,item)\">x</a>\n        </span>\n      </span>\n      <span class=\"dropdown-multiselect__caret-wrapper\" [ngClass]=\"{ 'dropdown-multiselect--active': isDropdownOpen }\">\n        <span class=\"dropdown-multiselect__count\" *ngIf=\"itemShowRemaining()>0\">+{{itemShowRemaining()}}</span>\n        <span class=\"dropdown-multiselect__caret\"></span>\n      </span>\n    </span>\n  </div>\n  <div class=\"dropdown-list\" [hidden]=\"!isDropdownOpen\">\n    <ul class=\"item1\">\n      <li (click)=\"toggleSelectAll()\" *ngIf=\"(_data.length > 0 || _settings.allowRemoteDataSearch) && !_settings.singleSelection && _settings.enableCheckAll && _settings.limitSelection===-1\" class=\"multiselect-item-checkbox\" style=\"border-bottom: 1px solid #ccc;padding:10px\">\n        <input type=\"checkbox\" aria-label=\"multiselect-select-all\" [checked]=\"isAllItemsSelected()\" [disabled]=\"disabled || isLimitSelectionReached()\" />\n        <div>{{!isAllItemsSelected() ? _settings.selectAllText : _settings.unSelectAllText}}</div>\n      </li>\n      <li class=\"filter-textbox\" *ngIf=\"(_data.length>0 || _settings.allowRemoteDataSearch) && _settings.allowSearchFilter\">\n        <input type=\"text\" aria-label=\"multiselect-search\" [readOnly]=\"disabled\" [placeholder]=\"_settings.searchPlaceholderText\" [(ngModel)]=\"filter.text\" (ngModelChange)=\"onFilterTextChange($event)\">\n      </li>\n    </ul>\n    <ul class=\"item2\" [style.maxHeight]=\"_settings.maxHeight+'px'\">\n      <li *ngFor=\"let item of _data | multiSelectFilter:filter; let i = index;\" (click)=\"onItemClick($event,item)\" class=\"multiselect-item-checkbox\">\n        <input type=\"checkbox\" [attr.aria-label]=\"item.text\" [checked]=\"isSelected(item)\" [disabled]=\"disabled || (isLimitSelectionReached() && !isSelected(item)) || item.isDisabled\" />\n        <div>{{item.text}}</div>\n      </li>\n      <li class='no-filtered-data' *ngIf=\"_data.length != 0 && (_data | multiSelectFilter:filter).length == 0 && !_settings.allowRemoteDataSearch\">\n        <h5>{{_settings.noFilteredDataAvailablePlaceholderText}}</h5>\n      </li>\n      <li class='no-data' *ngIf=\"_data.length == 0 && !_settings.allowRemoteDataSearch\">\n        <h5>{{_settings.noDataAvailablePlaceholderText}}</h5>\n      </li>\n    </ul>\n  </div>\n</div>\n",
@@ -62111,4 +62114,3 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
 /***/ })
 
 }]);
-//# sourceMappingURL=vendor.js.map

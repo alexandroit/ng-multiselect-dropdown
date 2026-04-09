@@ -79,8 +79,7 @@
     "maintained",
     "modernized",
     "revived",
-    "upgrade",
-    "revivejs"
+    "upgrade"
   ],
   "repository": {
     "type": "git",
@@ -90,7 +89,9 @@
     "url": "https://github.com/alexandroit/ng-multiselect-dropdown/issues"
   },
   "homepage": "https://github.com/alexandroit/ng-multiselect-dropdown#readme",
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@angular/core": ">=21.0.0 <22.0.0"
+  },
   "devDependencies": {
     "@angular-devkit/build-angular": "~21.2.6",
     "@angular/animations": "21.2.7",
