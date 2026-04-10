@@ -15,7 +15,7 @@
     "@angular/forms": "21.2.7",
     "@angular/platform-browser": "21.2.7",
     "@angular/platform-browser-dynamic": "21.2.7",
-    "@stackline/ng-multiselect-dropdown": "file:../..",
+    "@stackline/ng-multiselect-dropdown": "file:../../dist-lib",
     "rxjs": "^7.8.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.16.1"
