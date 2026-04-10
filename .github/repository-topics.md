@@ -15,7 +15,7 @@ Use these GitHub repository topics for discoverability:
 - `autocomplete`
 - `maintained`
 - `modernized`
-- `revived`
+- `maintained`
 - `upgrade`
 
 Recommended rationale:
@@ -24,7 +24,7 @@ Recommended rationale:
 - Component type: `dropdown`, `multiselect`, `ui-component`
 - Ecosystem: `angular-library`, `npm-package`, `typescript`
 - Use case: `forms`, `select`, `autocomplete`
-- Maintenance and migration intent: `maintained`, `modernized`, `revived`, `upgrade`
+- Maintenance and migration intent: `maintained`, `modernized`, `maintained`, `upgrade`
 
 Suggested GitHub topic order:
 
@@ -40,5 +40,5 @@ Suggested GitHub topic order:
 10. `autocomplete`
 11. `maintained`
 12. `modernized`
-13. `revived`
+13. `maintained`
 14. `upgrade`
