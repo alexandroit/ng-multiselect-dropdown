@@ -13,7 +13,7 @@
     "test": "ng test",
     "test:ci": "ng test --watch=false --progress=false",
     "test:coverage": "ng test --watch=false --code-coverage",
-    "build:prod": "ng build --configuration production --base-href https://alexandroit.github.io/ng-multiselect-dropdown/",
+    "build:prod": "ng build --configuration production --base-href https://alexandro.net/docs/angular/ng-multiselect-dropdown/",
     "docs:install:angular-16": "cd docs-src/angular-16 && npm install --ignore-scripts",
     "docs:install:angular-17": "cd docs-src/angular-17 && npm install --ignore-scripts",
     "docs:install:angular-18": "cd docs-src/angular-18 && npm install --ignore-scripts",

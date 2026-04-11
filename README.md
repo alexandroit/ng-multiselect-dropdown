@@ -10,7 +10,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org)
 [![GitHub stars](https://img.shields.io/github/stars/alexandroit/ng-multiselect-dropdown.svg?style=flat-square)](https://github.com/alexandroit/ng-multiselect-dropdown/stargazers)
 
-**[Documentation & Live Demos](https://alexandroit.github.io/ng-multiselect-dropdown/)** | **[npm](https://www.npmjs.com/package/@stackline/ng-multiselect-dropdown)** | **[Issues](https://github.com/alexandroit/ng-multiselect-dropdown/issues)** | **[Repository](https://github.com/alexandroit/ng-multiselect-dropdown)**
+**[Documentation & Live Demos](https://alexandro.net/docs/angular/ng-multiselect-dropdown/)** | **[npm](https://www.npmjs.com/package/@stackline/ng-multiselect-dropdown)** | **[Issues](https://github.com/alexandroit/ng-multiselect-dropdown/issues)** | **[Repository](https://github.com/alexandroit/ng-multiselect-dropdown)**
 
 **Latest version:** `6.0.3`
 
