@@ -207,32 +207,3 @@ pre,
     font-size: 12px;
   }
 }
-ntrols,
-  .playground-preview,
-  .api-card,
-  .preview-card,
-  .surface-card,
-  .table-shell,
-  .docs-card,
-  .docs-panel {
-    padding: 18px !important;
-    border-radius: 22px;
-  }
-
-  .badge,
-  .hero-badge,
-  .version-pill,
-  .release-pill,
-  .meta-pill,
-  .release-link {
-    width: 100%;
-    justify-content: center;
-  }
-
-  pre,
-  .code,
-  .code-block,
-  .code-preview {
-    font-size: 12px;
-  }
-}

@@ -1,16 +1,14 @@
 # @stackline/ng-multiselect-dropdown
 
-> A maintained **Angular 21 multi-select dropdown component** with support for template-driven forms, reactive forms, primitive or object data sources, built-in search, selection limits, disabled items, and versioned docs for every maintained Angular line.
+> A maintained **Angular 21 multi-select dropdown component** with support for template-driven forms, reactive forms, primitive or object data sources, built-in search, selection limits, disabled items, and versioned docs for Angular 16 through 21.
 
-[![npm version](https://img.shields.io/npm/v/@stackline/ng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/ng-multiselect-dropdown)
-[![npm downloads](https://img.shields.io/npm/dt/@stackline/ng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/ng-multiselect-dropdown)
-[![npm monthly](https://img.shields.io/npm/dm/@stackline/ng-multiselect-dropdown.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/ng-multiselect-dropdown)
-[![license](https://img.shields.io/npm/l/@stackline/ng-multiselect-dropdown.svg?style=flat-square)](https://github.com/alexandroit/ng-multiselect-dropdown/blob/main/LICENSE)
+[![CI](https://github.com/alexandroit/ng-multiselect-dropdown/actions/workflows/ci.yml/badge.svg)](https://github.com/alexandroit/ng-multiselect-dropdown/actions/workflows/ci.yml)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Angular 21](https://img.shields.io/badge/Angular-21-red?style=flat-square&logo=angular)](https://angular.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org)
 [![GitHub stars](https://img.shields.io/github/stars/alexandroit/ng-multiselect-dropdown.svg?style=flat-square)](https://github.com/alexandroit/ng-multiselect-dropdown/stargazers)
 
-**[Documentation & Live Demos](https://alexandro.net/docs/angular/ng-multiselect-dropdown/)** | **[npm](https://www.npmjs.com/package/@stackline/ng-multiselect-dropdown)** | **[Issues](https://github.com/alexandroit/ng-multiselect-dropdown/issues)** | **[Repository](https://github.com/alexandroit/ng-multiselect-dropdown)**
+**[Documentation & Live Demos](https://alexandro.net/docs/angular/ng-multiselect-dropdown/)** | **[Issues](https://github.com/alexandroit/ng-multiselect-dropdown/issues)** | **[Repository](https://github.com/alexandroit/ng-multiselect-dropdown)**
 
 **Latest version:** `6.0.3`
 
@@ -22,7 +20,7 @@
 
 ## Why this library?
 
-The original `ng-multiselect-dropdown` package covered the classic Angular dropdown API well, but its release cadence and documentation history were no longer aligned with current Angular lines. This maintained package keeps the familiar public API intact while providing a versioned docs build, patched npm publication metadata, and maintained Angular 16 through Angular 21 release lines.
+The original `ng-multiselect-dropdown` package covered the classic Angular dropdown API well, but its release cadence and documentation history were no longer aligned with current Angular lines. This maintained package keeps the familiar public API intact while providing reproducible versioned docs, hardened publication metadata, and compatibility history for Angular 16 through Angular 21.
 
 ## Features
 
@@ -66,12 +64,17 @@ Each package family only installs on its matching Angular family. Framework majo
 
 | Package family | Framework family | Peer range | Tested release window | Demo link |
 | :---: | :---: | :---: | :---: | :--- |
-| **6.x** | **Angular 21 only** | **`>=21.0.0 <22.0.0`** | **21.0.0 -> 21.2.8** | [Angular 21 family docs](https://github.com/alexandroit/ng-multiselect-dropdown#readme/angular-21/) |
-| **5.x** | **Angular 20 only** | **`>=20.0.0 <21.0.0`** | **20.0.0 -> 20.3.18** | [Angular 20 family docs](https://github.com/alexandroit/ng-multiselect-dropdown#readme/angular-20/) |
-| **4.x** | **Angular 19 only** | **`>=19.0.0 <20.0.0`** | **19.0.0 -> 19.2.20** | [Angular 19 family docs](https://github.com/alexandroit/ng-multiselect-dropdown#readme/angular-19/) |
-| **3.x** | **Angular 18 only** | **`>=18.0.0 <19.0.0`** | **18.0.0 -> 18.2.14** | [Angular 18 family docs](https://github.com/alexandroit/ng-multiselect-dropdown#readme/angular-18/) |
-| **2.x** | **Angular 17 only** | **`>=17.0.0 <18.0.0`** | **17.0.0 -> 17.3.12** | [Angular 17 family docs](https://github.com/alexandroit/ng-multiselect-dropdown#readme/angular-17/) |
-| **1.x** | **Angular 16 only** | **`>=16.0.0 <17.0.0`** | **16.0.0 -> 16.2.12** | [Angular 16 family docs](https://github.com/alexandroit/ng-multiselect-dropdown#readme/angular-16/) |
+| **6.x** | **Angular 21 only** | **`>=21.0.0 <22.0.0`** | **21.0.0 -> 21.2.21** | [Angular 21 family docs](https://alexandroit.github.io/ng-multiselect-dropdown/angular-21/) |
+| **5.x** | **Angular 20 only** | **`>=20.0.0 <21.0.0`** | **20.0.0 -> 20.3.29** | [Angular 20 family docs](https://alexandroit.github.io/ng-multiselect-dropdown/angular-20/) |
+| **4.x** | **Angular 19 only** | **`>=19.0.0 <20.0.0`** | **19.0.0 -> 19.2.25** | [Angular 19 family docs](https://alexandroit.github.io/ng-multiselect-dropdown/angular-19/) |
+| **3.x** | **Angular 18 only** | **`>=18.0.0 <19.0.0`** | **18.0.0 -> 18.2.14** | [Angular 18 family docs](https://alexandroit.github.io/ng-multiselect-dropdown/angular-18/) |
+| **2.x** | **Angular 17 only** | **`>=17.0.0 <18.0.0`** | **17.0.0 -> 17.3.12** | [Angular 17 family docs](https://alexandroit.github.io/ng-multiselect-dropdown/angular-17/) |
+| **1.x** | **Angular 16 only** | **`>=16.0.0 <17.0.0`** | **16.0.0 -> 16.2.12** | [Angular 16 family docs](https://alexandroit.github.io/ng-multiselect-dropdown/angular-16/) |
+
+Compatibility history does not extend Angular's upstream security-support
+lifecycle. Angular 16 through 18 demos use the final patches available for
+those framework lines and are retained as static compatibility references;
+new applications should use the current maintained line.
 
 
 ## Installation

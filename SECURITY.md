@@ -5,7 +5,9 @@
 Security fixes are released for the maintained
 `@stackline/ng-multiselect-dropdown` version lines documented in the README.
 Use the latest patch release available for the Angular line used by your
-application.
+application. The 6.x / Angular 21 line receives proactive security maintenance.
+Older framework demos and package families are compatibility references and do
+not extend Angular's upstream support lifecycle.
 
 ## Reporting a vulnerability
 

@@ -2,8 +2,9 @@
 
 ## Unreleased
 
-- Updated the maintained Angular 21 development and documentation toolchains to
-  21.2.21 to address current Angular security advisories.
+- Updated the Angular 19, 20, and 21 documentation toolchains to their latest
+  compatible security patches, including Angular 21.2.21 for the maintained
+  package build.
 - Restored the upstream MIT license attribution and added a private security
   reporting policy to the published package.
 - Replaced the legacy Node 16 pull-request check with Node 22/24 CI, audit,
@@ -11,6 +12,12 @@
 - Removed critical advisories from the legacy GitHub Pages deploy toolchain;
   the remaining Angular 21 dev-server advisories have no compatible fix and do
   not affect the published package runtime.
+- Made all versioned documentation builds independent of the Angular 21 package
+  bundle by compiling shared source with each demo's matching Angular compiler.
+- Restored the exact-version compatibility runner and added representative
+  Angular 16 through 21 smoke validation to CI.
+- Removed a duplicated, malformed responsive CSS fragment that prevented the
+  Angular 17 documentation source from rebuilding.
 
 ## 6.0.3 (Angular 21)
 

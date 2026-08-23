@@ -15,6 +15,12 @@
       "dom"
     ],
     "paths": {
+      "@angular/*": [
+        "node_modules/@angular/*"
+      ],
+      "@stackline/ng-multiselect-dropdown": [
+        "../../src/ng-multiselect-dropdown/src/public_api.ts"
+      ],
       "@stackline/angular-data-table-component": [
         "node_modules/@stackline/angular-data-table-component"
       ]
