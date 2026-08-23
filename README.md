@@ -278,4 +278,5 @@ Yes. Arrays of strings and numbers are supported, as well as object arrays mappe
 
 ## License
 
-MIT
+[MIT](LICENSE), preserving attribution for the original project and the
+maintained Stackline fork.
