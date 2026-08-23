@@ -18,6 +18,8 @@
   Angular 16 through 21 smoke validation to CI.
 - Removed a duplicated, malformed responsive CSS fragment that prevented the
   Angular 17 documentation source from rebuilding.
+- Documented the non-exploitable static-demo boundary for Angular 16 through 19
+  advisories that have no compatible upstream backport.
 
 ## 6.0.3 (Angular 21)
 

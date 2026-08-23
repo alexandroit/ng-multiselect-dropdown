@@ -72,7 +72,7 @@ Each package family only installs on its matching Angular family. Framework majo
 | **1.x** | **Angular 16 only** | **`>=16.0.0 <17.0.0`** | **16.0.0 -> 16.2.12** | [Angular 16 family docs](https://alexandroit.github.io/ng-multiselect-dropdown/angular-16/) |
 
 Compatibility history does not extend Angular's upstream security-support
-lifecycle. Angular 16 through 18 demos use the final patches available for
+lifecycle. Angular 16 through 19 demos use the final patches available for
 those framework lines and are retained as static compatibility references;
 new applications should use the current maintained line.
 

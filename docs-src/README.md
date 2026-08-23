@@ -30,7 +30,7 @@ because changing the pinned version would destroy the fixture's purpose.
 Historical fixtures must never be used as application templates or deployed
 artifacts. Test the supported package through the root CI matrix instead.
 
-The Angular 16 through 18 top-level demos use each framework line's final
+The Angular 16 through 19 top-level demos use each framework line's final
 upstream patch and fixed local example data. They do not use `HttpClient`, SSR,
 dynamic i18n resources, dynamic templates, or untrusted HTML. Advisories with
 no upstream backport may therefore be classified as tolerable risk for these
