@@ -34,7 +34,7 @@ jobs:
         run: npm run test:fixtures
       - run: npm run test:ci
       - run: npm run build:package
-      - run: npm audit --omit=optional --audit-level=high
+      - run: npm run audit:dependencies
       - name: Validate Angular compatibility fixtures
         if: matrix.node == '22.22.3'
         run: npm run test:compatibility
@@ -43,6 +43,7 @@ jobs:
         run: |
           npm run docs:install:angular-21
           npm run build:docs:angular-21
+          npm run audit:docs
       - name: Build release artifact
         if: matrix.node == '22.22.3'
         run: |

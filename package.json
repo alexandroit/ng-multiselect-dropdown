@@ -7,6 +7,8 @@
   "license": "MIT",
   "scripts": {
     "test:fixtures": "node tools/stackline-run-release-smoke.mjs --catalog",
+    "audit:dependencies": "node tools/stackline-audit-angular-build.mjs",
+    "audit:docs": "node tools/stackline-audit-angular-build.mjs docs-src/angular-21",
     "ng": "ng",
     "start": "ng serve --port 4201",
     "build": "ng build",
@@ -21,7 +23,7 @@
     "docs:install:angular-18": "cd docs-src/angular-18 && npm install --ignore-scripts",
     "docs:install:angular-19": "cd docs-src/angular-19 && npm install --ignore-scripts",
     "docs:install:angular-20": "cd docs-src/angular-20 && npm install --ignore-scripts",
-    "docs:install:angular-21": "cd docs-src/angular-21 && npm install --ignore-scripts",
+    "docs:install:angular-21": "npm ci --ignore-scripts --prefix docs-src/angular-21",
     "docs:install:all": "npm run docs:install:angular-16 && npm run docs:install:angular-17 && npm run docs:install:angular-18 && npm run docs:install:angular-19 && npm run docs:install:angular-20 && npm run docs:install:angular-21",
     "build:docs:angular-16": "cd docs-src/angular-16 && npm run build",
     "build:docs:angular-17": "cd docs-src/angular-17 && npm run build",
@@ -127,6 +129,10 @@
     "ts-node": "~10.9.2",
     "typescript": "~5.9.2",
     "zone.js": "~0.16.1"
+  },
+  "overrides": {
+    "uuid": "11.1.1",
+    "webpack-dev-server": "5.2.6"
   },
   "dependencies": {
     "tslib": "^2.6.2"

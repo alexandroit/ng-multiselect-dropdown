@@ -12,9 +12,12 @@
   reporting policy to the published package.
 - Replaced the legacy Node 16 pull-request check with Node 22/24 CI, audit,
   deterministic package validation, and manual npm provenance publishing.
-- Removed critical advisories from the legacy GitHub Pages deploy toolchain;
-  the remaining Angular 21 dev-server advisories have no compatible fix and do
-  not affect the published package runtime.
+- Removed critical advisories from the legacy GitHub Pages deploy toolchain and
+  patched the Angular 21 development server and UUID advisories with overrides.
+- Added an exact CI policy for the two unfixed `image-size` parser findings in
+  Angular's Less compiler; all other dependency findings remain fatal.
+- Added a checked-in lockfile, patched overrides, and the same exact audit gate
+  for the maintained Angular 21 documentation application.
 - Made all versioned documentation builds independent of the Angular 21 package
   bundle by compiling shared source with each demo's matching Angular compiler.
 - Restored the exact-version compatibility runner and added representative

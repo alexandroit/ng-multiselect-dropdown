@@ -10,6 +10,7 @@ import {
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { isDeepStrictEqual } from 'node:util';
 
 const FIXTURE_MANIFEST = 'package.fixture.json';
 
@@ -35,6 +36,39 @@ function collectMetadata(directory, files = []) {
     else if (entry.name === 'stackline-release.json') files.push(target);
   }
   return files;
+}
+
+function validateMaintainedDocs(repositoryRoot) {
+  const docsRoot = path.join(repositoryRoot, 'docs-src');
+  const currentFamily = readdirSync(docsRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && /^angular-\d+$/.test(entry.name))
+    .map((entry) => Number.parseInt(entry.name.slice('angular-'.length), 10))
+    .sort((left, right) => right - left)[0];
+
+  assert(Number.isInteger(currentFamily), 'No maintained Angular docs family found');
+
+  const currentRoot = path.join(docsRoot, `angular-${currentFamily}`);
+  const manifest = readJson(path.join(currentRoot, 'package.json'));
+  const lock = readJson(path.join(currentRoot, 'package-lock.json'));
+  const lockRoot = lock.packages?.[''];
+
+  assert(manifest.private === true, 'Maintained documentation must stay private');
+  assert(lock.lockfileVersion === 3, 'Maintained documentation must use npm lockfile v3');
+  assert(lockRoot?.name === manifest.name, 'Maintained docs manifest and lock names differ');
+  assert(
+    isDeepStrictEqual(lockRoot.dependencies || {}, manifest.dependencies || {}),
+    'Maintained docs runtime dependencies differ from the lockfile'
+  );
+  assert(
+    isDeepStrictEqual(lockRoot.devDependencies || {}, manifest.devDependencies || {}),
+    'Maintained docs development dependencies differ from the lockfile'
+  );
+  assert(manifest.overrides?.uuid === '11.1.1',
+    'Maintained docs must patch the UUID advisory');
+  assert(manifest.overrides?.['webpack-dev-server'] === '5.2.6',
+    'Maintained docs must patch the development server advisories');
+
+  return currentFamily;
 }
 
 function validateFixtureMetadata(releaseRoot) {
@@ -165,7 +199,11 @@ export function validateCatalog(repositoryRoot) {
     validateFixtureMetadata(releaseRoot);
   }
 
-  process.stdout.write(`Validated ${metadataFiles.length} compatibility fixtures\n`);
+  const maintainedMajor = validateMaintainedDocs(repositoryRoot);
+  process.stdout.write(
+    `Validated ${metadataFiles.length} compatibility fixtures; Angular ` +
+      `${maintainedMajor} docs are reproducible\n`
+  );
 }
 
 const currentFile = fileURLToPath(import.meta.url);

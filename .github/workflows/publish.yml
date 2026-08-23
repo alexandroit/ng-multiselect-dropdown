@@ -33,6 +33,7 @@ jobs:
       - name: Require the default branch
         run: test "$GITHUB_REF" = "refs/heads/main"
       - run: npm ci
+      - run: npm run audit:dependencies
       - run: npm run test:ci
       - run: npm run build:package
       - name: Reject an existing public version

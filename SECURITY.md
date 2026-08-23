@@ -9,6 +9,18 @@ application. The 6.x / Angular 21 line receives proactive security maintenance.
 Older framework demos and package families are compatibility references and do
 not extend Angular's upstream support lifecycle.
 
+Patched overrides are enforced for Angular's development server and UUID
+dependency. Angular's Less compiler still reaches `image-size`, whose ICNS,
+JXL, and HEIF parser advisories currently have no patched upstream release.
+Builds do not process untrusted images, and this development-only path is absent
+from the published package. `npm run audit:dependencies` accepts only those two
+exact advisories and rejects every other finding or newly available compatible
+fix.
+
+The maintained Angular 21 documentation application follows the same policy
+with its own checked-in lockfile. CI installs it with `npm ci`, builds it, and
+runs the exact advisory gate independently from the published package.
+
 ## Reporting a vulnerability
 
 Report suspected vulnerabilities privately through
