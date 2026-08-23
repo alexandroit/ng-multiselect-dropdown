@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Moved exact-version dependency records to `package.fixture.json` and added
+  an offline catalog contract so archived metadata is not reported as an
+  executable dependency graph.
 - Updated the Angular 19, 20, and 21 documentation toolchains to their latest
   compatible security patches, including Angular 21.2.21 for the maintained
   package build.

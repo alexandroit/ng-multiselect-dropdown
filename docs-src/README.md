@@ -14,18 +14,25 @@ npm run build:docs:all
 ```
 
 Directories named after an exact Angular version, such as
-`angular-20/20.3.18/`, are historical compatibility fixtures. Their manifests
-intentionally pin the original framework versions so a reported regression can
-be reproduced against that exact release. They are not installed by the root
-build, published to npm, served by GitHub Pages, or included in the Stackline
-package tarball.
+`angular-20/20.3.18/`, are historical compatibility fixtures. Their dependency
+records use `package.fixture.json` and intentionally pin the original framework
+versions. The non-standard filename prevents dependency tooling from treating
+archived metadata as a deployable application. Fixtures are not installed by
+the root build, published to npm, served by GitHub Pages, or included in the
+Stackline package tarball.
+
+Validate the complete catalog without installing end-of-life toolchains:
+
+```sh
+npm run test:fixtures
+```
 
 ## Security handling
 
 The current package and documentation source must be upgraded within their
-supported Angular line when a compatible security fix exists. Alerts that only
-affect an exact-version historical fixture may be marked as tolerable risk
-because changing the pinned version would destroy the fixture's purpose.
+supported Angular line when a compatible security fix exists. Historical
+fixture data is retained verbatim because changing a pinned version would
+destroy the record's purpose.
 
 Historical fixtures must never be used as application templates or deployed
 artifacts. Test the supported package through the root CI matrix instead.

@@ -1,7 +1,17 @@
 import { execFileSync } from 'node:child_process';
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import {
+  existsSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  writeFileSync
+} from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const FIXTURE_MANIFEST = 'package.fixture.json';
 
 const DEFAULT_EXPORTS = [
   'IDropdownSettings',
@@ -17,19 +27,32 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
-export async function validateRelease(releaseRoot) {
+function collectMetadata(directory, files = []) {
+  for (const entry of readdirSync(directory, { withFileTypes: true })) {
+    if (entry.name === '.git' || entry.name === 'node_modules') continue;
+    const target = path.join(directory, entry.name);
+    if (entry.isDirectory()) collectMetadata(target, files);
+    else if (entry.name === 'stackline-release.json') files.push(target);
+  }
+  return files;
+}
+
+function validateFixtureMetadata(releaseRoot) {
   const metadata = readJson(path.join(releaseRoot, 'stackline-release.json'));
-  const manifest = readJson(path.join(releaseRoot, 'package.json'));
-  const repositoryRoot = path.resolve(releaseRoot, '../../..');
-  const entryPoint = path.join(
-    repositoryRoot,
-    'src/ng-multiselect-dropdown/src/public_api.ts'
-  );
+  const fixtureManifest = path.join(releaseRoot, FIXTURE_MANIFEST);
+  const legacyManifest = path.join(releaseRoot, 'package.json');
+  const manifest = readJson(existsSync(fixtureManifest) ? fixtureManifest : legacyManifest);
 
   assert(manifest.private === true, 'Compatibility fixtures must stay private');
   assert(metadata.packageName, 'stackline-release.json must declare packageName');
   assert(metadata.exactVersion, 'stackline-release.json must declare exactVersion');
-  assert(existsSync(entryPoint), `Library entry point not found: ${entryPoint}`);
+  assert(metadata.family === `angular-${metadata.major}`, `Invalid family: ${metadata.family}`);
+  assert(path.basename(releaseRoot) === metadata.exactVersion,
+    `Fixture directory must match ${metadata.exactVersion}`);
+  assert(
+    manifest.dependencies?.[metadata.packageName] === `file:${metadata.localInstallSource}`,
+    `Invalid local package source for ${metadata.packageName}`
+  );
 
   const angularDependencies = Object.entries(manifest.dependencies || {})
     .filter(([name]) => name.startsWith('@angular/'));
@@ -40,6 +63,19 @@ export async function validateRelease(releaseRoot) {
       `${name} must be pinned to ${metadata.exactVersion}, found ${version}`
     );
   }
+
+  return { manifest, metadata };
+}
+
+export async function validateRelease(releaseRoot) {
+  const { manifest, metadata } = validateFixtureMetadata(releaseRoot);
+  const repositoryRoot = path.resolve(releaseRoot, '../../..');
+  const entryPoint = path.join(
+    repositoryRoot,
+    'src/ng-multiselect-dropdown/src/public_api.ts'
+  );
+
+  assert(existsSync(entryPoint), `Library entry point not found: ${entryPoint}`);
 
   const dependencies = Object.fromEntries(
     Object.entries(manifest.dependencies || {})
@@ -110,4 +146,29 @@ export async function validateRelease(releaseRoot) {
   } finally {
     rmSync(workRoot, { recursive: true, force: true });
   }
+}
+
+export function validateCatalog(repositoryRoot) {
+  const metadataFiles = collectMetadata(path.join(repositoryRoot, 'docs-src'));
+  assert(metadataFiles.length > 0, 'No compatibility fixtures were found');
+
+  for (const metadataFile of metadataFiles) {
+    const releaseRoot = path.dirname(metadataFile);
+    assert(existsSync(path.join(releaseRoot, FIXTURE_MANIFEST)),
+      `Missing ${FIXTURE_MANIFEST}: ${releaseRoot}`);
+    assert(!existsSync(path.join(releaseRoot, 'package.json')),
+      `Historical fixture must not expose package.json: ${releaseRoot}`);
+    assert(!existsSync(path.join(releaseRoot, 'package-lock.json')),
+      `Historical fixture must not expose package-lock.json: ${releaseRoot}`);
+    assert(existsSync(path.join(releaseRoot, 'stackline-validate.mjs')),
+      `Missing fixture validator: ${releaseRoot}`);
+    validateFixtureMetadata(releaseRoot);
+  }
+
+  process.stdout.write(`Validated ${metadataFiles.length} compatibility fixtures\n`);
+}
+
+const currentFile = fileURLToPath(import.meta.url);
+if (process.argv[1] === currentFile && process.argv[2] === '--catalog') {
+  validateCatalog(path.resolve(path.dirname(currentFile), '..'));
 }
