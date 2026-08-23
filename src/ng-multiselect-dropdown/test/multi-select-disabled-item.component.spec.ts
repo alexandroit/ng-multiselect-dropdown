@@ -31,6 +31,8 @@ class Ng2MultiSelectDropdownMultipleSelectWithDisableItemComponent {
     allowSearchFilter: true,
     closeDropDownOnSelection: true
   };
+
+  onItemSelect(_item: unknown): void {}
 }
 describe('Multiple Selection:disable item', () => {
   let fixture: ComponentFixture<Ng2MultiSelectDropdownMultipleSelectWithDisableItemComponent>;

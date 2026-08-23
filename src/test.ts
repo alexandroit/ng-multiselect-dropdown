@@ -19,9 +19,12 @@ getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting()
 );
-// Then we find all the tests.
-const context = require.context('./', true, /\.spec\.ts$/);
-// And load the modules.
-context.keys().map(context);
+// Explicit imports keep the suite deterministic with modern Angular builders.
+require('./ng-multiselect-dropdown/test/list-filter.pipe.spec');
+require('./ng-multiselect-dropdown/test/multi-select-disabled-item.component.spec');
+require('./ng-multiselect-dropdown/test/multi-select.component.spec');
+require('./ng-multiselect-dropdown/test/multi-select.component1.spec');
+require('./ng-multiselect-dropdown/test/multi-select.component2.spec');
+require('./ng-multiselect-dropdown/test/various-input-data.spec');
 // Finally, start Karma to run the tests.
 __karma__.start();

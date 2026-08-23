@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased
+
+- Updated the maintained Angular 21 development and documentation toolchains to
+  21.2.21 to address current Angular security advisories.
+- Restored the upstream MIT license attribution and added a private security
+  reporting policy to the published package.
+- Replaced the legacy Node 16 pull-request check with Node 22/24 CI, audit,
+  deterministic package validation, and manual npm provenance publishing.
+- Removed critical advisories from the legacy GitHub Pages deploy toolchain;
+  the remaining Angular 21 dev-server advisories have no compatible fix and do
+  not affect the published package runtime.
+
 ## 6.0.3 (Angular 21)
 
 - Fixed dropdown state handling so multiple component instances no longer leak `defaultOpen` state across the docs application.

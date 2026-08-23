@@ -3949,7 +3949,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _location_chunk_mjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_location-chunk.mjs */ 2330);
 /* harmony import */ var _platform_location_chunk_mjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./_platform_location-chunk.mjs */ 9636);
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -4377,8 +4377,10 @@ function getNumberOfCurrencyDigits(code) {
 const ISO8601_DATE_REGEX = /^(\d{4,})-?(\d\d)-?(\d\d)(?:T(\d\d)(?::?(\d\d)(?::?(\d\d)(?:\.(\d+))?)?)?(Z|([+-])(\d\d):?(\d\d))?)?$/;
 const NAMED_FORMATS = {};
 const DATE_FORMATS_SPLIT = /((?:[^BEGHLMOSWYZabcdhmswyz']+)|(?:'(?:[^']|'')*')|(?:G{1,5}|y{1,4}|Y{1,4}|M{1,5}|L{1,5}|w{1,2}|W{1}|d{1,2}|E{1,6}|c{1,6}|a{1,5}|b{1,5}|B{1,5}|h{1,2}|H{1,2}|m{1,2}|s{1,2}|S{1,3}|z{1,4}|Z{1,5}|O{1,4}))([\s\S]*)/;
+const MAX_DATE_FORMAT_LENGTH = 256;
 function formatDate(value, format, locale, timezone) {
   let date = toDate(value);
+  assertValidDateFormatLength(format);
   const namedFormat = getNamedFormat(locale, format);
   format = namedFormat || format;
   let parts = [];
@@ -4411,6 +4413,11 @@ function formatDate(value, format, locale, timezone) {
     text += dateFormatter ? dateFormatter(date, locale, dateTimezoneOffset) : value === "''" ? "'" : value.replace(/(^'|'$)/g, '').replace(/''/g, "'");
   });
   return text;
+}
+function assertValidDateFormatLength(format) {
+  if (format.length > MAX_DATE_FORMAT_LENGTH) {
+    throw new _angular_core__WEBPACK_IMPORTED_MODULE_2__.RuntimeError(2300, ngDevMode && `Date format is too long. Exceeded maximum length of ${MAX_DATE_FORMAT_LENGTH} characters.`);
+  }
 }
 function assertValidDateFormat(parts) {
   if (parts.some(part => /^Y+$/.test(part)) && !parts.some(part => /^w+$/.test(part))) {
@@ -4972,6 +4979,10 @@ function formatNumberToLocaleString(value, pattern, locale, groupSymbol, decimal
         maxFraction = parseIntAutoRadix(maxFractionPart);
       } else if (minFractionPart != null && minFraction > maxFraction) {
         maxFraction = minFraction;
+      }
+      const MAX_ALLOWED_DIGITS = 100;
+      if (minInt > MAX_ALLOWED_DIGITS || minFraction > MAX_ALLOWED_DIGITS || maxFraction > MAX_ALLOWED_DIGITS) {
+        throw new _angular_core__WEBPACK_IMPORTED_MODULE_2__.RuntimeError(2306, ngDevMode && `${digitsInfo} is not a valid digit info. Exceeded maximum limits of ${MAX_ALLOWED_DIGITS} digits.`);
       }
     }
     roundNumber(parsedNumber, minFraction, maxFraction);
@@ -6809,7 +6820,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 7632);
 /* harmony import */ var _platform_location_chunk_mjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_platform_location-chunk.mjs */ 9636);
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -7111,7 +7122,7 @@ function _stripBasePath(basePath, url) {
   return url;
 }
 function _stripIndexHtml(url) {
-  return url.replace(/\/index.html$/, '');
+  return url.replace(/\/index\.html$/, '');
 }
 function _stripOrigin(baseHref) {
   const isAbsoluteUrl = new RegExp('^(https?:)?//').test(baseHref);
@@ -7143,7 +7154,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 8853);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 856);
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -7278,7 +7289,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   Attribute: () => (/* binding */ Attribute)
 /* harmony export */ });
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -7404,7 +7415,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   SKIP_HYDRATION_ATTR_NAME: () => (/* binding */ SKIP_HYDRATION_ATTR_NAME),
 /* harmony export */   SSR_CONTENT_INTEGRITY_MARKER: () => (/* binding */ SSR_CONTENT_INTEGRITY_MARKER),
 /* harmony export */   Sanitizer: () => (/* binding */ Sanitizer),
-/* harmony export */   SecurityContext: () => (/* binding */ SecurityContext),
 /* harmony export */   Self: () => (/* binding */ Self),
 /* harmony export */   SimpleChange: () => (/* binding */ SimpleChange),
 /* harmony export */   SkipSelf: () => (/* binding */ SkipSelf),
@@ -7746,7 +7756,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ɵɵviewQuery": () => (/* binding */ ɵɵviewQuery),
 /* harmony export */   "ɵɵviewQuerySignal": () => (/* binding */ ɵɵviewQuerySignal)
 /* harmony export */ });
-/* harmony import */ var _storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
+/* harmony import */ var _storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
 /* harmony import */ var _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_effect-chunk2.mjs */ 856);
 /* harmony import */ var _angular_core_primitives_signals__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_effect-chunk.mjs */ 6274);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 7632);
@@ -7755,7 +7765,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _attribute_chunk_mjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./_attribute-chunk.mjs */ 1387);
 
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -9716,12 +9726,12 @@ class TransferState {
         }
       }
     }
-    return JSON.stringify(this.store).replace(/</g, '\\u003C');
+    return JSON.stringify(this.store).replace(/</g, '\\u003C').replace(/\//g, '\\u002F');
   }
 }
 function retrieveTransferredState(doc, appId) {
   const script = doc.getElementById(appId + '-state');
-  if (script?.textContent) {
+  if (script?.tagName === 'SCRIPT' && script.textContent) {
     try {
       return JSON.parse(script.textContent);
     } catch (e) {
@@ -9943,9 +9953,22 @@ const removeListeners = el => {
 const JSACTION_EVENT_CONTRACT = new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.InjectionToken(typeof ngDevMode !== 'undefined' && ngDevMode ? 'EVENT_CONTRACT_DETAILS' : '', {
   factory: () => ({})
 });
+const handledEventElements = new WeakMap();
+function markEventHandledForElement(event, element) {
+  if (event == null || typeof event !== 'object') return;
+  let elements = handledEventElements.get(event);
+  if (!elements) {
+    elements = new WeakSet();
+    handledEventElements.set(event, elements);
+  }
+  elements.add(element);
+}
 function invokeListeners(event, currentTarget) {
   const handlerFns = currentTarget?.__jsaction_fns?.get(event.type);
   if (!handlerFns || !currentTarget?.isConnected) {
+    return;
+  }
+  if (currentTarget && handledEventElements.get(event)?.has(currentTarget)) {
     return;
   }
   for (const handler of handlerFns) {
@@ -10574,6 +10597,12 @@ function matchingSchemas(schemas, tagName) {
   }
   return false;
 }
+const SVG_NAMESPACE = 'svg';
+const MATH_ML_NAMESPACE = 'math';
+const NAMESPACE_URIS = {
+  'http://www.w3.org/2000/svg': SVG_NAMESPACE,
+  'http://www.w3.org/1998/Math/MathML': MATH_ML_NAMESPACE
+};
 let policy$1;
 function getPolicy$1() {
   if (policy$1 === undefined) {
@@ -10762,7 +10791,6 @@ const HTML_ATTRS = tagSet('abbr,accesskey,align,alt,autoplay,axis,bgcolor,border
 const ARIA_ATTRS = tagSet('aria-activedescendant,aria-atomic,aria-autocomplete,aria-busy,aria-checked,aria-colcount,aria-colindex,' + 'aria-colspan,aria-controls,aria-current,aria-describedby,aria-details,aria-disabled,aria-dropeffect,' + 'aria-errormessage,aria-expanded,aria-flowto,aria-grabbed,aria-haspopup,aria-hidden,aria-invalid,' + 'aria-keyshortcuts,aria-label,aria-labelledby,aria-level,aria-live,aria-modal,aria-multiline,' + 'aria-multiselectable,aria-orientation,aria-owns,aria-placeholder,aria-posinset,aria-pressed,aria-readonly,' + 'aria-relevant,aria-required,aria-roledescription,aria-rowcount,aria-rowindex,aria-rowspan,aria-selected,' + 'aria-setsize,aria-sort,aria-valuemax,aria-valuemin,aria-valuenow,aria-valuetext');
 const VALID_ATTRS = merge(URI_ATTRS, HTML_ATTRS, ARIA_ATTRS);
 const SKIP_TRAVERSING_CONTENT_IF_INVALID_ELEMENTS = tagSet('script,style,template');
-const SENSITIVE_ATTRS = merge(URI_ATTRS, tagSet('action,formaction,data,codebase'));
 class SanitizingHtmlSerializer {
   sanitizedSomething = false;
   buf = [];
@@ -10979,19 +11007,27 @@ function enforceIframeSecurity(iframe) {
   iframe.srcdoc = trustedHTMLFromString('');
   nativeRemoveNode(lView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RENDERER], iframe);
 }
-var SecurityContext;
-(function (SecurityContext) {
-  SecurityContext[SecurityContext["NONE"] = 0] = "NONE";
-  SecurityContext[SecurityContext["HTML"] = 1] = "HTML";
-  SecurityContext[SecurityContext["STYLE"] = 2] = "STYLE";
-  SecurityContext[SecurityContext["SCRIPT"] = 3] = "SCRIPT";
-  SecurityContext[SecurityContext["URL"] = 4] = "URL";
-  SecurityContext[SecurityContext["RESOURCE_URL"] = 5] = "RESOURCE_URL";
-})(SecurityContext || (SecurityContext = {}));
-function ɵɵsanitizeHtml(unsafeHtml) {
+function splitNsName(elementName, fatal = true) {
+  if (elementName[0] != ':') {
+    return [null, elementName];
+  }
+  const colonIndex = elementName.indexOf(':', 1);
+  if (colonIndex === -1) {
+    if (fatal) {
+      throw new Error(`Unsupported format "${elementName}" expecting ":namespace:name"`);
+    } else {
+      return [null, elementName];
+    }
+  }
+  return [elementName.slice(1, colonIndex), elementName.slice(colonIndex + 1)];
+}
+function ɵɵsanitizeHtml(unsafeHtml, tagName, propName) {
+  if (tagName !== undefined && propName !== undefined && getSecurityContext(tagName, propName) !== _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.HTML) {
+    return unsafeHtml;
+  }
   const sanitizer = getSanitizer();
   if (sanitizer) {
-    return trustedHTMLFromStringBypass(sanitizer.sanitize(SecurityContext.HTML, unsafeHtml) || '');
+    return trustedHTMLFromStringBypass(sanitizer.sanitize(_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.HTML, unsafeHtml) || '');
   }
   if (allowSanitizationBypassAndThrow(unsafeHtml, "HTML")) {
     return trustedHTMLFromStringBypass(unwrapSafeValue(unsafeHtml));
@@ -11001,7 +11037,7 @@ function ɵɵsanitizeHtml(unsafeHtml) {
 function ɵɵsanitizeStyle(unsafeStyle) {
   const sanitizer = getSanitizer();
   if (sanitizer) {
-    return sanitizer.sanitize(SecurityContext.STYLE, unsafeStyle) || '';
+    return sanitizer.sanitize(_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.STYLE, unsafeStyle) || '';
   }
   if (allowSanitizationBypassAndThrow(unsafeStyle, "Style")) {
     return unwrapSafeValue(unsafeStyle);
@@ -11011,7 +11047,7 @@ function ɵɵsanitizeStyle(unsafeStyle) {
 function ɵɵsanitizeUrl(unsafeUrl) {
   const sanitizer = getSanitizer();
   if (sanitizer) {
-    return sanitizer.sanitize(SecurityContext.URL, unsafeUrl) || '';
+    return sanitizer.sanitize(_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.URL, unsafeUrl) || '';
   }
   if (allowSanitizationBypassAndThrow(unsafeUrl, "URL")) {
     return unwrapSafeValue(unsafeUrl);
@@ -11021,7 +11057,7 @@ function ɵɵsanitizeUrl(unsafeUrl) {
 function ɵɵsanitizeResourceUrl(unsafeResourceUrl) {
   const sanitizer = getSanitizer();
   if (sanitizer) {
-    return trustedScriptURLFromStringBypass(sanitizer.sanitize(SecurityContext.RESOURCE_URL, unsafeResourceUrl) || '');
+    return trustedScriptURLFromStringBypass(sanitizer.sanitize(_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.RESOURCE_URL, unsafeResourceUrl) || '');
   }
   if (allowSanitizationBypassAndThrow(unsafeResourceUrl, "ResourceURL")) {
     return trustedScriptURLFromStringBypass(unwrapSafeValue(unsafeResourceUrl));
@@ -11031,7 +11067,7 @@ function ɵɵsanitizeResourceUrl(unsafeResourceUrl) {
 function ɵɵsanitizeScript(unsafeScript) {
   const sanitizer = getSanitizer();
   if (sanitizer) {
-    return trustedScriptFromStringBypass(sanitizer.sanitize(SecurityContext.SCRIPT, unsafeScript) || '');
+    return trustedScriptFromStringBypass(sanitizer.sanitize(_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.SCRIPT, unsafeScript) || '');
   }
   if (allowSanitizationBypassAndThrow(unsafeScript, "Script")) {
     return trustedScriptFromStringBypass(unwrapSafeValue(unsafeScript));
@@ -11050,41 +11086,18 @@ function ɵɵtrustConstantResourceUrl(url) {
   }
   return trustedScriptURLFromString(url[0]);
 }
-const RESOURCE_MAP = {
-  'embed': {
-    'src': true
-  },
-  'frame': {
-    'src': true
-  },
-  'iframe': {
-    'src': true
-  },
-  'media': {
-    'src': true
-  },
-  'script': {
-    'src': true,
-    'href': true,
-    'xlink:href': true
-  },
-  'base': {
-    'href': true
-  },
-  'link': {
-    'href': true
-  },
-  'object': {
-    'data': true,
-    'codebase': true
-  }
-};
 function getUrlSanitizer(tag, prop) {
-  const isResource = RESOURCE_MAP[tag]?.[prop] === true;
-  return isResource ? ɵɵsanitizeResourceUrl : ɵɵsanitizeUrl;
+  switch (getSecurityContext(tag, prop)) {
+    case _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.RESOURCE_URL:
+      return ɵɵsanitizeResourceUrl;
+    case _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.URL:
+      return ɵɵsanitizeUrl;
+    default:
+      return null;
+  }
 }
 function ɵɵsanitizeUrlOrResourceUrl(unsafeUrl, tag, prop) {
-  return getUrlSanitizer(tag, prop)(unsafeUrl);
+  return getUrlSanitizer(tag, prop)?.(unsafeUrl) ?? unsafeUrl;
 }
 function validateAgainstEventProperties(name) {
   if (name.toLowerCase().startsWith('on')) {
@@ -11092,70 +11105,89 @@ function validateAgainstEventProperties(name) {
     throw new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RuntimeError(306, errorMessage);
   }
 }
-function validateAgainstEventAttributes(name) {
-  if (name.toLowerCase().startsWith('on')) {
-    const errorMessage = `Binding to event attribute '${name}' is disallowed for security reasons, ` + `please use (${name.slice(2)})=...`;
-    throw new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RuntimeError(306, errorMessage);
-  }
-}
 function getSanitizer() {
   const lView = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getLView)();
   return lView && lView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.ENVIRONMENT].sanitizer;
 }
+function getSecurityContext(tagName, propName) {
+  const [namespace, resolvedTagName] = resolveElement(tagName);
+  return (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.checkSecurityContext)(resolvedTagName, propName, namespace);
+}
+function resolveElement(tagName) {
+  tagName = tagName.toLowerCase();
+  const splitResult = splitNsName(tagName, false);
+  if (splitResult[0]) {
+    return splitResult;
+  }
+  const index = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getSelectedIndex)();
+  const tNode = index === -1 ? null : (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getSelectedTNode)();
+  let namespace = tNode?.namespace;
+  if (tagName === "#host" && tNode?.type === 2) {
+    const element = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getNativeByTNode)(tNode, (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getLView)());
+    if (element.tagName) {
+      tagName = element.tagName.toLowerCase();
+    }
+    if (namespace == null) {
+      const namespaceURI = element.namespaceURI;
+      namespace = namespaceURI && NAMESPACE_URIS[namespaceURI];
+    }
+  }
+  return [namespace, tagName];
+}
 const SECURITY_SENSITIVE_ATTRIBUTE_NAMES = new Set(['href', 'xlink:href']);
-const SECURITY_SENSITIVE_ELEMENTS = {
-  'iframe': {
-    'sandbox': true,
-    'allow': true,
-    'allowfullscreen': true,
-    'referrerpolicy': true,
-    'csp': true,
-    'fetchpriority': true
-  },
+const SVG_ANIMATION_SENSITIVE_STATIC_VALUES = {
   'animate': {
-    'attributename': true,
     'to': SECURITY_SENSITIVE_ATTRIBUTE_NAMES,
     'values': SECURITY_SENSITIVE_ATTRIBUTE_NAMES,
     'from': SECURITY_SENSITIVE_ATTRIBUTE_NAMES
   },
   'set': {
-    'attributename': true,
     'to': SECURITY_SENSITIVE_ATTRIBUTE_NAMES
-  },
-  'animatemotion': {
-    'attributename': true
-  },
-  'animatetransform': {
-    'attributename': true
   }
 };
 function ɵɵvalidateAttribute(value, tagName, attributeName) {
-  const lowerCaseTagName = tagName.toLowerCase();
-  const lowerCaseAttrName = attributeName.toLowerCase();
-  const validationConfig = SECURITY_SENSITIVE_ELEMENTS[lowerCaseTagName]?.[lowerCaseAttrName];
-  if (!validationConfig) {
+  const index = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getSelectedIndex)();
+  const tNode = index === -1 ? null : (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getSelectedTNode)();
+  if (tNode && tNode.type !== 2) {
     return value;
   }
-  const tNode = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getSelectedTNode)();
-  if (tNode.type !== 2) {
+  const [namespace, resolvedTagName] = resolveElement(tagName);
+  const securityContext = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.checkSecurityContext)(resolvedTagName, attributeName, namespace);
+  if (securityContext !== _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.ATTRIBUTE_NO_BINDING) {
     return value;
   }
   const lView = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getLView)();
-  if (lowerCaseTagName === 'iframe') {
-    const element = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getNativeByTNode)(tNode, lView);
-    enforceIframeSecurity(element);
-  }
-  if (typeof validationConfig !== 'boolean') {
-    const element = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getNativeByTNode)(tNode, lView);
-    const attributeNameValue = element.getAttribute('attributeName');
-    if (attributeNameValue && validationConfig.has(attributeNameValue.toLowerCase())) {
-      const errorMessage = ngDevMode && `Angular has detected that the \`${attributeName}\` was applied ` + `as a binding to the <${tagName}> element${getTemplateLocationDetails(lView)}. ` + `For security reasons, the \`${attributeName}\` can be set on the <${tagName}> element ` + `as a static attribute only when the "attributeName" is set to \'${attributeNameValue}\'. \n` + `To fix this, switch the \`${attributeNameValue}\` binding to a static attribute ` + `in a template or in host bindings section.`;
-      throw new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RuntimeError(-910, errorMessage);
+  if (tNode) {
+    if (resolvedTagName === 'iframe') {
+      const element = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getNativeByTNode)(tNode, lView);
+      enforceIframeSecurity(element);
+    } else if (namespace === _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SVG_NAMESPACE) {
+      const config = SVG_ANIMATION_SENSITIVE_STATIC_VALUES[resolvedTagName]?.[attributeName.toLowerCase()];
+      if (config) {
+        const element = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getNativeByTNode)(tNode, lView);
+        const attributeNameValue = getSecuritySensitiveSVGAnimationAttributeName(element, config);
+        if (attributeNameValue) {
+          const errorMessage = ngDevMode && `Angular has detected that the \`${attributeName}\` was applied ` + `as a binding to the <${resolvedTagName}> element${getTemplateLocationDetails(lView)}. ` + `For security reasons, the \`${attributeName}\` can be set on the <${resolvedTagName}> element ` + `as a static attribute only when the "attributeName" is set to \'${attributeNameValue}\'. \n` + `To fix this, switch the \`${attributeNameValue}\` binding to a static attribute ` + `in a template or in host bindings section.`;
+          throw new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RuntimeError(-910, errorMessage);
+        }
+        return value;
+      }
     }
-    return value;
   }
-  const errorMessage = ngDevMode && `Angular has detected that the \`${attributeName}\` was applied ` + `as a binding to the <${tagName}> element${getTemplateLocationDetails(lView)}. ` + `For security reasons, the \`${attributeName}\` can be set on the <${tagName}> element ` + `as a static attribute only. \n` + `To fix this, switch the \`${attributeName}\` binding to a static attribute ` + `in a template or in host bindings section.`;
+  const errorMessage = ngDevMode && `Angular has detected that the \`${attributeName}\` was applied ` + `as a binding to the <${resolvedTagName}> element${tNode ? getTemplateLocationDetails(lView) : ''}. ` + `For security reasons, the \`${attributeName}\` can be set on the <${resolvedTagName}> element ` + `as a static attribute only. \n` + `To fix this, switch the \`${attributeName}\` binding to a static attribute ` + `in a template or in host bindings section.`;
   throw new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RuntimeError(-910, errorMessage);
+}
+function getSecuritySensitiveSVGAnimationAttributeName(element, validationConfig) {
+  for (const attributeName of element.getAttributeNames()) {
+    if (attributeName.toLowerCase() !== 'attributename') {
+      continue;
+    }
+    const attributeNameValue = element.getAttribute(attributeName);
+    if (attributeNameValue !== null && validationConfig.has(attributeNameValue.toLowerCase())) {
+      return attributeNameValue;
+    }
+  }
+  return null;
 }
 const NG_REFLECT_ATTRS_FLAG_DEFAULT = false;
 const NG_REFLECT_ATTRS_FLAG = new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.InjectionToken(typeof ngDevMode === 'undefined' || ngDevMode ? 'NG_REFLECT_FLAG' : '', {
@@ -12822,7 +12854,9 @@ function setDomProperty(tNode, lView, propName, value, renderer, sanitizer) {
   if (tNode.type & 3) {
     const element = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getNativeByTNode)(tNode, lView);
     if (ngDevMode) {
-      validateAgainstEventProperties(propName);
+      if (lView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.TVIEW].firstUpdatePass) {
+        validateAgainstEventProperties(propName);
+      }
       if (!isPropertyValid(element, propName, tNode.value, lView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.TVIEW].schemas)) {
         handleUnknownPropertyError(propName, tNode.value, tNode.type, lView);
       }
@@ -12964,7 +12998,6 @@ function findDirectiveDefMatches(tView, tNode) {
 function elementAttributeInternal(tNode, lView, name, value, sanitizer, namespace) {
   if (ngDevMode) {
     (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.assertNotSame)(value, NO_CHANGE, 'Incoming value should never be NO_CHANGE.');
-    validateAgainstEventAttributes(name);
     assertTNodeType(tNode, 2, `Attempted to set attribute \`${name}\` on a container node. ` + `Host bindings are not valid on ng-container or ng-template.`);
   }
   const element = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getNativeByTNode)(tNode, lView);
@@ -13869,6 +13902,7 @@ function createTemplateRef(hostTNode, hostLView) {
   return null;
 }
 const AT_THIS_LOCATION = '<-- AT THIS LOCATION';
+const THIRD_PARTY_SCRIPTS_URL = `/guide/hydration#third-party-scripts-with-dom-manipulation`;
 function getFriendlyStringFromTNodeType(tNodeType) {
   switch (tNodeType) {
     case 4:
@@ -13912,7 +13946,10 @@ function validateMatchingNode(node, nodeType, tagName, lView, tNode, isViewConta
       markRNodeAsHavingHydrationMismatch(componentHostElement, expectedDom, actualDom);
     }
     const footer = getHydrationErrorFooter(componentClassName);
-    const message = header + expected + actual + getHydrationAttributeNote() + footer;
+    let message = header + expected + actual + getHydrationAttributeNote() + footer;
+    if (!node || node && isLikelyExternalSourceNode(node)) {
+      message += `Note: It looks like this mismatch may have been caused by a third-party script or ` + `browser extension that modified the DOM outside of Angular's control. ` + `Angular hydration does not support nodes injected or removed outside of the Angular-managed DOM. ` + `Note: If you know which element in the DOM this will be inserted, consider adding ngSkipHydration to prevent this error. \n\n`;
+    }
     throw new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RuntimeError(-500, message);
   }
 }
@@ -14077,7 +14114,17 @@ function shortRNodeDescription(nodeType, tagName, textContent) {
 }
 function getHydrationErrorFooter(componentClassName) {
   const componentInfo = componentClassName ? `the "${componentClassName}"` : 'corresponding';
-  return `To fix this problem:\n` + `  * check ${componentInfo} component for hydration-related issues\n` + `  * check to see if your template has valid HTML structure\n` + `  * or skip hydration by adding the \`ngSkipHydration\` attribute ` + `to its host node in a template\n\n`;
+  return `To fix this problem:\n` + `  * check ${componentInfo} component for hydration-related issues\n` + `  * check to see if your template has valid HTML structure\n` + `  * check if there are any third-party scripts that manipulate the DOM. More info: ${_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.DOC_PAGE_BASE_URL}${THIRD_PARTY_SCRIPTS_URL}\n` + `  * or skip hydration by adding the \`ngSkipHydration\` attribute ` + `to its host node in a template\n\n`;
+}
+function isLikelyExternalSourceNode(rNode) {
+  const node = rNode;
+  if (node.nodeType !== Node.ELEMENT_NODE) {
+    return false;
+  }
+  if (readPatchedData(node)) {
+    return false;
+  }
+  return true;
 }
 function getHydrationAttributeNote() {
   return 'Note: attributes are only displayed to better represent the DOM' + ' but have no effect on hydration mismatches.\n\n';
@@ -14190,6 +14237,7 @@ function createTNode(tView, tParent, type, index, value, attrs) {
     flags,
     providerIndexes: 0,
     value: value,
+    namespace: (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getNamespace)(),
     attrs: attrs,
     mergedAttrs: null,
     localNames: null,
@@ -15817,6 +15865,10 @@ function bindingUpdated4(lView, bindingIndex, exp1, exp2, exp3, exp4) {
 }
 function wrapListener(tNode, lView, listenerFn) {
   return function wrapListenerIn_markDirtyAndPreventDefault(event) {
+    const nativeEl = wrapListenerIn_markDirtyAndPreventDefault.__ngNativeEl__;
+    if (nativeEl !== undefined) {
+      markEventHandledForElement(event, nativeEl);
+    }
     const startView = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.isComponentHost)(tNode) ? (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getComponentLViewByIndex)(tNode.index, lView) : lView;
     markViewDirty(startView, 5);
     const context = lView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.CONTEXT];
@@ -15859,6 +15911,9 @@ function listenToDomEvent(tNode, tView, lView, eventTargetResolver, renderer, ev
     const native = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getNativeByTNode)(tNode, lView);
     const target = eventTargetResolver ? eventTargetResolver(native) : native;
     stashEventListenerImpl(lView, target, eventName, wrappedListener);
+    if (!eventTargetResolver) {
+      wrappedListener.__ngNativeEl__ = native;
+    }
     const cleanupFn = renderer.listen(target, eventName, wrappedListener);
     if (!isAnimationEventType(eventName)) {
       const idxOrTargetGetter = eventTargetResolver ? _lView => eventTargetResolver((0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.unwrapRNode)(_lView[tNode.index])) : tNode.index;
@@ -16290,6 +16345,11 @@ function createHostElement(componentDef, renderer) {
   const namespace = tagName === 'svg' ? _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SVG_NAMESPACE : tagName === 'math' ? _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.MATH_ML_NAMESPACE : null;
   return createElementNode(renderer, tagName, namespace);
 }
+function assertNotScriptHostElement(tagName) {
+  if (tagName?.toLowerCase() === 'script') {
+    throw new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RuntimeError(905, ngDevMode && `"<script>" tag is not allowed as a component host element.`);
+  }
+}
 function inferTagNameFromDefinition(componentDef) {
   return (componentDef.selectors[0][0] || 'div').toLowerCase();
 }
@@ -16342,13 +16402,14 @@ class ComponentFactory extends ComponentFactory$1 {
     const rootTView = createRootTView(rootSelectorOrNode, cmpDef, componentBindings, directives);
     const hostRenderer = environment.rendererFactory.createRenderer(null, cmpDef);
     const hostElement = rootSelectorOrNode ? locateHostElement(hostRenderer, rootSelectorOrNode, cmpDef.encapsulation, rootViewInjector) : createHostElement(cmpDef, hostRenderer);
+    assertNotScriptHostElement(hostElement?.tagName);
     const hasInputBindings = componentBindings?.some(isInputBinding) || directives?.some(d => typeof d !== 'function' && d.bindings.some(isInputBinding));
     const rootLView = createLView(null, rootTView, null, 512 | getInitialLViewFlagsFromDef(cmpDef), null, null, environment, hostRenderer, rootViewInjector, null, retrieveHydrationInfo(hostElement, rootViewInjector, true));
     rootLView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.HEADER_OFFSET] = hostElement;
     (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.enterView)(rootLView);
     let componentView = null;
     try {
-      const hostTNode = directiveHostFirstCreatePass(_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.HEADER_OFFSET, rootLView, 2, '#host', () => rootTView.directiveRegistry, true, 0);
+      const hostTNode = directiveHostFirstCreatePass(_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.HEADER_OFFSET, rootLView, 2, "#host", () => rootTView.directiveRegistry, true, 0);
       setupStaticAttributes(hostRenderer, hostElement, hostTNode);
       attachPatchData(hostElement, rootLView);
       createDirectivesInstances(rootTView, rootLView, hostTNode);
@@ -16374,7 +16435,7 @@ class ComponentFactory extends ComponentFactory$1 {
   }
 }
 function createRootTView(rootSelectorOrNode, componentDef, componentBindings, directives) {
-  const tAttributes = rootSelectorOrNode ? ['ng-version', '21.2.7'] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
+  const tAttributes = rootSelectorOrNode ? ['ng-version', '21.2.21'] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
   let creationBindings = null;
   let updateBindings = null;
   let varsToAllocate = 0;
@@ -16720,7 +16781,10 @@ function populateDehydratedViewsInLContainerImpl(lContainer, tNode, hostLView) {
   }
   const currentRNode = getSegmentHead(hydrationInfo, noOffsetIndex);
   const serializedViews = hydrationInfo.data[CONTAINERS]?.[noOffsetIndex];
-  ngDevMode && (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.assertDefined)(serializedViews, 'Unexpected state: no hydration info available for a given TNode, ' + 'which represents a view container.');
+  if (serializedViews === undefined) {
+    ngDevMode && console.warn('Unexpected state: no hydration info available for a given TNode, ' + 'which represents a view container.');
+    return false;
+  }
   const [commentNode, dehydratedViews] = locateDehydratedViewsInContainer(currentRNode, serializedViews);
   if (ngDevMode) {
     validateMatchingNode(commentNode, Node.COMMENT_NODE, null, hostLView, tNode, true);
@@ -17146,7 +17210,7 @@ function resolveComponentResources(_x) {
   return _resolveComponentResources.apply(this, arguments);
 }
 function _resolveComponentResources() {
-  _resolveComponentResources = (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resourceResolver) {
+  _resolveComponentResources = (0,_storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resourceResolver) {
     const currentQueue = componentResourceResolutionQueue;
     componentResourceResolutionQueue = new Map();
     const urlCache = new Map();
@@ -17160,7 +17224,7 @@ function _resolveComponentResources() {
       return promise;
     }
     const resolutionPromises = Array.from(currentQueue).map(/*#__PURE__*/function () {
-      var _ref = (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* ([type, component]) {
+      var _ref = (0,_storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* ([type, component]) {
         if (component.styleUrl && component.styleUrls?.length) {
           throw new Error('@Component cannot define both `styleUrl` and `styleUrls`. ' + 'Use `styleUrl` if the component has one stylesheet, or `styleUrls` if it has multiple');
         }
@@ -17229,7 +17293,7 @@ function unwrapResponse(_x2, _x3) {
   return _unwrapResponse.apply(this, arguments);
 }
 function _unwrapResponse() {
-  _unwrapResponse = (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (url, response) {
+  _unwrapResponse = (0,_storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (url, response) {
     if (typeof response === 'string') {
       return response;
     }
@@ -17721,15 +17785,17 @@ function ɵɵInheritDefinitionFeature(definition) {
   let superType = getSuperType(definition.type);
   let shouldInheritFields = true;
   const inheritanceChain = [definition];
-  while (superType) {
+  while (superType && superType !== Function.prototype && superType !== Object.prototype) {
     let superDef = undefined;
+    const cmpDef = Object.hasOwn(superType, _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.NG_COMP_DEF) ? superType[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.NG_COMP_DEF] : undefined;
+    const dirDef = Object.hasOwn(superType, _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.NG_DIR_DEF) ? superType[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.NG_DIR_DEF] : undefined;
     if ((0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.isComponentDef)(definition)) {
-      superDef = superType.ɵcmp || superType.ɵdir;
+      superDef = cmpDef ?? dirDef;
     } else {
-      if (superType.ɵcmp) {
+      if (cmpDef) {
         throw new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RuntimeError(903, ngDevMode && `Directives cannot inherit Components. Directive ${(0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.stringifyForError)(definition.type)} is attempting to extend component ${(0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.stringifyForError)(superType)}`);
       }
-      superDef = superType.ɵdir;
+      superDef = dirDef;
     }
     if (superDef) {
       if (shouldInheritFields) {
@@ -20203,9 +20269,11 @@ function triggerResourceLoading(tDetails, lView, tNode) {
   }
   tDetails.loadingPromise = Promise.allSettled(dependenciesFn()).then(results => {
     let failed = false;
+    let failedReason = null;
     const directiveDefs = [];
     const pipeDefs = [];
-    for (const result of results) {
+    for (let i = 0; i < results.length; i++) {
+      const result = results[i];
       if (result.status === 'fulfilled') {
         const dependency = result.value;
         const directiveDef = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getComponentDef)(dependency) || (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getDirectiveDef)(dependency);
@@ -20219,6 +20287,7 @@ function triggerResourceLoading(tDetails, lView, tNode) {
         }
       } else {
         failed = true;
+        failedReason = result.reason instanceof Error ? result.reason : new Error(String(result.reason));
         break;
       }
     }
@@ -20226,7 +20295,19 @@ function triggerResourceLoading(tDetails, lView, tNode) {
       tDetails.loadingState = DeferDependenciesLoadingState.FAILED;
       if (tDetails.errorTmplIndex === null) {
         const templateLocation = ngDevMode ? getTemplateLocationDetails(lView) : '';
-        const error = new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RuntimeError(-750, ngDevMode && 'Loading dependencies for `@defer` block failed, ' + `but no \`@error\` block was configured${templateLocation}. ` + 'Consider using the `@error` block to render an error state.');
+        let errorMsg = '';
+        if (ngDevMode) {
+          errorMsg = 'Loading dependencies for `@defer` block failed, ' + `but no \`@error\` block was configured${templateLocation}. ` + 'Consider using the `@error` block to render an error state.';
+          const depsFn = tDetails.dependencyResolverFn;
+          const errorReason = failedReason?.message;
+          if (depsFn) {
+            errorMsg += `\n\nAngular tried to invoke the following dependency function (compiler-generated):\n` + `\`\`\`\n${depsFn.toString()}\n\`\`\``;
+          }
+          if (errorReason) {
+            errorMsg += depsFn ? `\n\nbut it resulted in the following error:\n\n${errorReason}` : `\n\nThe loading resulted in the following error:\n\n${errorReason}`;
+          }
+        }
+        const error = new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RuntimeError(-750, errorMsg);
         handleUncaughtError(lView, error);
       }
     } else {
@@ -20298,7 +20379,7 @@ function triggerHydrationFromBlockName(_x4, _x5, _x6) {
   return _triggerHydrationFromBlockName.apply(this, arguments);
 }
 function _triggerHydrationFromBlockName() {
-  _triggerHydrationFromBlockName = (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (injector, blockName, replayQueuedEventsFn) {
+  _triggerHydrationFromBlockName = (0,_storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (injector, blockName, replayQueuedEventsFn) {
     const dehydratedBlockRegistry = injector.get(DEHYDRATED_BLOCK_REGISTRY);
     const blocksBeingHydrated = dehydratedBlockRegistry.hydrating;
     if (blocksBeingHydrated.has(blockName)) {
@@ -20320,7 +20401,7 @@ function _triggerHydrationFromBlockName() {
     if (dehydratedBlockRegistry.has(topmostParentBlock)) {
       yield triggerHydrationForBlockQueue(injector, hydrationQueue, replayQueuedEventsFn);
     } else {
-      dehydratedBlockRegistry.awaitParentBlock(topmostParentBlock, /*#__PURE__*/(0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      dehydratedBlockRegistry.awaitParentBlock(topmostParentBlock, /*#__PURE__*/(0,_storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
         return yield triggerHydrationForBlockQueue(injector, hydrationQueue, replayQueuedEventsFn);
       }));
     }
@@ -20331,7 +20412,7 @@ function triggerHydrationForBlockQueue(_x7, _x8, _x9) {
   return _triggerHydrationForBlockQueue.apply(this, arguments);
 }
 function _triggerHydrationForBlockQueue() {
-  _triggerHydrationForBlockQueue = (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (injector, hydrationQueue, replayQueuedEventsFn) {
+  _triggerHydrationForBlockQueue = (0,_storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (injector, hydrationQueue, replayQueuedEventsFn) {
     const dehydratedBlockRegistry = injector.get(DEHYDRATED_BLOCK_REGISTRY);
     const blocksBeingHydrated = dehydratedBlockRegistry.hydrating;
     const pendingTasks = injector.get(_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.PendingTasksInternal);
@@ -20395,7 +20476,7 @@ function triggerResourceLoadingForHydration(_x0) {
   return _triggerResourceLoadingForHydration.apply(this, arguments);
 }
 function _triggerResourceLoadingForHydration() {
-  _triggerResourceLoadingForHydration = (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (dehydratedBlock) {
+  _triggerResourceLoadingForHydration = (0,_storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (dehydratedBlock) {
     const {
       tNode,
       lView
@@ -21965,7 +22046,7 @@ function plural(val) {
   return 5;
 }
 var localeEn = ["en", [["a", "p"], ["AM", "PM"]], [["AM", "PM"]], [["S", "M", "T", "W", "T", "F", "S"], ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]], u, [["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"], ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]], u, [["B", "A"], ["BC", "AD"], ["Before Christ", "Anno Domini"]], 0, [6, 0], ["M/d/yy", "MMM d, y", "MMMM d, y", "EEEE, MMMM d, y"], ["h:mm a", "h:mm:ss a", "h:mm:ss a z", "h:mm:ss a zzzz"], ["{1}, {0}", u, u, u], [".", ",", ";", "%", "+", "-", "E", "×", "‰", "∞", "NaN", ":"], ["#,##0.###", "#,##0%", "¤#,##0.00", "#E0"], "USD", "$", "US Dollar", {}, "ltr", plural];
-let LOCALE_DATA = {};
+let LOCALE_DATA = /* @__PURE__ */Object.create(null);
 function registerLocaleData(data, localeId, extraData) {
   if (typeof localeId !== 'string') {
     extraData = localeId;
@@ -22003,12 +22084,16 @@ function getLocalePluralCase(locale) {
 }
 function getLocaleData(normalizedLocale) {
   if (!(normalizedLocale in LOCALE_DATA)) {
-    LOCALE_DATA[normalizedLocale] = _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__._global.ng && _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__._global.ng.common && _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__._global.ng.common.locales && _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__._global.ng.common.locales[normalizedLocale];
+    const globalLocaleData = _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__._global.ng && _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__._global.ng.common && _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__._global.ng.common.locales && _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__._global.ng.common.locales[normalizedLocale];
+    if (globalLocaleData !== undefined) {
+      LOCALE_DATA[normalizedLocale] = globalLocaleData;
+    }
+    return globalLocaleData;
   }
   return LOCALE_DATA[normalizedLocale];
 }
 function unregisterAllLocaleData() {
-  LOCALE_DATA = {};
+  LOCALE_DATA = Object.create(null);
 }
 var LocaleDataIndex;
 (function (LocaleDataIndex) {
@@ -22077,15 +22162,18 @@ function setMaskBit(hasChange) {
   changeMaskCounter++;
 }
 function applyI18n(tView, lView, index) {
-  if (changeMaskCounter > 0) {
-    ngDevMode && (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.assertDefined)(tView, `tView should be defined`);
-    const tI18n = tView.data[index];
-    const updateOpCodes = Array.isArray(tI18n) ? tI18n : tI18n.update;
-    const bindingsStartIndex = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getBindingIndex)() - changeMaskCounter - 1;
-    applyUpdateOpCodes(tView, lView, updateOpCodes, bindingsStartIndex, changeMask);
+  try {
+    if (changeMaskCounter > 0) {
+      ngDevMode && (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.assertDefined)(tView, `tView should be defined`);
+      const tI18n = tView.data[index];
+      const updateOpCodes = Array.isArray(tI18n) ? tI18n : tI18n.update;
+      const bindingsStartIndex = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getBindingIndex)() - changeMaskCounter - 1;
+      applyUpdateOpCodes(tView, lView, updateOpCodes, bindingsStartIndex, changeMask);
+    }
+  } finally {
+    changeMask = 0b0;
+    changeMaskCounter = 0;
   }
-  changeMask = 0b0;
-  changeMaskCounter = 0;
 }
 function createNodeWithoutHydration(lView, textOrName, nodeType) {
   const renderer = lView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RENDERER];
@@ -22249,7 +22337,13 @@ function applyUpdateOpCodes(tView, lView, updateOpCodes, bindingsStartIndex, cha
                 if (typeof tNodeOrTagName === 'string') {
                   setElementAttribute(lView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RENDERER], lView[nodeIndex], null, tNodeOrTagName, propName, value, sanitizeFn);
                 } else {
-                  setPropertyAndInputs(tNodeOrTagName, lView, propName, value, lView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RENDERER], sanitizeFn);
+                  const prevSelectedIndex = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getSelectedIndex)();
+                  (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.setSelectedIndex)(nodeIndex);
+                  try {
+                    setPropertyAndInputs(tNodeOrTagName, lView, propName, value, lView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RENDERER], sanitizeFn);
+                  } finally {
+                    (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.setSelectedIndex)(prevSelectedIndex);
+                  }
                 }
                 break;
               case 0:
@@ -22635,7 +22729,8 @@ function i18nAttributesFirstPass(tView, index, values) {
         if (ICU_REGEXP.test(message)) {
           throw new Error(`ICU expressions are not supported in attributes. Message: "${message}".`);
         }
-        generateBindingUpdateOpCodes(updateOpCodes, message, previousElementIndex, attrName, countBindings(updateOpCodes), SENSITIVE_ATTRS[attrName.toLowerCase()] ? _sanitizeUrl : null);
+        const tagName = previousElement.namespace ? `:${previousElement.namespace}:${previousElement.value}` : previousElement.value;
+        generateBindingUpdateOpCodes(updateOpCodes, message, previousElementIndex, attrName, countBindings(updateOpCodes), i18nResolveSanitizer(attrName, tagName));
       }
     }
     tView.data[index] = updateOpCodes;
@@ -22865,20 +22960,25 @@ function walkIcuTree(ast, tView, tIcu, lView, sharedUpdateOpCodes, create, remov
             const attr = elAttrs.item(i);
             const lowerAttrName = attr.name.toLowerCase();
             const hasBinding = !!attr.value.match(BINDING_REGEXP);
+            const namespaceUri = element.namespaceURI;
+            const namespace = namespaceUri && NAMESPACE_URIS[namespaceUri];
+            const tagNameWithNamespace = namespace ? `:${namespace}:${tagName}` : tagName;
             if (hasBinding) {
               if (VALID_ATTRS.hasOwnProperty(lowerAttrName)) {
-                generateBindingUpdateOpCodes(update, attr.value, newIndex, attr.name, 0, SENSITIVE_ATTRS[lowerAttrName] ? _sanitizeUrl : null);
+                generateBindingUpdateOpCodes(update, attr.value, newIndex, attr.name, 0, i18nResolveSanitizer(lowerAttrName, tagNameWithNamespace));
               } else {
                 ngDevMode && console.warn(`WARNING: ignoring unsafe attribute value ` + `${lowerAttrName} on element ${tagName} ` + `(see ${_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.XSS_SECURITY_URL})`);
               }
             } else if (VALID_ATTRS[lowerAttrName]) {
-              if (SENSITIVE_ATTRS[lowerAttrName]) {
+              let val = attr.value;
+              const sanitizer = i18nResolveSanitizer(lowerAttrName, tagNameWithNamespace);
+              if (sanitizer) {
                 if (typeof ngDevMode !== 'undefined' && ngDevMode) {
                   console.warn(`WARNING: ignoring unsafe attribute ` + `${lowerAttrName} on element ${tagName} ` + `(see ${_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.XSS_SECURITY_URL})`);
                 }
                 addCreateAttribute(create, newIndex, attr.name, 'unsafe:blocked');
               } else {
-                addCreateAttribute(create, newIndex, attr.name, attr.value);
+                addCreateAttribute(create, newIndex, attr.name, val);
               }
             } else {
               if (typeof ngDevMode !== 'undefined' && ngDevMode) {
@@ -22949,6 +23049,34 @@ function addCreateNodeAndAppend(create, marker, text, appendToParentIdx, createA
 }
 function addCreateAttribute(create, newIndex, attrName, attrValue) {
   create.push(newIndex << 1 | 1, attrName, attrValue);
+}
+function normalizeTagName(tagName) {
+  const tagNameLower = tagName.toLowerCase();
+  const [ns, name] = splitNsName(tagNameLower, false);
+  return ns === SVG_NAMESPACE || ns === MATH_ML_NAMESPACE ? `:${ns}:${name}` : name;
+}
+function i18nResolveSanitizer(attrName, tagName) {
+  const lowerAttrName = attrName.toLowerCase();
+  const lowerTagName = tagName ? normalizeTagName(tagName) : '*';
+  const [namespace] = splitNsName(lowerTagName, false);
+  const schema = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SECURITY_SCHEMA)();
+  const schemaContext = schema[`${lowerTagName}|${lowerAttrName}`] || (namespace ? schema[`:${namespace}:*|${lowerAttrName}`] : undefined) || schema[`*|${lowerAttrName}`] || _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.NONE;
+  switch (schemaContext) {
+    case _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.HTML:
+      return ɵɵsanitizeHtml;
+    case _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.STYLE:
+      return ɵɵsanitizeStyle;
+    case _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.SCRIPT:
+      return ɵɵsanitizeScript;
+    case _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.URL:
+      return _sanitizeUrl;
+    case _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.RESOURCE_URL:
+      return ɵɵsanitizeResourceUrl;
+    case _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.ATTRIBUTE_NO_BINDING:
+      return ɵɵvalidateAttribute;
+    default:
+      return null;
+  }
 }
 const ROOT_TEMPLATE_ID = 0;
 const PP_MULTI_VALUE_PLACEHOLDERS_REGEXP = /\[(�.+?�?)\]/;
@@ -25440,7 +25568,8 @@ function convertToR3QueryMetadata(propertyName, ann) {
   };
 }
 function extractQueriesMetadata(type, propMetadata, isQueryAnn) {
-  const queriesMeta = [];
+  const signalQueriesMeta = [];
+  const decoratorQueriesMeta = [];
   for (const field in propMetadata) {
     if (propMetadata.hasOwnProperty(field)) {
       const annotations = propMetadata[field];
@@ -25452,12 +25581,17 @@ function extractQueriesMetadata(type, propMetadata, isQueryAnn) {
           if (annotations.some(isInputAnnotation)) {
             throw new Error(`Cannot combine @Input decorators with query decorators`);
           }
-          queriesMeta.push(convertToR3QueryMetadata(field, ann));
+          const queryMeta = convertToR3QueryMetadata(field, ann);
+          if (queryMeta.isSignal) {
+            signalQueriesMeta.push(queryMeta);
+          } else {
+            decoratorQueriesMeta.push(queryMeta);
+          }
         }
       });
     }
   }
-  return queriesMeta;
+  return [...signalQueriesMeta, ...decoratorQueriesMeta];
 }
 function extractExportAs(exportAs) {
   return exportAs === undefined ? null : splitByComma(exportAs);
@@ -26238,7 +26372,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   signalUpdateFn: () => (/* binding */ signalUpdateFn)
 /* harmony export */ });
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -26732,7 +26866,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   RuntimeError: () => (/* binding */ RuntimeError),
 /* harmony export */   SCHEDULE_IN_ROOT_ZONE: () => (/* binding */ SCHEDULE_IN_ROOT_ZONE),
 /* harmony export */   SCHEDULE_IN_ROOT_ZONE_DEFAULT: () => (/* binding */ SCHEDULE_IN_ROOT_ZONE_DEFAULT),
+/* harmony export */   SECURITY_SCHEMA: () => (/* binding */ SECURITY_SCHEMA),
 /* harmony export */   SVG_NAMESPACE: () => (/* binding */ SVG_NAMESPACE),
+/* harmony export */   SecurityContext: () => (/* binding */ SecurityContext),
 /* harmony export */   TVIEW: () => (/* binding */ TVIEW),
 /* harmony export */   T_HOST: () => (/* binding */ T_HOST),
 /* harmony export */   VERSION: () => (/* binding */ VERSION),
@@ -26787,6 +26923,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   assertTNodeForLView: () => (/* binding */ assertTNodeForLView),
 /* harmony export */   assertTNodeForTView: () => (/* binding */ assertTNodeForTView),
 /* harmony export */   attachInjectFlag: () => (/* binding */ attachInjectFlag),
+/* harmony export */   checkSecurityContext: () => (/* binding */ checkSecurityContext),
 /* harmony export */   concatStringsWithSpace: () => (/* binding */ concatStringsWithSpace),
 /* harmony export */   convertToBitFlags: () => (/* binding */ convertToBitFlags),
 /* harmony export */   createInjector: () => (/* binding */ createInjector),
@@ -26956,7 +27093,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ 1311);
 /* harmony import */ var _not_found_chunk_mjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core/primitives/di */ 8513);
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -26979,7 +27116,7 @@ class Version {
     this.patch = parts.slice(2).join('.');
   }
 }
-const VERSION = /* @__PURE__ */new Version('21.2.7');
+const VERSION = /* @__PURE__ */new Version('21.2.21');
 const DOC_PAGE_BASE_URL = (() => {
   const full = VERSION.full;
   const isPreRelease = full.includes('-next') || full.includes('-rc') || full === '0.0.0' + '-PLACEHOLDER';
@@ -28564,8 +28701,50 @@ function assertNodeInjector(lView, injectorIndex) {
   assertNumber(lView[injectorIndex + 7], 'injectorIndex should point to a bloom filter');
   assertNumber(lView[injectorIndex + 8], 'injectorIndex should point to parent injector');
 }
+var SecurityContext;
+(function (SecurityContext) {
+  SecurityContext[SecurityContext["NONE"] = 0] = "NONE";
+  SecurityContext[SecurityContext["HTML"] = 1] = "HTML";
+  SecurityContext[SecurityContext["STYLE"] = 2] = "STYLE";
+  SecurityContext[SecurityContext["SCRIPT"] = 3] = "SCRIPT";
+  SecurityContext[SecurityContext["URL"] = 4] = "URL";
+  SecurityContext[SecurityContext["RESOURCE_URL"] = 5] = "RESOURCE_URL";
+  SecurityContext[SecurityContext["ATTRIBUTE_NO_BINDING"] = 6] = "ATTRIBUTE_NO_BINDING";
+})(SecurityContext || (SecurityContext = {}));
+let _SECURITY_SCHEMA;
 const SVG_NAMESPACE = 'svg';
 const MATH_ML_NAMESPACE = 'math';
+function SECURITY_SCHEMA() {
+  if (!_SECURITY_SCHEMA) {
+    _SECURITY_SCHEMA = {};
+    registerContext(SecurityContext.HTML, undefined, [['iframe', ['srcdoc']], ['*', ['innerHTML', 'outerHTML']]]);
+    registerContext(SecurityContext.STYLE, undefined, [['*', ['style']]]);
+    registerContext(SecurityContext.URL, undefined, [['*', ['formAction']], ['area', ['href']], ['a', ['href', 'xlink:href']], ['form', ['action']], ['img', ['src']], ['video', ['src']]]);
+    registerContext(SecurityContext.URL, MATH_ML_NAMESPACE, [['*', ['href', 'xlink:href']], ['annotation', ['href', 'xlink:href']], ['annotation-xml', ['href', 'xlink:href']], ['maction', ['href', 'xlink:href']], ['malignmark', ['href', 'xlink:href']], ['math', ['href', 'xlink:href']], ['mroot', ['href', 'xlink:href']], ['msqrt', ['href', 'xlink:href']], ['merror', ['href', 'xlink:href']], ['mfrac', ['href', 'xlink:href']], ['mglyph', ['href', 'xlink:href']], ['msub', ['href', 'xlink:href']], ['msup', ['href', 'xlink:href']], ['msubsup', ['href', 'xlink:href']], ['mmultiscripts', ['href', 'xlink:href']], ['mprescripts', ['href', 'xlink:href']], ['mi', ['href', 'xlink:href']], ['mn', ['href', 'xlink:href']], ['mo', ['href', 'xlink:href']], ['mpadded', ['href', 'xlink:href']], ['mphantom', ['href', 'xlink:href']], ['mrow', ['href', 'xlink:href']], ['ms', ['href', 'xlink:href']], ['mspace', ['href', 'xlink:href']], ['mstyle', ['href', 'xlink:href']], ['mtable', ['href', 'xlink:href']], ['mtd', ['href', 'xlink:href']], ['mtr', ['href', 'xlink:href']], ['mtext', ['href', 'xlink:href']], ['mover', ['href', 'xlink:href']], ['munder', ['href', 'xlink:href']], ['munderover', ['href', 'xlink:href']], ['semantics', ['href', 'xlink:href']], ['none', ['href', 'xlink:href']]]);
+    registerContext(SecurityContext.RESOURCE_URL, undefined, [['base', ['href']], ['embed', ['src']], ['frame', ['src']], ['iframe', ['src']], ['link', ['href']], ['object', ['codebase', 'data']]]);
+    registerContext(SecurityContext.URL, SVG_NAMESPACE, [['a', ['href', 'xlink:href']]]);
+    registerContext(SecurityContext.ATTRIBUTE_NO_BINDING, SVG_NAMESPACE, [['animate', ['attributeName', 'values', 'to', 'from']], ['set', ['to', 'attributeName']], ['animateMotion', ['attributeName']], ['animateTransform', ['attributeName']]]);
+    registerContext(SecurityContext.ATTRIBUTE_NO_BINDING, undefined, [['unknown', ['attributeName', 'values', 'to', 'from', 'sandbox', 'allow', 'allowFullscreen', 'referrerPolicy', 'csp', 'fetchPriority']], ['iframe', ['sandbox', 'allow', 'allowFullscreen', 'referrerPolicy', 'csp', 'fetchPriority']]]);
+  }
+  return _SECURITY_SCHEMA;
+}
+function registerContext(ctx, namespace, specs) {
+  for (const [element, attributeNames] of specs) {
+    let tagName = namespace && element !== 'unknown' ? `:${namespace}:${element}` : element;
+    tagName = tagName.toLowerCase();
+    for (const attr of attributeNames) {
+      _SECURITY_SCHEMA[`${tagName}|${attr.toLowerCase()}`] = ctx;
+    }
+  }
+}
+function checkSecurityContext(tagName, propName, namespace) {
+  const schema = SECURITY_SCHEMA();
+  const normalizedTagName = tagName.toLowerCase();
+  const normalizedPropName = propName.toLowerCase();
+  const namespacedContext = namespace && normalizedTagName !== '*' && normalizedTagName !== 'unknown' ? schema[`:${namespace}:${normalizedTagName}|${normalizedPropName}`] : undefined;
+  const namespacedWildcardContext = namespace ? schema[`:${namespace}:*|${normalizedPropName}`] : undefined;
+  return namespacedContext ?? namespacedWildcardContext ?? schema[`${normalizedTagName}|${normalizedPropName}`] ?? schema[`*|${normalizedPropName}`] ?? SecurityContext.NONE;
+}
 function unwrapRNode(value) {
   while (Array.isArray(value)) {
     value = value[HOST];
@@ -29889,7 +30068,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   setCurrentInjector: () => (/* binding */ setCurrentInjector)
 /* harmony export */ });
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -29945,13 +30124,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   resource: () => (/* binding */ resource),
 /* harmony export */   untracked: () => (/* binding */ untracked)
 /* harmony export */ });
-/* harmony import */ var _storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
+/* harmony import */ var _storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
 /* harmony import */ var _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_effect-chunk2.mjs */ 856);
 /* harmony import */ var _effect_chunk_mjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_effect-chunk.mjs */ 6274);
 /* harmony import */ var _untracked_chunk_mjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_untracked-chunk.mjs */ 9622);
 
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -30232,7 +30411,7 @@ class ResourceImpl extends BaseWritableResource {
   }
   loadEffect() {
     var _this = this;
-    return (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const extRequest = _this.extRequest();
       const {
         status: currentStatus,
@@ -30300,7 +30479,7 @@ function getLoader(options) {
     return options.stream;
   }
   return /*#__PURE__*/function () {
-    var _ref = (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (params) {
+    var _ref = (0,_storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (params) {
       try {
         return (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.signal)({
           value: yield options.loader(params)
@@ -30379,7 +30558,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _effect_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_effect-chunk.mjs */ 6274);
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -30490,7 +30669,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   setAlternateWeakRefImpl: () => (/* binding */ setAlternateWeakRefImpl)
 /* harmony export */ });
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -30582,7 +30761,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   RendererFactory2: () => (/* reexport safe */ _debug_node_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__.RendererFactory2),
 /* harmony export */   RendererStyleFlags2: () => (/* reexport safe */ _debug_node_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__.RendererStyleFlags2),
 /* harmony export */   Sanitizer: () => (/* reexport safe */ _debug_node_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__.Sanitizer),
-/* harmony export */   SecurityContext: () => (/* reexport safe */ _debug_node_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__.SecurityContext),
+/* harmony export */   SecurityContext: () => (/* reexport safe */ _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext),
 /* harmony export */   Self: () => (/* reexport safe */ _debug_node_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__.Self),
 /* harmony export */   SimpleChange: () => (/* reexport safe */ _debug_node_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__.SimpleChange),
 /* harmony export */   SkipSelf: () => (/* reexport safe */ _debug_node_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__.SkipSelf),
@@ -31022,7 +31201,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _weak_ref_chunk_mjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./_weak_ref-chunk.mjs */ 4223);
 /* harmony import */ var _not_found_chunk_mjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_not_found-chunk.mjs */ 8513);
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -33317,7 +33496,10 @@ function serializeLContainer(lContainer, tNode, lView, parentDeferBlockId, conte
         serializedView[_debug_node_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__.DEFER_BLOCK_STATE] = lDetails[_debug_node_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__.DEFER_BLOCK_STATE$1];
       }
       if (!isHydrateNeverBlock) {
-        Object.assign(serializedView, serializeLView(lContainer[i], parentDeferBlockId, context));
+        const childHostElement = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.unwrapRNode)(childLView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.HOST]);
+        if (childLView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.TVIEW].type !== 1 || childHostElement === null || !childHostElement.hasAttribute(_debug_node_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__.SKIP_HYDRATION_ATTR_NAME)) {
+          Object.assign(serializedView, serializeLView(lContainer[i], parentDeferBlockId, context));
+        }
       }
     }
     const currentViewAsString = JSON.stringify(serializedView);
@@ -33922,7 +34104,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _attribute_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_attribute-chunk.mjs */ 1387);
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -34063,7 +34245,6 @@ function createMouseSpecialEvent(e, target) {
   copy['_originalEvent'] = e;
   return copy;
 }
-const isIos = typeof navigator !== 'undefined' && /iPhone|iPad|iPod/.test(navigator.userAgent);
 class EventContractContainer {
   element;
   handlerInfos = [];
@@ -34071,9 +34252,6 @@ class EventContractContainer {
     this.element = element;
   }
   addEventListener(eventType, getHandler, passive) {
-    if (isIos) {
-      this.element.style.cursor = 'pointer';
-    }
     this.handlerInfos.push(addEventListener(this.element, eventType, getHandler(this.element), passive));
   }
   cleanUp() {
@@ -34760,7 +34938,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ 8608);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common */ 9636);
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -35463,7 +35641,7 @@ const ngModelWithFormGroupExample = `
       <input [(ngModel)]="showMoreControls" [ngModelOptions]="{standalone: true}">
   </div>
 `;
-const VERSION = /* @__PURE__ */new _angular_core__WEBPACK_IMPORTED_MODULE_2__.Version('21.2.7');
+const VERSION = /* @__PURE__ */new _angular_core__WEBPACK_IMPORTED_MODULE_2__.Version('21.2.21');
 function controlParentException(nameOrIndex) {
   return new _angular_core__WEBPACK_IMPORTED_MODULE_2__.RuntimeError(1050, `formControlName must be used with a parent formGroup or formArray directive. You'll want to add a formGroup/formArray
       directive and pass it an existing FormGroup/FormArray instance (you can create one in your class).
@@ -35662,7 +35840,7 @@ function assertControlPresent(parent, isGroup, key) {
 function assertAllValuesPresent(control, isGroup, value) {
   control._forEachChild((_, key) => {
     if (value[key] === undefined) {
-      throw new _angular_core__WEBPACK_IMPORTED_MODULE_2__.RuntimeError(1002, typeof ngDevMode === 'undefined' || ngDevMode ? missingControlValueError(isGroup, key) : '');
+      throw new _angular_core__WEBPACK_IMPORTED_MODULE_2__.RuntimeError(-1002, typeof ngDevMode === 'undefined' || ngDevMode ? missingControlValueError(isGroup, key) : '');
     }
   });
 }
@@ -38615,11 +38793,11 @@ class SelectMultipleControlValueAccessor extends BuiltInControlValueAccessor {
     let optionSelectedStateSetter;
     if (Array.isArray(value)) {
       const ids = value.map(v => this._getOptionId(v));
-      optionSelectedStateSetter = (opt, o) => {
-        opt._setSelected(ids.indexOf(o.toString()) > -1);
+      optionSelectedStateSetter = (opt, id) => {
+        opt._setSelected(ids.indexOf(id) > -1);
       };
     } else {
-      optionSelectedStateSetter = (opt, o) => {
+      optionSelectedStateSetter = opt => {
         opt._setSelected(false);
       };
     }
@@ -39508,7 +39686,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _location_chunk_mjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_location-chunk.mjs */ 6223);
 /* harmony import */ var _platform_location_chunk_mjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./_platform_location-chunk.mjs */ 8963);
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -39936,8 +40114,10 @@ function getNumberOfCurrencyDigits(code) {
 const ISO8601_DATE_REGEX = /^(\d{4,})-?(\d\d)-?(\d\d)(?:T(\d\d)(?::?(\d\d)(?::?(\d\d)(?:\.(\d+))?)?)?(Z|([+-])(\d\d):?(\d\d))?)?$/;
 const NAMED_FORMATS = {};
 const DATE_FORMATS_SPLIT = /((?:[^BEGHLMOSWYZabcdhmswyz']+)|(?:'(?:[^']|'')*')|(?:G{1,5}|y{1,4}|Y{1,4}|M{1,5}|L{1,5}|w{1,2}|W{1}|d{1,2}|E{1,6}|c{1,6}|a{1,5}|b{1,5}|B{1,5}|h{1,2}|H{1,2}|m{1,2}|s{1,2}|S{1,3}|z{1,4}|Z{1,5}|O{1,4}))([\s\S]*)/;
+const MAX_DATE_FORMAT_LENGTH = 256;
 function formatDate(value, format, locale, timezone) {
   let date = toDate(value);
+  assertValidDateFormatLength(format);
   const namedFormat = getNamedFormat(locale, format);
   format = namedFormat || format;
   let parts = [];
@@ -39970,6 +40150,11 @@ function formatDate(value, format, locale, timezone) {
     text += dateFormatter ? dateFormatter(date, locale, dateTimezoneOffset) : value === "''" ? "'" : value.replace(/(^'|'$)/g, '').replace(/''/g, "'");
   });
   return text;
+}
+function assertValidDateFormatLength(format) {
+  if (format.length > MAX_DATE_FORMAT_LENGTH) {
+    throw new _angular_core__WEBPACK_IMPORTED_MODULE_2__.RuntimeError(2300, ngDevMode && `Date format is too long. Exceeded maximum length of ${MAX_DATE_FORMAT_LENGTH} characters.`);
+  }
 }
 function assertValidDateFormat(parts) {
   if (parts.some(part => /^Y+$/.test(part)) && !parts.some(part => /^w+$/.test(part))) {
@@ -40531,6 +40716,10 @@ function formatNumberToLocaleString(value, pattern, locale, groupSymbol, decimal
         maxFraction = parseIntAutoRadix(maxFractionPart);
       } else if (minFractionPart != null && minFraction > maxFraction) {
         maxFraction = minFraction;
+      }
+      const MAX_ALLOWED_DIGITS = 100;
+      if (minInt > MAX_ALLOWED_DIGITS || minFraction > MAX_ALLOWED_DIGITS || maxFraction > MAX_ALLOWED_DIGITS) {
+        throw new _angular_core__WEBPACK_IMPORTED_MODULE_2__.RuntimeError(2306, ngDevMode && `${digitsInfo} is not a valid digit info. Exceeded maximum limits of ${MAX_ALLOWED_DIGITS} digits.`);
       }
     }
     roundNumber(parsedNumber, minFraction, maxFraction);
@@ -42368,7 +42557,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 819);
 /* harmony import */ var _platform_location_chunk_mjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_platform_location-chunk.mjs */ 8963);
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -42670,7 +42859,7 @@ function _stripBasePath(basePath, url) {
   return url;
 }
 function _stripIndexHtml(url) {
-  return url.replace(/\/index.html$/, '');
+  return url.replace(/\/index\.html$/, '');
 }
 function _stripOrigin(baseHref) {
   const isAbsoluteUrl = new RegExp('^(https?:)?//').test(baseHref);
@@ -42702,7 +42891,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 6124);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 4363);
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -42840,7 +43029,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 6124);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 4363);
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -42887,7 +43076,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   parseCookieValue: () => (/* binding */ parseCookieValue)
 /* harmony export */ });
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -43018,7 +43207,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ɵparseCookieValue": () => (/* reexport safe */ _xhr_chunk_mjs__WEBPACK_IMPORTED_MODULE_8__.parseCookieValue),
 /* harmony export */   "ɵsetRootDomAdapter": () => (/* reexport safe */ _platform_location_chunk_mjs__WEBPACK_IMPORTED_MODULE_3__.setRootDomAdapter)
 /* harmony export */ });
-/* harmony import */ var _storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
+/* harmony import */ var _storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
 /* harmony import */ var _location_chunk_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_location-chunk.mjs */ 6223);
 /* harmony import */ var _common_module_chunk_mjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_common_module-chunk.mjs */ 9748);
 /* harmony import */ var _platform_location_chunk_mjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_platform_location-chunk.mjs */ 8963);
@@ -43029,7 +43218,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _xhr_chunk_mjs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./_xhr-chunk.mjs */ 7516);
 
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -43115,7 +43304,7 @@ function isPlatformBrowser(platformId) {
 function isPlatformServer(platformId) {
   return platformId === PLATFORM_SERVER_ID;
 }
-const VERSION = /* @__PURE__ */new _angular_core__WEBPACK_IMPORTED_MODULE_5__.Version('21.2.7');
+const VERSION = /* @__PURE__ */new _angular_core__WEBPACK_IMPORTED_MODULE_5__.Version('21.2.21');
 class ViewportScroller {
   static ɵprov = /* @__PURE__ */
   (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineInjectable"])({
@@ -43153,7 +43342,9 @@ class BrowserViewportScroller {
     const elSelected = findAnchorFromDocument(this.document, target);
     if (elSelected) {
       this.scrollToElement(elSelected, options);
-      elSelected.focus();
+      elSelected.focus({
+        preventScroll: true
+      });
     }
   }
   setHistoryScrollRestoration(scrollRestoration) {
@@ -43202,7 +43393,7 @@ class NullViewportScroller {
     return [0, 0];
   }
   scrollToPosition(position) {}
-  scrollToAnchor(anchor) {}
+  scrollToAnchor(anchor, options) {}
   setHistoryScrollRestoration(scrollRestoration) {}
 }
 const PLACEHOLDER_QUALITY = '20';
@@ -43943,13 +44134,13 @@ class NgOptimizedImage {
       placeholderResolution
     } = this.config;
     if (placeholderInput === true) {
-      return `url(${this.callImageLoader({
+      return `url("${escapeCssUrl(this.callImageLoader({
         src: this.ngSrc,
         width: placeholderResolution,
         isPlaceholder: true
-      })})`;
+      }))}")`;
     } else if (typeof placeholderInput === 'string') {
-      return `url(${placeholderInput})`;
+      return `url("${escapeCssUrl(placeholderInput)}")`;
     }
     return null;
   }
@@ -44343,7 +44534,7 @@ function assetPriorityCountBelowThreshold(_x) {
   return _assetPriorityCountBelowThreshold.apply(this, arguments);
 }
 function _assetPriorityCountBelowThreshold() {
-  _assetPriorityCountBelowThreshold = (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (appRef) {
+  _assetPriorityCountBelowThreshold = (0,_storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (appRef) {
     if (IMGS_WITH_PRIORITY_ATTR_COUNT === 0) {
       IMGS_WITH_PRIORITY_ATTR_COUNT++;
       yield appRef.whenStable();
@@ -44378,6 +44569,9 @@ function unwrapSafeUrl(value) {
   }
   return (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.unwrapSafeValue)(value);
 }
+function escapeCssUrl(input) {
+  return input.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+}
 function booleanOrUrlAttribute(value) {
   if (typeof value === 'string' && value !== 'true' && value !== 'false' && value !== '') {
     return value;
@@ -44399,7 +44593,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   Attribute: () => (/* binding */ Attribute)
 /* harmony export */ });
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -44525,7 +44719,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   SKIP_HYDRATION_ATTR_NAME: () => (/* binding */ SKIP_HYDRATION_ATTR_NAME),
 /* harmony export */   SSR_CONTENT_INTEGRITY_MARKER: () => (/* binding */ SSR_CONTENT_INTEGRITY_MARKER),
 /* harmony export */   Sanitizer: () => (/* binding */ Sanitizer),
-/* harmony export */   SecurityContext: () => (/* binding */ SecurityContext),
 /* harmony export */   Self: () => (/* binding */ Self),
 /* harmony export */   SimpleChange: () => (/* binding */ SimpleChange),
 /* harmony export */   SkipSelf: () => (/* binding */ SkipSelf),
@@ -44867,7 +45060,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ɵɵviewQuery": () => (/* binding */ ɵɵviewQuery),
 /* harmony export */   "ɵɵviewQuerySignal": () => (/* binding */ ɵɵviewQuerySignal)
 /* harmony export */ });
-/* harmony import */ var _storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
+/* harmony import */ var _storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
 /* harmony import */ var _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_effect-chunk2.mjs */ 4363);
 /* harmony import */ var _angular_core_primitives_signals__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_effect-chunk.mjs */ 9843);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 819);
@@ -44876,7 +45069,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _attribute_chunk_mjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./_attribute-chunk.mjs */ 6248);
 
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -46837,12 +47030,12 @@ class TransferState {
         }
       }
     }
-    return JSON.stringify(this.store).replace(/</g, '\\u003C');
+    return JSON.stringify(this.store).replace(/</g, '\\u003C').replace(/\//g, '\\u002F');
   }
 }
 function retrieveTransferredState(doc, appId) {
   const script = doc.getElementById(appId + '-state');
-  if (script?.textContent) {
+  if (script?.tagName === 'SCRIPT' && script.textContent) {
     try {
       return JSON.parse(script.textContent);
     } catch (e) {
@@ -47064,9 +47257,22 @@ const removeListeners = el => {
 const JSACTION_EVENT_CONTRACT = new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.InjectionToken(typeof ngDevMode !== 'undefined' && ngDevMode ? 'EVENT_CONTRACT_DETAILS' : '', {
   factory: () => ({})
 });
+const handledEventElements = new WeakMap();
+function markEventHandledForElement(event, element) {
+  if (event == null || typeof event !== 'object') return;
+  let elements = handledEventElements.get(event);
+  if (!elements) {
+    elements = new WeakSet();
+    handledEventElements.set(event, elements);
+  }
+  elements.add(element);
+}
 function invokeListeners(event, currentTarget) {
   const handlerFns = currentTarget?.__jsaction_fns?.get(event.type);
   if (!handlerFns || !currentTarget?.isConnected) {
+    return;
+  }
+  if (currentTarget && handledEventElements.get(event)?.has(currentTarget)) {
     return;
   }
   for (const handler of handlerFns) {
@@ -47695,6 +47901,12 @@ function matchingSchemas(schemas, tagName) {
   }
   return false;
 }
+const SVG_NAMESPACE = 'svg';
+const MATH_ML_NAMESPACE = 'math';
+const NAMESPACE_URIS = {
+  'http://www.w3.org/2000/svg': SVG_NAMESPACE,
+  'http://www.w3.org/1998/Math/MathML': MATH_ML_NAMESPACE
+};
 let policy$1;
 function getPolicy$1() {
   if (policy$1 === undefined) {
@@ -47883,7 +48095,6 @@ const HTML_ATTRS = tagSet('abbr,accesskey,align,alt,autoplay,axis,bgcolor,border
 const ARIA_ATTRS = tagSet('aria-activedescendant,aria-atomic,aria-autocomplete,aria-busy,aria-checked,aria-colcount,aria-colindex,' + 'aria-colspan,aria-controls,aria-current,aria-describedby,aria-details,aria-disabled,aria-dropeffect,' + 'aria-errormessage,aria-expanded,aria-flowto,aria-grabbed,aria-haspopup,aria-hidden,aria-invalid,' + 'aria-keyshortcuts,aria-label,aria-labelledby,aria-level,aria-live,aria-modal,aria-multiline,' + 'aria-multiselectable,aria-orientation,aria-owns,aria-placeholder,aria-posinset,aria-pressed,aria-readonly,' + 'aria-relevant,aria-required,aria-roledescription,aria-rowcount,aria-rowindex,aria-rowspan,aria-selected,' + 'aria-setsize,aria-sort,aria-valuemax,aria-valuemin,aria-valuenow,aria-valuetext');
 const VALID_ATTRS = merge(URI_ATTRS, HTML_ATTRS, ARIA_ATTRS);
 const SKIP_TRAVERSING_CONTENT_IF_INVALID_ELEMENTS = tagSet('script,style,template');
-const SENSITIVE_ATTRS = merge(URI_ATTRS, tagSet('action,formaction,data,codebase'));
 class SanitizingHtmlSerializer {
   sanitizedSomething = false;
   buf = [];
@@ -48100,19 +48311,27 @@ function enforceIframeSecurity(iframe) {
   iframe.srcdoc = trustedHTMLFromString('');
   nativeRemoveNode(lView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RENDERER], iframe);
 }
-var SecurityContext;
-(function (SecurityContext) {
-  SecurityContext[SecurityContext["NONE"] = 0] = "NONE";
-  SecurityContext[SecurityContext["HTML"] = 1] = "HTML";
-  SecurityContext[SecurityContext["STYLE"] = 2] = "STYLE";
-  SecurityContext[SecurityContext["SCRIPT"] = 3] = "SCRIPT";
-  SecurityContext[SecurityContext["URL"] = 4] = "URL";
-  SecurityContext[SecurityContext["RESOURCE_URL"] = 5] = "RESOURCE_URL";
-})(SecurityContext || (SecurityContext = {}));
-function ɵɵsanitizeHtml(unsafeHtml) {
+function splitNsName(elementName, fatal = true) {
+  if (elementName[0] != ':') {
+    return [null, elementName];
+  }
+  const colonIndex = elementName.indexOf(':', 1);
+  if (colonIndex === -1) {
+    if (fatal) {
+      throw new Error(`Unsupported format "${elementName}" expecting ":namespace:name"`);
+    } else {
+      return [null, elementName];
+    }
+  }
+  return [elementName.slice(1, colonIndex), elementName.slice(colonIndex + 1)];
+}
+function ɵɵsanitizeHtml(unsafeHtml, tagName, propName) {
+  if (tagName !== undefined && propName !== undefined && getSecurityContext(tagName, propName) !== _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.HTML) {
+    return unsafeHtml;
+  }
   const sanitizer = getSanitizer();
   if (sanitizer) {
-    return trustedHTMLFromStringBypass(sanitizer.sanitize(SecurityContext.HTML, unsafeHtml) || '');
+    return trustedHTMLFromStringBypass(sanitizer.sanitize(_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.HTML, unsafeHtml) || '');
   }
   if (allowSanitizationBypassAndThrow(unsafeHtml, "HTML")) {
     return trustedHTMLFromStringBypass(unwrapSafeValue(unsafeHtml));
@@ -48122,7 +48341,7 @@ function ɵɵsanitizeHtml(unsafeHtml) {
 function ɵɵsanitizeStyle(unsafeStyle) {
   const sanitizer = getSanitizer();
   if (sanitizer) {
-    return sanitizer.sanitize(SecurityContext.STYLE, unsafeStyle) || '';
+    return sanitizer.sanitize(_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.STYLE, unsafeStyle) || '';
   }
   if (allowSanitizationBypassAndThrow(unsafeStyle, "Style")) {
     return unwrapSafeValue(unsafeStyle);
@@ -48132,7 +48351,7 @@ function ɵɵsanitizeStyle(unsafeStyle) {
 function ɵɵsanitizeUrl(unsafeUrl) {
   const sanitizer = getSanitizer();
   if (sanitizer) {
-    return sanitizer.sanitize(SecurityContext.URL, unsafeUrl) || '';
+    return sanitizer.sanitize(_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.URL, unsafeUrl) || '';
   }
   if (allowSanitizationBypassAndThrow(unsafeUrl, "URL")) {
     return unwrapSafeValue(unsafeUrl);
@@ -48142,7 +48361,7 @@ function ɵɵsanitizeUrl(unsafeUrl) {
 function ɵɵsanitizeResourceUrl(unsafeResourceUrl) {
   const sanitizer = getSanitizer();
   if (sanitizer) {
-    return trustedScriptURLFromStringBypass(sanitizer.sanitize(SecurityContext.RESOURCE_URL, unsafeResourceUrl) || '');
+    return trustedScriptURLFromStringBypass(sanitizer.sanitize(_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.RESOURCE_URL, unsafeResourceUrl) || '');
   }
   if (allowSanitizationBypassAndThrow(unsafeResourceUrl, "ResourceURL")) {
     return trustedScriptURLFromStringBypass(unwrapSafeValue(unsafeResourceUrl));
@@ -48152,7 +48371,7 @@ function ɵɵsanitizeResourceUrl(unsafeResourceUrl) {
 function ɵɵsanitizeScript(unsafeScript) {
   const sanitizer = getSanitizer();
   if (sanitizer) {
-    return trustedScriptFromStringBypass(sanitizer.sanitize(SecurityContext.SCRIPT, unsafeScript) || '');
+    return trustedScriptFromStringBypass(sanitizer.sanitize(_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.SCRIPT, unsafeScript) || '');
   }
   if (allowSanitizationBypassAndThrow(unsafeScript, "Script")) {
     return trustedScriptFromStringBypass(unwrapSafeValue(unsafeScript));
@@ -48171,41 +48390,18 @@ function ɵɵtrustConstantResourceUrl(url) {
   }
   return trustedScriptURLFromString(url[0]);
 }
-const RESOURCE_MAP = {
-  'embed': {
-    'src': true
-  },
-  'frame': {
-    'src': true
-  },
-  'iframe': {
-    'src': true
-  },
-  'media': {
-    'src': true
-  },
-  'script': {
-    'src': true,
-    'href': true,
-    'xlink:href': true
-  },
-  'base': {
-    'href': true
-  },
-  'link': {
-    'href': true
-  },
-  'object': {
-    'data': true,
-    'codebase': true
-  }
-};
 function getUrlSanitizer(tag, prop) {
-  const isResource = RESOURCE_MAP[tag]?.[prop] === true;
-  return isResource ? ɵɵsanitizeResourceUrl : ɵɵsanitizeUrl;
+  switch (getSecurityContext(tag, prop)) {
+    case _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.RESOURCE_URL:
+      return ɵɵsanitizeResourceUrl;
+    case _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.URL:
+      return ɵɵsanitizeUrl;
+    default:
+      return null;
+  }
 }
 function ɵɵsanitizeUrlOrResourceUrl(unsafeUrl, tag, prop) {
-  return getUrlSanitizer(tag, prop)(unsafeUrl);
+  return getUrlSanitizer(tag, prop)?.(unsafeUrl) ?? unsafeUrl;
 }
 function validateAgainstEventProperties(name) {
   if (name.toLowerCase().startsWith('on')) {
@@ -48213,70 +48409,89 @@ function validateAgainstEventProperties(name) {
     throw new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RuntimeError(306, errorMessage);
   }
 }
-function validateAgainstEventAttributes(name) {
-  if (name.toLowerCase().startsWith('on')) {
-    const errorMessage = `Binding to event attribute '${name}' is disallowed for security reasons, ` + `please use (${name.slice(2)})=...`;
-    throw new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RuntimeError(306, errorMessage);
-  }
-}
 function getSanitizer() {
   const lView = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getLView)();
   return lView && lView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.ENVIRONMENT].sanitizer;
 }
+function getSecurityContext(tagName, propName) {
+  const [namespace, resolvedTagName] = resolveElement(tagName);
+  return (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.checkSecurityContext)(resolvedTagName, propName, namespace);
+}
+function resolveElement(tagName) {
+  tagName = tagName.toLowerCase();
+  const splitResult = splitNsName(tagName, false);
+  if (splitResult[0]) {
+    return splitResult;
+  }
+  const index = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getSelectedIndex)();
+  const tNode = index === -1 ? null : (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getSelectedTNode)();
+  let namespace = tNode?.namespace;
+  if (tagName === "#host" && tNode?.type === 2) {
+    const element = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getNativeByTNode)(tNode, (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getLView)());
+    if (element.tagName) {
+      tagName = element.tagName.toLowerCase();
+    }
+    if (namespace == null) {
+      const namespaceURI = element.namespaceURI;
+      namespace = namespaceURI && NAMESPACE_URIS[namespaceURI];
+    }
+  }
+  return [namespace, tagName];
+}
 const SECURITY_SENSITIVE_ATTRIBUTE_NAMES = new Set(['href', 'xlink:href']);
-const SECURITY_SENSITIVE_ELEMENTS = {
-  'iframe': {
-    'sandbox': true,
-    'allow': true,
-    'allowfullscreen': true,
-    'referrerpolicy': true,
-    'csp': true,
-    'fetchpriority': true
-  },
+const SVG_ANIMATION_SENSITIVE_STATIC_VALUES = {
   'animate': {
-    'attributename': true,
     'to': SECURITY_SENSITIVE_ATTRIBUTE_NAMES,
     'values': SECURITY_SENSITIVE_ATTRIBUTE_NAMES,
     'from': SECURITY_SENSITIVE_ATTRIBUTE_NAMES
   },
   'set': {
-    'attributename': true,
     'to': SECURITY_SENSITIVE_ATTRIBUTE_NAMES
-  },
-  'animatemotion': {
-    'attributename': true
-  },
-  'animatetransform': {
-    'attributename': true
   }
 };
 function ɵɵvalidateAttribute(value, tagName, attributeName) {
-  const lowerCaseTagName = tagName.toLowerCase();
-  const lowerCaseAttrName = attributeName.toLowerCase();
-  const validationConfig = SECURITY_SENSITIVE_ELEMENTS[lowerCaseTagName]?.[lowerCaseAttrName];
-  if (!validationConfig) {
+  const index = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getSelectedIndex)();
+  const tNode = index === -1 ? null : (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getSelectedTNode)();
+  if (tNode && tNode.type !== 2) {
     return value;
   }
-  const tNode = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getSelectedTNode)();
-  if (tNode.type !== 2) {
+  const [namespace, resolvedTagName] = resolveElement(tagName);
+  const securityContext = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.checkSecurityContext)(resolvedTagName, attributeName, namespace);
+  if (securityContext !== _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.ATTRIBUTE_NO_BINDING) {
     return value;
   }
   const lView = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getLView)();
-  if (lowerCaseTagName === 'iframe') {
-    const element = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getNativeByTNode)(tNode, lView);
-    enforceIframeSecurity(element);
-  }
-  if (typeof validationConfig !== 'boolean') {
-    const element = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getNativeByTNode)(tNode, lView);
-    const attributeNameValue = element.getAttribute('attributeName');
-    if (attributeNameValue && validationConfig.has(attributeNameValue.toLowerCase())) {
-      const errorMessage = ngDevMode && `Angular has detected that the \`${attributeName}\` was applied ` + `as a binding to the <${tagName}> element${getTemplateLocationDetails(lView)}. ` + `For security reasons, the \`${attributeName}\` can be set on the <${tagName}> element ` + `as a static attribute only when the "attributeName" is set to \'${attributeNameValue}\'. \n` + `To fix this, switch the \`${attributeNameValue}\` binding to a static attribute ` + `in a template or in host bindings section.`;
-      throw new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RuntimeError(-910, errorMessage);
+  if (tNode) {
+    if (resolvedTagName === 'iframe') {
+      const element = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getNativeByTNode)(tNode, lView);
+      enforceIframeSecurity(element);
+    } else if (namespace === _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SVG_NAMESPACE) {
+      const config = SVG_ANIMATION_SENSITIVE_STATIC_VALUES[resolvedTagName]?.[attributeName.toLowerCase()];
+      if (config) {
+        const element = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getNativeByTNode)(tNode, lView);
+        const attributeNameValue = getSecuritySensitiveSVGAnimationAttributeName(element, config);
+        if (attributeNameValue) {
+          const errorMessage = ngDevMode && `Angular has detected that the \`${attributeName}\` was applied ` + `as a binding to the <${resolvedTagName}> element${getTemplateLocationDetails(lView)}. ` + `For security reasons, the \`${attributeName}\` can be set on the <${resolvedTagName}> element ` + `as a static attribute only when the "attributeName" is set to \'${attributeNameValue}\'. \n` + `To fix this, switch the \`${attributeNameValue}\` binding to a static attribute ` + `in a template or in host bindings section.`;
+          throw new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RuntimeError(-910, errorMessage);
+        }
+        return value;
+      }
     }
-    return value;
   }
-  const errorMessage = ngDevMode && `Angular has detected that the \`${attributeName}\` was applied ` + `as a binding to the <${tagName}> element${getTemplateLocationDetails(lView)}. ` + `For security reasons, the \`${attributeName}\` can be set on the <${tagName}> element ` + `as a static attribute only. \n` + `To fix this, switch the \`${attributeName}\` binding to a static attribute ` + `in a template or in host bindings section.`;
+  const errorMessage = ngDevMode && `Angular has detected that the \`${attributeName}\` was applied ` + `as a binding to the <${resolvedTagName}> element${tNode ? getTemplateLocationDetails(lView) : ''}. ` + `For security reasons, the \`${attributeName}\` can be set on the <${resolvedTagName}> element ` + `as a static attribute only. \n` + `To fix this, switch the \`${attributeName}\` binding to a static attribute ` + `in a template or in host bindings section.`;
   throw new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RuntimeError(-910, errorMessage);
+}
+function getSecuritySensitiveSVGAnimationAttributeName(element, validationConfig) {
+  for (const attributeName of element.getAttributeNames()) {
+    if (attributeName.toLowerCase() !== 'attributename') {
+      continue;
+    }
+    const attributeNameValue = element.getAttribute(attributeName);
+    if (attributeNameValue !== null && validationConfig.has(attributeNameValue.toLowerCase())) {
+      return attributeNameValue;
+    }
+  }
+  return null;
 }
 const NG_REFLECT_ATTRS_FLAG_DEFAULT = false;
 const NG_REFLECT_ATTRS_FLAG = new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.InjectionToken(typeof ngDevMode === 'undefined' || ngDevMode ? 'NG_REFLECT_FLAG' : '', {
@@ -49943,7 +50158,9 @@ function setDomProperty(tNode, lView, propName, value, renderer, sanitizer) {
   if (tNode.type & 3) {
     const element = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getNativeByTNode)(tNode, lView);
     if (ngDevMode) {
-      validateAgainstEventProperties(propName);
+      if (lView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.TVIEW].firstUpdatePass) {
+        validateAgainstEventProperties(propName);
+      }
       if (!isPropertyValid(element, propName, tNode.value, lView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.TVIEW].schemas)) {
         handleUnknownPropertyError(propName, tNode.value, tNode.type, lView);
       }
@@ -50085,7 +50302,6 @@ function findDirectiveDefMatches(tView, tNode) {
 function elementAttributeInternal(tNode, lView, name, value, sanitizer, namespace) {
   if (ngDevMode) {
     (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.assertNotSame)(value, NO_CHANGE, 'Incoming value should never be NO_CHANGE.');
-    validateAgainstEventAttributes(name);
     assertTNodeType(tNode, 2, `Attempted to set attribute \`${name}\` on a container node. ` + `Host bindings are not valid on ng-container or ng-template.`);
   }
   const element = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getNativeByTNode)(tNode, lView);
@@ -50990,6 +51206,7 @@ function createTemplateRef(hostTNode, hostLView) {
   return null;
 }
 const AT_THIS_LOCATION = '<-- AT THIS LOCATION';
+const THIRD_PARTY_SCRIPTS_URL = `/guide/hydration#third-party-scripts-with-dom-manipulation`;
 function getFriendlyStringFromTNodeType(tNodeType) {
   switch (tNodeType) {
     case 4:
@@ -51033,7 +51250,10 @@ function validateMatchingNode(node, nodeType, tagName, lView, tNode, isViewConta
       markRNodeAsHavingHydrationMismatch(componentHostElement, expectedDom, actualDom);
     }
     const footer = getHydrationErrorFooter(componentClassName);
-    const message = header + expected + actual + getHydrationAttributeNote() + footer;
+    let message = header + expected + actual + getHydrationAttributeNote() + footer;
+    if (!node || node && isLikelyExternalSourceNode(node)) {
+      message += `Note: It looks like this mismatch may have been caused by a third-party script or ` + `browser extension that modified the DOM outside of Angular's control. ` + `Angular hydration does not support nodes injected or removed outside of the Angular-managed DOM. ` + `Note: If you know which element in the DOM this will be inserted, consider adding ngSkipHydration to prevent this error. \n\n`;
+    }
     throw new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RuntimeError(-500, message);
   }
 }
@@ -51198,7 +51418,17 @@ function shortRNodeDescription(nodeType, tagName, textContent) {
 }
 function getHydrationErrorFooter(componentClassName) {
   const componentInfo = componentClassName ? `the "${componentClassName}"` : 'corresponding';
-  return `To fix this problem:\n` + `  * check ${componentInfo} component for hydration-related issues\n` + `  * check to see if your template has valid HTML structure\n` + `  * or skip hydration by adding the \`ngSkipHydration\` attribute ` + `to its host node in a template\n\n`;
+  return `To fix this problem:\n` + `  * check ${componentInfo} component for hydration-related issues\n` + `  * check to see if your template has valid HTML structure\n` + `  * check if there are any third-party scripts that manipulate the DOM. More info: ${_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.DOC_PAGE_BASE_URL}${THIRD_PARTY_SCRIPTS_URL}\n` + `  * or skip hydration by adding the \`ngSkipHydration\` attribute ` + `to its host node in a template\n\n`;
+}
+function isLikelyExternalSourceNode(rNode) {
+  const node = rNode;
+  if (node.nodeType !== Node.ELEMENT_NODE) {
+    return false;
+  }
+  if (readPatchedData(node)) {
+    return false;
+  }
+  return true;
 }
 function getHydrationAttributeNote() {
   return 'Note: attributes are only displayed to better represent the DOM' + ' but have no effect on hydration mismatches.\n\n';
@@ -51311,6 +51541,7 @@ function createTNode(tView, tParent, type, index, value, attrs) {
     flags,
     providerIndexes: 0,
     value: value,
+    namespace: (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getNamespace)(),
     attrs: attrs,
     mergedAttrs: null,
     localNames: null,
@@ -52938,6 +53169,10 @@ function bindingUpdated4(lView, bindingIndex, exp1, exp2, exp3, exp4) {
 }
 function wrapListener(tNode, lView, listenerFn) {
   return function wrapListenerIn_markDirtyAndPreventDefault(event) {
+    const nativeEl = wrapListenerIn_markDirtyAndPreventDefault.__ngNativeEl__;
+    if (nativeEl !== undefined) {
+      markEventHandledForElement(event, nativeEl);
+    }
     const startView = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.isComponentHost)(tNode) ? (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getComponentLViewByIndex)(tNode.index, lView) : lView;
     markViewDirty(startView, 5);
     const context = lView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.CONTEXT];
@@ -52980,6 +53215,9 @@ function listenToDomEvent(tNode, tView, lView, eventTargetResolver, renderer, ev
     const native = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getNativeByTNode)(tNode, lView);
     const target = eventTargetResolver ? eventTargetResolver(native) : native;
     stashEventListenerImpl(lView, target, eventName, wrappedListener);
+    if (!eventTargetResolver) {
+      wrappedListener.__ngNativeEl__ = native;
+    }
     const cleanupFn = renderer.listen(target, eventName, wrappedListener);
     if (!isAnimationEventType(eventName)) {
       const idxOrTargetGetter = eventTargetResolver ? _lView => eventTargetResolver((0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.unwrapRNode)(_lView[tNode.index])) : tNode.index;
@@ -53411,6 +53649,11 @@ function createHostElement(componentDef, renderer) {
   const namespace = tagName === 'svg' ? _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SVG_NAMESPACE : tagName === 'math' ? _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.MATH_ML_NAMESPACE : null;
   return createElementNode(renderer, tagName, namespace);
 }
+function assertNotScriptHostElement(tagName) {
+  if (tagName?.toLowerCase() === 'script') {
+    throw new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RuntimeError(905, ngDevMode && `"<script>" tag is not allowed as a component host element.`);
+  }
+}
 function inferTagNameFromDefinition(componentDef) {
   return (componentDef.selectors[0][0] || 'div').toLowerCase();
 }
@@ -53463,13 +53706,14 @@ class ComponentFactory extends ComponentFactory$1 {
     const rootTView = createRootTView(rootSelectorOrNode, cmpDef, componentBindings, directives);
     const hostRenderer = environment.rendererFactory.createRenderer(null, cmpDef);
     const hostElement = rootSelectorOrNode ? locateHostElement(hostRenderer, rootSelectorOrNode, cmpDef.encapsulation, rootViewInjector) : createHostElement(cmpDef, hostRenderer);
+    assertNotScriptHostElement(hostElement?.tagName);
     const hasInputBindings = componentBindings?.some(isInputBinding) || directives?.some(d => typeof d !== 'function' && d.bindings.some(isInputBinding));
     const rootLView = createLView(null, rootTView, null, 512 | getInitialLViewFlagsFromDef(cmpDef), null, null, environment, hostRenderer, rootViewInjector, null, retrieveHydrationInfo(hostElement, rootViewInjector, true));
     rootLView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.HEADER_OFFSET] = hostElement;
     (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.enterView)(rootLView);
     let componentView = null;
     try {
-      const hostTNode = directiveHostFirstCreatePass(_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.HEADER_OFFSET, rootLView, 2, '#host', () => rootTView.directiveRegistry, true, 0);
+      const hostTNode = directiveHostFirstCreatePass(_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.HEADER_OFFSET, rootLView, 2, "#host", () => rootTView.directiveRegistry, true, 0);
       setupStaticAttributes(hostRenderer, hostElement, hostTNode);
       attachPatchData(hostElement, rootLView);
       createDirectivesInstances(rootTView, rootLView, hostTNode);
@@ -53495,7 +53739,7 @@ class ComponentFactory extends ComponentFactory$1 {
   }
 }
 function createRootTView(rootSelectorOrNode, componentDef, componentBindings, directives) {
-  const tAttributes = rootSelectorOrNode ? ['ng-version', '21.2.7'] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
+  const tAttributes = rootSelectorOrNode ? ['ng-version', '21.2.21'] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
   let creationBindings = null;
   let updateBindings = null;
   let varsToAllocate = 0;
@@ -53841,7 +54085,10 @@ function populateDehydratedViewsInLContainerImpl(lContainer, tNode, hostLView) {
   }
   const currentRNode = getSegmentHead(hydrationInfo, noOffsetIndex);
   const serializedViews = hydrationInfo.data[CONTAINERS]?.[noOffsetIndex];
-  ngDevMode && (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.assertDefined)(serializedViews, 'Unexpected state: no hydration info available for a given TNode, ' + 'which represents a view container.');
+  if (serializedViews === undefined) {
+    ngDevMode && console.warn('Unexpected state: no hydration info available for a given TNode, ' + 'which represents a view container.');
+    return false;
+  }
   const [commentNode, dehydratedViews] = locateDehydratedViewsInContainer(currentRNode, serializedViews);
   if (ngDevMode) {
     validateMatchingNode(commentNode, Node.COMMENT_NODE, null, hostLView, tNode, true);
@@ -54267,7 +54514,7 @@ function resolveComponentResources(_x) {
   return _resolveComponentResources.apply(this, arguments);
 }
 function _resolveComponentResources() {
-  _resolveComponentResources = (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resourceResolver) {
+  _resolveComponentResources = (0,_storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resourceResolver) {
     const currentQueue = componentResourceResolutionQueue;
     componentResourceResolutionQueue = new Map();
     const urlCache = new Map();
@@ -54281,7 +54528,7 @@ function _resolveComponentResources() {
       return promise;
     }
     const resolutionPromises = Array.from(currentQueue).map(/*#__PURE__*/function () {
-      var _ref = (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* ([type, component]) {
+      var _ref = (0,_storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* ([type, component]) {
         if (component.styleUrl && component.styleUrls?.length) {
           throw new Error('@Component cannot define both `styleUrl` and `styleUrls`. ' + 'Use `styleUrl` if the component has one stylesheet, or `styleUrls` if it has multiple');
         }
@@ -54350,7 +54597,7 @@ function unwrapResponse(_x2, _x3) {
   return _unwrapResponse.apply(this, arguments);
 }
 function _unwrapResponse() {
-  _unwrapResponse = (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (url, response) {
+  _unwrapResponse = (0,_storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (url, response) {
     if (typeof response === 'string') {
       return response;
     }
@@ -54842,15 +55089,17 @@ function ɵɵInheritDefinitionFeature(definition) {
   let superType = getSuperType(definition.type);
   let shouldInheritFields = true;
   const inheritanceChain = [definition];
-  while (superType) {
+  while (superType && superType !== Function.prototype && superType !== Object.prototype) {
     let superDef = undefined;
+    const cmpDef = Object.hasOwn(superType, _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.NG_COMP_DEF) ? superType[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.NG_COMP_DEF] : undefined;
+    const dirDef = Object.hasOwn(superType, _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.NG_DIR_DEF) ? superType[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.NG_DIR_DEF] : undefined;
     if ((0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.isComponentDef)(definition)) {
-      superDef = superType.ɵcmp || superType.ɵdir;
+      superDef = cmpDef ?? dirDef;
     } else {
-      if (superType.ɵcmp) {
+      if (cmpDef) {
         throw new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RuntimeError(903, ngDevMode && `Directives cannot inherit Components. Directive ${(0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.stringifyForError)(definition.type)} is attempting to extend component ${(0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.stringifyForError)(superType)}`);
       }
-      superDef = superType.ɵdir;
+      superDef = dirDef;
     }
     if (superDef) {
       if (shouldInheritFields) {
@@ -57324,9 +57573,11 @@ function triggerResourceLoading(tDetails, lView, tNode) {
   }
   tDetails.loadingPromise = Promise.allSettled(dependenciesFn()).then(results => {
     let failed = false;
+    let failedReason = null;
     const directiveDefs = [];
     const pipeDefs = [];
-    for (const result of results) {
+    for (let i = 0; i < results.length; i++) {
+      const result = results[i];
       if (result.status === 'fulfilled') {
         const dependency = result.value;
         const directiveDef = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getComponentDef)(dependency) || (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getDirectiveDef)(dependency);
@@ -57340,6 +57591,7 @@ function triggerResourceLoading(tDetails, lView, tNode) {
         }
       } else {
         failed = true;
+        failedReason = result.reason instanceof Error ? result.reason : new Error(String(result.reason));
         break;
       }
     }
@@ -57347,7 +57599,19 @@ function triggerResourceLoading(tDetails, lView, tNode) {
       tDetails.loadingState = DeferDependenciesLoadingState.FAILED;
       if (tDetails.errorTmplIndex === null) {
         const templateLocation = ngDevMode ? getTemplateLocationDetails(lView) : '';
-        const error = new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RuntimeError(-750, ngDevMode && 'Loading dependencies for `@defer` block failed, ' + `but no \`@error\` block was configured${templateLocation}. ` + 'Consider using the `@error` block to render an error state.');
+        let errorMsg = '';
+        if (ngDevMode) {
+          errorMsg = 'Loading dependencies for `@defer` block failed, ' + `but no \`@error\` block was configured${templateLocation}. ` + 'Consider using the `@error` block to render an error state.';
+          const depsFn = tDetails.dependencyResolverFn;
+          const errorReason = failedReason?.message;
+          if (depsFn) {
+            errorMsg += `\n\nAngular tried to invoke the following dependency function (compiler-generated):\n` + `\`\`\`\n${depsFn.toString()}\n\`\`\``;
+          }
+          if (errorReason) {
+            errorMsg += depsFn ? `\n\nbut it resulted in the following error:\n\n${errorReason}` : `\n\nThe loading resulted in the following error:\n\n${errorReason}`;
+          }
+        }
+        const error = new _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RuntimeError(-750, errorMsg);
         handleUncaughtError(lView, error);
       }
     } else {
@@ -57419,7 +57683,7 @@ function triggerHydrationFromBlockName(_x4, _x5, _x6) {
   return _triggerHydrationFromBlockName.apply(this, arguments);
 }
 function _triggerHydrationFromBlockName() {
-  _triggerHydrationFromBlockName = (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (injector, blockName, replayQueuedEventsFn) {
+  _triggerHydrationFromBlockName = (0,_storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (injector, blockName, replayQueuedEventsFn) {
     const dehydratedBlockRegistry = injector.get(DEHYDRATED_BLOCK_REGISTRY);
     const blocksBeingHydrated = dehydratedBlockRegistry.hydrating;
     if (blocksBeingHydrated.has(blockName)) {
@@ -57441,7 +57705,7 @@ function _triggerHydrationFromBlockName() {
     if (dehydratedBlockRegistry.has(topmostParentBlock)) {
       yield triggerHydrationForBlockQueue(injector, hydrationQueue, replayQueuedEventsFn);
     } else {
-      dehydratedBlockRegistry.awaitParentBlock(topmostParentBlock, /*#__PURE__*/(0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      dehydratedBlockRegistry.awaitParentBlock(topmostParentBlock, /*#__PURE__*/(0,_storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
         return yield triggerHydrationForBlockQueue(injector, hydrationQueue, replayQueuedEventsFn);
       }));
     }
@@ -57452,7 +57716,7 @@ function triggerHydrationForBlockQueue(_x7, _x8, _x9) {
   return _triggerHydrationForBlockQueue.apply(this, arguments);
 }
 function _triggerHydrationForBlockQueue() {
-  _triggerHydrationForBlockQueue = (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (injector, hydrationQueue, replayQueuedEventsFn) {
+  _triggerHydrationForBlockQueue = (0,_storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (injector, hydrationQueue, replayQueuedEventsFn) {
     const dehydratedBlockRegistry = injector.get(DEHYDRATED_BLOCK_REGISTRY);
     const blocksBeingHydrated = dehydratedBlockRegistry.hydrating;
     const pendingTasks = injector.get(_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.PendingTasksInternal);
@@ -57516,7 +57780,7 @@ function triggerResourceLoadingForHydration(_x0) {
   return _triggerResourceLoadingForHydration.apply(this, arguments);
 }
 function _triggerResourceLoadingForHydration() {
-  _triggerResourceLoadingForHydration = (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (dehydratedBlock) {
+  _triggerResourceLoadingForHydration = (0,_storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (dehydratedBlock) {
     const {
       tNode,
       lView
@@ -59086,7 +59350,7 @@ function plural(val) {
   return 5;
 }
 var localeEn = ["en", [["a", "p"], ["AM", "PM"]], [["AM", "PM"]], [["S", "M", "T", "W", "T", "F", "S"], ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]], u, [["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"], ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]], u, [["B", "A"], ["BC", "AD"], ["Before Christ", "Anno Domini"]], 0, [6, 0], ["M/d/yy", "MMM d, y", "MMMM d, y", "EEEE, MMMM d, y"], ["h:mm a", "h:mm:ss a", "h:mm:ss a z", "h:mm:ss a zzzz"], ["{1}, {0}", u, u, u], [".", ",", ";", "%", "+", "-", "E", "×", "‰", "∞", "NaN", ":"], ["#,##0.###", "#,##0%", "¤#,##0.00", "#E0"], "USD", "$", "US Dollar", {}, "ltr", plural];
-let LOCALE_DATA = {};
+let LOCALE_DATA = /* @__PURE__ */Object.create(null);
 function registerLocaleData(data, localeId, extraData) {
   if (typeof localeId !== 'string') {
     extraData = localeId;
@@ -59124,12 +59388,16 @@ function getLocalePluralCase(locale) {
 }
 function getLocaleData(normalizedLocale) {
   if (!(normalizedLocale in LOCALE_DATA)) {
-    LOCALE_DATA[normalizedLocale] = _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__._global.ng && _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__._global.ng.common && _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__._global.ng.common.locales && _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__._global.ng.common.locales[normalizedLocale];
+    const globalLocaleData = _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__._global.ng && _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__._global.ng.common && _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__._global.ng.common.locales && _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__._global.ng.common.locales[normalizedLocale];
+    if (globalLocaleData !== undefined) {
+      LOCALE_DATA[normalizedLocale] = globalLocaleData;
+    }
+    return globalLocaleData;
   }
   return LOCALE_DATA[normalizedLocale];
 }
 function unregisterAllLocaleData() {
-  LOCALE_DATA = {};
+  LOCALE_DATA = Object.create(null);
 }
 var LocaleDataIndex;
 (function (LocaleDataIndex) {
@@ -59198,15 +59466,18 @@ function setMaskBit(hasChange) {
   changeMaskCounter++;
 }
 function applyI18n(tView, lView, index) {
-  if (changeMaskCounter > 0) {
-    ngDevMode && (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.assertDefined)(tView, `tView should be defined`);
-    const tI18n = tView.data[index];
-    const updateOpCodes = Array.isArray(tI18n) ? tI18n : tI18n.update;
-    const bindingsStartIndex = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getBindingIndex)() - changeMaskCounter - 1;
-    applyUpdateOpCodes(tView, lView, updateOpCodes, bindingsStartIndex, changeMask);
+  try {
+    if (changeMaskCounter > 0) {
+      ngDevMode && (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.assertDefined)(tView, `tView should be defined`);
+      const tI18n = tView.data[index];
+      const updateOpCodes = Array.isArray(tI18n) ? tI18n : tI18n.update;
+      const bindingsStartIndex = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getBindingIndex)() - changeMaskCounter - 1;
+      applyUpdateOpCodes(tView, lView, updateOpCodes, bindingsStartIndex, changeMask);
+    }
+  } finally {
+    changeMask = 0b0;
+    changeMaskCounter = 0;
   }
-  changeMask = 0b0;
-  changeMaskCounter = 0;
 }
 function createNodeWithoutHydration(lView, textOrName, nodeType) {
   const renderer = lView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RENDERER];
@@ -59370,7 +59641,13 @@ function applyUpdateOpCodes(tView, lView, updateOpCodes, bindingsStartIndex, cha
                 if (typeof tNodeOrTagName === 'string') {
                   setElementAttribute(lView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RENDERER], lView[nodeIndex], null, tNodeOrTagName, propName, value, sanitizeFn);
                 } else {
-                  setPropertyAndInputs(tNodeOrTagName, lView, propName, value, lView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RENDERER], sanitizeFn);
+                  const prevSelectedIndex = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.getSelectedIndex)();
+                  (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.setSelectedIndex)(nodeIndex);
+                  try {
+                    setPropertyAndInputs(tNodeOrTagName, lView, propName, value, lView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.RENDERER], sanitizeFn);
+                  } finally {
+                    (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.setSelectedIndex)(prevSelectedIndex);
+                  }
                 }
                 break;
               case 0:
@@ -59756,7 +60033,8 @@ function i18nAttributesFirstPass(tView, index, values) {
         if (ICU_REGEXP.test(message)) {
           throw new Error(`ICU expressions are not supported in attributes. Message: "${message}".`);
         }
-        generateBindingUpdateOpCodes(updateOpCodes, message, previousElementIndex, attrName, countBindings(updateOpCodes), SENSITIVE_ATTRS[attrName.toLowerCase()] ? _sanitizeUrl : null);
+        const tagName = previousElement.namespace ? `:${previousElement.namespace}:${previousElement.value}` : previousElement.value;
+        generateBindingUpdateOpCodes(updateOpCodes, message, previousElementIndex, attrName, countBindings(updateOpCodes), i18nResolveSanitizer(attrName, tagName));
       }
     }
     tView.data[index] = updateOpCodes;
@@ -59986,20 +60264,25 @@ function walkIcuTree(ast, tView, tIcu, lView, sharedUpdateOpCodes, create, remov
             const attr = elAttrs.item(i);
             const lowerAttrName = attr.name.toLowerCase();
             const hasBinding = !!attr.value.match(BINDING_REGEXP);
+            const namespaceUri = element.namespaceURI;
+            const namespace = namespaceUri && NAMESPACE_URIS[namespaceUri];
+            const tagNameWithNamespace = namespace ? `:${namespace}:${tagName}` : tagName;
             if (hasBinding) {
               if (VALID_ATTRS.hasOwnProperty(lowerAttrName)) {
-                generateBindingUpdateOpCodes(update, attr.value, newIndex, attr.name, 0, SENSITIVE_ATTRS[lowerAttrName] ? _sanitizeUrl : null);
+                generateBindingUpdateOpCodes(update, attr.value, newIndex, attr.name, 0, i18nResolveSanitizer(lowerAttrName, tagNameWithNamespace));
               } else {
                 ngDevMode && console.warn(`WARNING: ignoring unsafe attribute value ` + `${lowerAttrName} on element ${tagName} ` + `(see ${_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.XSS_SECURITY_URL})`);
               }
             } else if (VALID_ATTRS[lowerAttrName]) {
-              if (SENSITIVE_ATTRS[lowerAttrName]) {
+              let val = attr.value;
+              const sanitizer = i18nResolveSanitizer(lowerAttrName, tagNameWithNamespace);
+              if (sanitizer) {
                 if (typeof ngDevMode !== 'undefined' && ngDevMode) {
                   console.warn(`WARNING: ignoring unsafe attribute ` + `${lowerAttrName} on element ${tagName} ` + `(see ${_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.XSS_SECURITY_URL})`);
                 }
                 addCreateAttribute(create, newIndex, attr.name, 'unsafe:blocked');
               } else {
-                addCreateAttribute(create, newIndex, attr.name, attr.value);
+                addCreateAttribute(create, newIndex, attr.name, val);
               }
             } else {
               if (typeof ngDevMode !== 'undefined' && ngDevMode) {
@@ -60070,6 +60353,34 @@ function addCreateNodeAndAppend(create, marker, text, appendToParentIdx, createA
 }
 function addCreateAttribute(create, newIndex, attrName, attrValue) {
   create.push(newIndex << 1 | 1, attrName, attrValue);
+}
+function normalizeTagName(tagName) {
+  const tagNameLower = tagName.toLowerCase();
+  const [ns, name] = splitNsName(tagNameLower, false);
+  return ns === SVG_NAMESPACE || ns === MATH_ML_NAMESPACE ? `:${ns}:${name}` : name;
+}
+function i18nResolveSanitizer(attrName, tagName) {
+  const lowerAttrName = attrName.toLowerCase();
+  const lowerTagName = tagName ? normalizeTagName(tagName) : '*';
+  const [namespace] = splitNsName(lowerTagName, false);
+  const schema = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SECURITY_SCHEMA)();
+  const schemaContext = schema[`${lowerTagName}|${lowerAttrName}`] || (namespace ? schema[`:${namespace}:*|${lowerAttrName}`] : undefined) || schema[`*|${lowerAttrName}`] || _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.NONE;
+  switch (schemaContext) {
+    case _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.HTML:
+      return ɵɵsanitizeHtml;
+    case _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.STYLE:
+      return ɵɵsanitizeStyle;
+    case _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.SCRIPT:
+      return ɵɵsanitizeScript;
+    case _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.URL:
+      return _sanitizeUrl;
+    case _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.RESOURCE_URL:
+      return ɵɵsanitizeResourceUrl;
+    case _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.ATTRIBUTE_NO_BINDING:
+      return ɵɵvalidateAttribute;
+    default:
+      return null;
+  }
 }
 const ROOT_TEMPLATE_ID = 0;
 const PP_MULTI_VALUE_PLACEHOLDERS_REGEXP = /\[(�.+?�?)\]/;
@@ -62561,7 +62872,8 @@ function convertToR3QueryMetadata(propertyName, ann) {
   };
 }
 function extractQueriesMetadata(type, propMetadata, isQueryAnn) {
-  const queriesMeta = [];
+  const signalQueriesMeta = [];
+  const decoratorQueriesMeta = [];
   for (const field in propMetadata) {
     if (propMetadata.hasOwnProperty(field)) {
       const annotations = propMetadata[field];
@@ -62573,12 +62885,17 @@ function extractQueriesMetadata(type, propMetadata, isQueryAnn) {
           if (annotations.some(isInputAnnotation)) {
             throw new Error(`Cannot combine @Input decorators with query decorators`);
           }
-          queriesMeta.push(convertToR3QueryMetadata(field, ann));
+          const queryMeta = convertToR3QueryMetadata(field, ann);
+          if (queryMeta.isSignal) {
+            signalQueriesMeta.push(queryMeta);
+          } else {
+            decoratorQueriesMeta.push(queryMeta);
+          }
         }
       });
     }
   }
-  return queriesMeta;
+  return [...signalQueriesMeta, ...decoratorQueriesMeta];
 }
 function extractExportAs(exportAs) {
   return exportAs === undefined ? null : splitByComma(exportAs);
@@ -63359,7 +63676,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   signalUpdateFn: () => (/* binding */ signalUpdateFn)
 /* harmony export */ });
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -63853,7 +64170,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   RuntimeError: () => (/* binding */ RuntimeError),
 /* harmony export */   SCHEDULE_IN_ROOT_ZONE: () => (/* binding */ SCHEDULE_IN_ROOT_ZONE),
 /* harmony export */   SCHEDULE_IN_ROOT_ZONE_DEFAULT: () => (/* binding */ SCHEDULE_IN_ROOT_ZONE_DEFAULT),
+/* harmony export */   SECURITY_SCHEMA: () => (/* binding */ SECURITY_SCHEMA),
 /* harmony export */   SVG_NAMESPACE: () => (/* binding */ SVG_NAMESPACE),
+/* harmony export */   SecurityContext: () => (/* binding */ SecurityContext),
 /* harmony export */   TVIEW: () => (/* binding */ TVIEW),
 /* harmony export */   T_HOST: () => (/* binding */ T_HOST),
 /* harmony export */   VERSION: () => (/* binding */ VERSION),
@@ -63908,6 +64227,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   assertTNodeForLView: () => (/* binding */ assertTNodeForLView),
 /* harmony export */   assertTNodeForTView: () => (/* binding */ assertTNodeForTView),
 /* harmony export */   attachInjectFlag: () => (/* binding */ attachInjectFlag),
+/* harmony export */   checkSecurityContext: () => (/* binding */ checkSecurityContext),
 /* harmony export */   concatStringsWithSpace: () => (/* binding */ concatStringsWithSpace),
 /* harmony export */   convertToBitFlags: () => (/* binding */ convertToBitFlags),
 /* harmony export */   createInjector: () => (/* binding */ createInjector),
@@ -64077,7 +64397,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ 2510);
 /* harmony import */ var _not_found_chunk_mjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core/primitives/di */ 8330);
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -64100,7 +64420,7 @@ class Version {
     this.patch = parts.slice(2).join('.');
   }
 }
-const VERSION = /* @__PURE__ */new Version('21.2.7');
+const VERSION = /* @__PURE__ */new Version('21.2.21');
 const DOC_PAGE_BASE_URL = (() => {
   const full = VERSION.full;
   const isPreRelease = full.includes('-next') || full.includes('-rc') || full === '0.0.0' + '-PLACEHOLDER';
@@ -65685,8 +66005,50 @@ function assertNodeInjector(lView, injectorIndex) {
   assertNumber(lView[injectorIndex + 7], 'injectorIndex should point to a bloom filter');
   assertNumber(lView[injectorIndex + 8], 'injectorIndex should point to parent injector');
 }
+var SecurityContext;
+(function (SecurityContext) {
+  SecurityContext[SecurityContext["NONE"] = 0] = "NONE";
+  SecurityContext[SecurityContext["HTML"] = 1] = "HTML";
+  SecurityContext[SecurityContext["STYLE"] = 2] = "STYLE";
+  SecurityContext[SecurityContext["SCRIPT"] = 3] = "SCRIPT";
+  SecurityContext[SecurityContext["URL"] = 4] = "URL";
+  SecurityContext[SecurityContext["RESOURCE_URL"] = 5] = "RESOURCE_URL";
+  SecurityContext[SecurityContext["ATTRIBUTE_NO_BINDING"] = 6] = "ATTRIBUTE_NO_BINDING";
+})(SecurityContext || (SecurityContext = {}));
+let _SECURITY_SCHEMA;
 const SVG_NAMESPACE = 'svg';
 const MATH_ML_NAMESPACE = 'math';
+function SECURITY_SCHEMA() {
+  if (!_SECURITY_SCHEMA) {
+    _SECURITY_SCHEMA = {};
+    registerContext(SecurityContext.HTML, undefined, [['iframe', ['srcdoc']], ['*', ['innerHTML', 'outerHTML']]]);
+    registerContext(SecurityContext.STYLE, undefined, [['*', ['style']]]);
+    registerContext(SecurityContext.URL, undefined, [['*', ['formAction']], ['area', ['href']], ['a', ['href', 'xlink:href']], ['form', ['action']], ['img', ['src']], ['video', ['src']]]);
+    registerContext(SecurityContext.URL, MATH_ML_NAMESPACE, [['*', ['href', 'xlink:href']], ['annotation', ['href', 'xlink:href']], ['annotation-xml', ['href', 'xlink:href']], ['maction', ['href', 'xlink:href']], ['malignmark', ['href', 'xlink:href']], ['math', ['href', 'xlink:href']], ['mroot', ['href', 'xlink:href']], ['msqrt', ['href', 'xlink:href']], ['merror', ['href', 'xlink:href']], ['mfrac', ['href', 'xlink:href']], ['mglyph', ['href', 'xlink:href']], ['msub', ['href', 'xlink:href']], ['msup', ['href', 'xlink:href']], ['msubsup', ['href', 'xlink:href']], ['mmultiscripts', ['href', 'xlink:href']], ['mprescripts', ['href', 'xlink:href']], ['mi', ['href', 'xlink:href']], ['mn', ['href', 'xlink:href']], ['mo', ['href', 'xlink:href']], ['mpadded', ['href', 'xlink:href']], ['mphantom', ['href', 'xlink:href']], ['mrow', ['href', 'xlink:href']], ['ms', ['href', 'xlink:href']], ['mspace', ['href', 'xlink:href']], ['mstyle', ['href', 'xlink:href']], ['mtable', ['href', 'xlink:href']], ['mtd', ['href', 'xlink:href']], ['mtr', ['href', 'xlink:href']], ['mtext', ['href', 'xlink:href']], ['mover', ['href', 'xlink:href']], ['munder', ['href', 'xlink:href']], ['munderover', ['href', 'xlink:href']], ['semantics', ['href', 'xlink:href']], ['none', ['href', 'xlink:href']]]);
+    registerContext(SecurityContext.RESOURCE_URL, undefined, [['base', ['href']], ['embed', ['src']], ['frame', ['src']], ['iframe', ['src']], ['link', ['href']], ['object', ['codebase', 'data']]]);
+    registerContext(SecurityContext.URL, SVG_NAMESPACE, [['a', ['href', 'xlink:href']]]);
+    registerContext(SecurityContext.ATTRIBUTE_NO_BINDING, SVG_NAMESPACE, [['animate', ['attributeName', 'values', 'to', 'from']], ['set', ['to', 'attributeName']], ['animateMotion', ['attributeName']], ['animateTransform', ['attributeName']]]);
+    registerContext(SecurityContext.ATTRIBUTE_NO_BINDING, undefined, [['unknown', ['attributeName', 'values', 'to', 'from', 'sandbox', 'allow', 'allowFullscreen', 'referrerPolicy', 'csp', 'fetchPriority']], ['iframe', ['sandbox', 'allow', 'allowFullscreen', 'referrerPolicy', 'csp', 'fetchPriority']]]);
+  }
+  return _SECURITY_SCHEMA;
+}
+function registerContext(ctx, namespace, specs) {
+  for (const [element, attributeNames] of specs) {
+    let tagName = namespace && element !== 'unknown' ? `:${namespace}:${element}` : element;
+    tagName = tagName.toLowerCase();
+    for (const attr of attributeNames) {
+      _SECURITY_SCHEMA[`${tagName}|${attr.toLowerCase()}`] = ctx;
+    }
+  }
+}
+function checkSecurityContext(tagName, propName, namespace) {
+  const schema = SECURITY_SCHEMA();
+  const normalizedTagName = tagName.toLowerCase();
+  const normalizedPropName = propName.toLowerCase();
+  const namespacedContext = namespace && normalizedTagName !== '*' && normalizedTagName !== 'unknown' ? schema[`:${namespace}:${normalizedTagName}|${normalizedPropName}`] : undefined;
+  const namespacedWildcardContext = namespace ? schema[`:${namespace}:*|${normalizedPropName}`] : undefined;
+  return namespacedContext ?? namespacedWildcardContext ?? schema[`${normalizedTagName}|${normalizedPropName}`] ?? schema[`*|${normalizedPropName}`] ?? SecurityContext.NONE;
+}
 function unwrapRNode(value) {
   while (Array.isArray(value)) {
     value = value[HOST];
@@ -67010,7 +67372,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   setCurrentInjector: () => (/* binding */ setCurrentInjector)
 /* harmony export */ });
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -67066,13 +67428,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   resource: () => (/* binding */ resource),
 /* harmony export */   untracked: () => (/* binding */ untracked)
 /* harmony export */ });
-/* harmony import */ var _storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
+/* harmony import */ var _storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
 /* harmony import */ var _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_effect-chunk2.mjs */ 4363);
 /* harmony import */ var _effect_chunk_mjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_effect-chunk.mjs */ 9843);
 /* harmony import */ var _untracked_chunk_mjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_untracked-chunk.mjs */ 1817);
 
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -67353,7 +67715,7 @@ class ResourceImpl extends BaseWritableResource {
   }
   loadEffect() {
     var _this = this;
-    return (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const extRequest = _this.extRequest();
       const {
         status: currentStatus,
@@ -67421,7 +67783,7 @@ function getLoader(options) {
     return options.stream;
   }
   return /*#__PURE__*/function () {
-    var _ref = (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (params) {
+    var _ref = (0,_storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (params) {
       try {
         return (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.signal)({
           value: yield options.loader(params)
@@ -67500,7 +67862,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _effect_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_effect-chunk.mjs */ 9843);
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -67611,7 +67973,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   setAlternateWeakRefImpl: () => (/* binding */ setAlternateWeakRefImpl)
 /* harmony export */ });
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -67703,7 +68065,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   RendererFactory2: () => (/* reexport safe */ _debug_node_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__.RendererFactory2),
 /* harmony export */   RendererStyleFlags2: () => (/* reexport safe */ _debug_node_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__.RendererStyleFlags2),
 /* harmony export */   Sanitizer: () => (/* reexport safe */ _debug_node_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__.Sanitizer),
-/* harmony export */   SecurityContext: () => (/* reexport safe */ _debug_node_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__.SecurityContext),
+/* harmony export */   SecurityContext: () => (/* reexport safe */ _effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.SecurityContext),
 /* harmony export */   Self: () => (/* reexport safe */ _debug_node_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__.Self),
 /* harmony export */   SimpleChange: () => (/* reexport safe */ _debug_node_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__.SimpleChange),
 /* harmony export */   SkipSelf: () => (/* reexport safe */ _debug_node_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__.SkipSelf),
@@ -68143,7 +68505,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _weak_ref_chunk_mjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./_weak_ref-chunk.mjs */ 6550);
 /* harmony import */ var _not_found_chunk_mjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_not_found-chunk.mjs */ 8330);
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -70438,7 +70800,10 @@ function serializeLContainer(lContainer, tNode, lView, parentDeferBlockId, conte
         serializedView[_debug_node_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__.DEFER_BLOCK_STATE] = lDetails[_debug_node_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__.DEFER_BLOCK_STATE$1];
       }
       if (!isHydrateNeverBlock) {
-        Object.assign(serializedView, serializeLView(lContainer[i], parentDeferBlockId, context));
+        const childHostElement = (0,_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.unwrapRNode)(childLView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.HOST]);
+        if (childLView[_effect_chunk2_mjs__WEBPACK_IMPORTED_MODULE_1__.TVIEW].type !== 1 || childHostElement === null || !childHostElement.hasAttribute(_debug_node_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__.SKIP_HYDRATION_ATTR_NAME)) {
+          Object.assign(serializedView, serializeLView(lContainer[i], parentDeferBlockId, context));
+        }
       }
     }
     const currentViewAsString = JSON.stringify(serializedView);
@@ -71043,7 +71408,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _attribute_chunk_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_attribute-chunk.mjs */ 6248);
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -71184,7 +71549,6 @@ function createMouseSpecialEvent(e, target) {
   copy['_originalEvent'] = e;
   return copy;
 }
-const isIos = typeof navigator !== 'undefined' && /iPhone|iPad|iPod/.test(navigator.userAgent);
 class EventContractContainer {
   element;
   handlerInfos = [];
@@ -71192,9 +71556,6 @@ class EventContractContainer {
     this.element = element;
   }
   addEventListener(eventType, getHandler, passive) {
-    if (isIos) {
-      this.element.style.cursor = 'pointer';
-    }
     this.handlerInfos.push(addEventListener(this.element, eventType, getHandler(this.element), passive));
   }
   cleanUp() {
@@ -71881,7 +72242,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ 271);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common */ 8963);
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -72584,7 +72945,7 @@ const ngModelWithFormGroupExample = `
       <input [(ngModel)]="showMoreControls" [ngModelOptions]="{standalone: true}">
   </div>
 `;
-const VERSION = /* @__PURE__ */new _angular_core__WEBPACK_IMPORTED_MODULE_2__.Version('21.2.7');
+const VERSION = /* @__PURE__ */new _angular_core__WEBPACK_IMPORTED_MODULE_2__.Version('21.2.21');
 function controlParentException(nameOrIndex) {
   return new _angular_core__WEBPACK_IMPORTED_MODULE_2__.RuntimeError(1050, `formControlName must be used with a parent formGroup or formArray directive. You'll want to add a formGroup/formArray
       directive and pass it an existing FormGroup/FormArray instance (you can create one in your class).
@@ -72783,7 +73144,7 @@ function assertControlPresent(parent, isGroup, key) {
 function assertAllValuesPresent(control, isGroup, value) {
   control._forEachChild((_, key) => {
     if (value[key] === undefined) {
-      throw new _angular_core__WEBPACK_IMPORTED_MODULE_2__.RuntimeError(1002, typeof ngDevMode === 'undefined' || ngDevMode ? missingControlValueError(isGroup, key) : '');
+      throw new _angular_core__WEBPACK_IMPORTED_MODULE_2__.RuntimeError(-1002, typeof ngDevMode === 'undefined' || ngDevMode ? missingControlValueError(isGroup, key) : '');
     }
   });
 }
@@ -75736,11 +76097,11 @@ class SelectMultipleControlValueAccessor extends BuiltInControlValueAccessor {
     let optionSelectedStateSetter;
     if (Array.isArray(value)) {
       const ids = value.map(v => this._getOptionId(v));
-      optionSelectedStateSetter = (opt, o) => {
-        opt._setSelected(ids.indexOf(o.toString()) > -1);
+      optionSelectedStateSetter = (opt, id) => {
+        opt._setSelected(ids.indexOf(id) > -1);
       };
     } else {
-      optionSelectedStateSetter = (opt, o) => {
+      optionSelectedStateSetter = opt => {
         opt._setSelected(false);
       };
     }
@@ -76566,7 +76927,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   platformBrowser: () => (/* binding */ platformBrowser),
 /* harmony export */   provideProtractorTestingSupport: () => (/* binding */ provideProtractorTestingSupport)
 /* harmony export */ });
-/* harmony import */ var _storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
+/* harmony import */ var _storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ 316);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 4363);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ 9748);
@@ -76577,7 +76938,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dom_renderer_chunk_mjs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./_dom_renderer-chunk.mjs */ 8547);
 
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -76838,7 +77199,7 @@ function bootstrapApplication(_x, _x2, _x3) {
   return _bootstrapApplication.apply(this, arguments);
 }
 function _bootstrapApplication() {
-  _bootstrapApplication = (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (rootComponent, options, context) {
+  _bootstrapApplication = (0,_storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (rootComponent, options, context) {
     const config = {
       rootComponent,
       ...createProvidersConfig(options, context)
@@ -76854,7 +77215,7 @@ function createApplication(_x4, _x5) {
   return _createApplication.apply(this, arguments);
 }
 function _createApplication() {
-  _createApplication = (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (options, context) {
+  _createApplication = (0,_storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (options, context) {
     if ((typeof ngJitMode === 'undefined' || ngJitMode) && typeof fetch === 'function') {
       yield resolveJitResources();
     }
@@ -76873,7 +77234,7 @@ function resolveJitResources() {
   return _resolveJitResources.apply(this, arguments);
 }
 function _resolveJitResources() {
-  _resolveJitResources = (0,_storage_data_github_revivejs_ng_multiselect_dropdown_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+  _resolveJitResources = (0,_storage_data_github_repository_hardening_2026_ng_multiselect_dropdown_docs_src_angular_21_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
     try {
       return yield (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.resolveComponentResources)(fetch);
     } catch (error) {
@@ -76998,7 +77359,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ 8963);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 6124);
 /**
- * @license Angular v21.2.7
+ * @license Angular v21.2.21
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */

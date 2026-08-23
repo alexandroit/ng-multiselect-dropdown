@@ -280,3 +280,8 @@ Yes. Arrays of strings and numbers are supported, as well as object arrays mappe
 
 [MIT](LICENSE), preserving attribution for the original project and the
 maintained Stackline fork.
+
+## Security
+
+Report vulnerabilities privately by following [SECURITY.md](SECURITY.md). Do
+not disclose exploit details in a public issue.

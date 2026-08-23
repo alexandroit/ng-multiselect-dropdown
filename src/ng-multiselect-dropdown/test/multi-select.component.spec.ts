@@ -31,6 +31,8 @@ class Ng2MultiSelectDropdownSingleSelect {
     allowSearchFilter: false,
     closeDropDownOnSelection: true
   };
+
+  onItemSelect(_item: unknown): void {}
 }
 @Component({
   standalone: false,
@@ -61,6 +63,8 @@ class Ng2MultiSelectDropdownMultipleSelect {
     allowSearchFilter: true,
     closeDropDownOnSelection: true
   };
+
+  onItemSelect(_item: unknown): void {}
 }
 describe('ng-multiselect-component', function() {
   describe('Single Selection', () => {
@@ -123,8 +127,10 @@ describe('ng-multiselect-component', function() {
       expect(fixture.componentInstance.selectedItem[0]).toEqual(selItem);
     }));
     it('should have default placeholder as "Select"', () => {
+      fixture.componentInstance.select.writeValue([]);
+      fixture.detectChanges();
       const de: DebugElement = fixture.debugElement.query(
-        By.css('.dropdown-btn>span')
+        By.css('.dropdown-placeholder')
       );
       const el = de.nativeElement;
       expect(el.textContent).toContain('Select');
@@ -163,6 +169,11 @@ describe('ng-multiselect-component', function() {
     it('should not select disabled item', fakeAsync(() => {
       const selectedItems = [...fixture.componentInstance.selectedItem]; // currently selected items
       const index = 2;
+      const dropdownButton: HTMLElement = fixture.nativeElement.querySelector(
+        '.dropdown-btn'
+      );
+      dropdownButton.click();
+      tickAndDetectChanges(fixture);
       let selCheckBoxes: HTMLLIElement[];
       const sel = fixture.nativeElement.querySelectorAll(
         '.multiselect-item-checkbox'
@@ -232,8 +243,10 @@ describe('ng-multiselect-component', function() {
       // expect(fixture.componentInstance.selectedItem[0]).toEqual(selItem);
     }));
     it('should have default placeholder as "Select"', () => {
+      fixture.componentInstance.select.writeValue([]);
+      fixture.detectChanges();
       const de: DebugElement = fixture.debugElement.query(
-        By.css('.dropdown-btn>span')
+        By.css('.dropdown-placeholder')
       );
       const el = de.nativeElement;
       expect(el.textContent).toContain('Select');

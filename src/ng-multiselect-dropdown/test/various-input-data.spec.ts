@@ -125,6 +125,7 @@ const SEL_CITIES: Array<ICity> = [
 ];
 
 @Component({
+  standalone: false,
   template: ``
 })
 class SingleDimensionObjectComponent {

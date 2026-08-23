@@ -36,7 +36,10 @@ module.exports = function (config) {
         flags: ['--no-sandbox', '--disable-dev-shm-usage']
       }
     },
-    browserNoActivityTimeout: 60000,
+    browserDisconnectTimeout: 10000,
+    browserDisconnectTolerance: 1,
+    browserNoActivityTimeout: 180000,
+    captureTimeout: 120000,
     singleRun: false
   });
 };

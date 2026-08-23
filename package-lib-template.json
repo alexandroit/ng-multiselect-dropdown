@@ -38,7 +38,6 @@
     "npm-package",
     "maintained",
     "modernized",
-    "maintained",
     "upgrade"
   ],
   "author": "Alexandro Paixao Marques",
@@ -50,7 +49,7 @@
   "bugs": {
     "url": "https://github.com/alexandroit/ng-multiselect-dropdown/issues"
   },
-  "homepage": "https://github.com/alexandroit/ng-multiselect-dropdown#readme",
+  "homepage": "https://alexandroit.github.io/ng-multiselect-dropdown/",
   "publishConfig": {
     "access": "public"
   },
@@ -61,6 +60,8 @@
     "themes/",
     "README.md",
     "CHANGELOG.md",
+    "LICENSE",
+    "SECURITY.md",
     "index.d.ts",
     "package.json",
     "public-api.d.ts",
