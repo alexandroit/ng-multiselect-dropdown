@@ -99,7 +99,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "~21.2.21",
     "@angular/animations": "21.2.21",
-    "@angular/cli": "~21.2.21",
+    "@angular/cli": "~22.2.3",
     "@angular/common": "21.2.21",
     "@angular/compiler": "21.2.21",
     "@angular/compiler-cli": "21.2.21",
